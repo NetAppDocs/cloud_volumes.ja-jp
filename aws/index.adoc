@@ -1,0 +1,59 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/index.html 
+summary: NetApp Cloud Volumes Service for AWS のドキュメントポータルへようこそ。 
+---
+= NetApp Cloud Volumes Service for AWS のドキュメント
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:keywords: cloud volumes, amazon web services, AWS, documentation, help
+
+
+[role="lead"]
+NetApp Cloud Volumes Service for AWS は、 NFS や SMB 経由で NAS ボリュームにオールフラッシュのパフォーマンスを提供するクラウドネイティブのファイルサービスです。このサービスを使用すると、従来型アプリケーションを含むあらゆるワークロードを AWS クラウドで実行できます。
+
+
+
+== Cloud Volumes Service for AWS を使用するメリット
+
+Cloud Volumes Service for AWS には次のようなメリットがあります。
+
+* 一貫したハイパフォーマンス
+* パフォーマンスに影響を与えることなくデータを保護
+* 瞬時のクローニングで、運用、開発、テストのワークフローをサポート
+* NFSv3 および NFSv4.1 、 SMB 2.1 、 3.0 、 3.1.1 の NAS プロトコルがサポートされます
+* Linux インスタンスと Windows Elastic Container Service （ ECS ）インスタンスへのセキュアなアクセス。以下のサポートが含まれます。
++
+** Amazon Linux 2 、 Red Hat Enterprise Linux 7.5 、 SLES 12 SP3 、および Ubuntu 16.04 LTS
+** Windows Server 2008 R2 、 Windows Server 2012 R2 、および Windows Server 2016
+
+
+* フルマネージドサービス。ストレージデバイスの構成や管理は不要です
+* バンドル価格と従量課金制のいずれかを選択できます
+
+
+
+
+== 上位のタスクを実行します
+
+* link:task_selecting_region.html["リージョンを選択します"]
+* link:task_creating_cloud_volumes_for_aws.html["クラウドボリュームを作成"]
+* link:task_mounting_cloud_volumes_for_aws.html["クラウドボリュームをマウント"]
+* link:task_creating_on_demand_snapshots.html["クラウドボリューム用のオンデマンド Snapshot を作成する"]
+
+
+
+
+== Cloud Volumes Service for AWS の詳細については、こちらをご覧ください
+
+video::hL4rosv-iZQ[youtube, width=848,height=480]
+
+
+== 詳細については、こちらをご覧ください
+
+* https://cloud.netapp.com/home["NetApp Cloud Central"^]
+* https://www.netapp.com/us/forms/campaign/register-for-netapp-cloud-volumes-for-aws.aspx?hsCtaTracking=4f67614a-8c97-4c15-bd01-afa38bd31696%7C5e536b53-9371-4ce1-8e38-efda436e592e["新しい NetApp Cloud Volumes Service for AWS をぜひご利用ください"^]
+

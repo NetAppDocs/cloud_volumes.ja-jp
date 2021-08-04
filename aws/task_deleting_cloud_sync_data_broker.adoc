@@ -1,0 +1,33 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/task_deleting_cloud_sync_data_broker.html 
+keywords: Cloud Volumes Service for AWS, Cloud Sync, data brokers 
+summary: 不要になった Cloud Sync データブローカーを削除することができます。 
+---
+= Cloud Sync データブローカーの削除
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+不要になった Cloud Sync データブローカーを削除することができます。
+
+このタスクでは、 Cloud Volume からデータブローカーを削除しますが、 AWS でデータブローカーインスタンスが削除されることはありません。
+
+AWS でデータブローカーインスタンスを削除するには、アカウントの AWS コンソールでブローカーの EC2 インスタンスを探し、必要に応じて終了する必要があります。
+
+データブローカーを削除するには、そのデータブローカーを使用するすべての Cloud Sync 関係が削除されている必要があります。
+
+link:task_deleting_cloud_sync_relationship.html["Cloud Sync 関係を削除しています"]
+
+.手順
+. [ 同期 ] ページまたは [ ボリューム ] ページでボリュームの [ 同期 ] タブに移動します。
+. データブローカーの名前をクリックし、ごみ箱のアイコンをクリックして、データブローカーを削除します。
+. 確認ダイアログボックスで「削除」と入力し、「削除」をクリックします。
+

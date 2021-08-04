@@ -1,0 +1,76 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/task_creating_cloud_sync_data_broker.html 
+keywords: Cloud Volumes Service for AWS, Cloud Sync, data brokers, sync relationships 
+summary: NetApp Cloud Sync は NetApp Cloud Volumes Service for AWS と統合されており、クラウドボリュームとの間のデータ同期を高速化できます。Cloud Sync データブローカーを使用すると、データを同期するための Cloud Sync 関係を作成できます。 
+---
+= Cloud Sync データブローカーの作成
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+NetApp Cloud Sync は NetApp Cloud Volumes Service for AWS と統合されており、クラウドボリュームとの間で NFS 経由のデータを高速に同期できます。Cloud Sync データブローカーを使用すると、データを同期するための Cloud Sync 関係を作成できます。
+
+Cloud Volume アカウントに使用するのと同じ AWS Virtual Private Cloud （ VPC ）に Cloud Sync データブローカーがすでに含まれている場合は、このタスクをスキップできます。
+
+https://docs.netapp.com/us-en/cloudsync/["NetApp Cloud Sync のドキュメント"^]
+
+.手順
+. [ 同期 ] ページまたは [ ボリューム ] ページでボリュームの [ 同期 ] タブに移動します。
+. [ データブローカーの作成 ] をクリックして、データブローカーを作成します。
+. 次のフィールドに情報を入力します。
++
+** * 名前 *
++
+データブローカーの名前を指定します。
+
+** * タイプ *
++
+AWS を選択します。
+
+** * 地域 *
++
+使用可能なリージョンを選択します。
+
+** * API キー *
++
+AWS アカウントのアクセスキーを指定します。
+
+** * 秘密鍵 *
++
+AWS アカウントのシークレットキーを指定します。
+
+** * キーペア *
++
+使用可能なキーペアを選択します。
+
++
+キーペアは、有効なキーを入力すると更新されます。
+
+** * VPC *
++
+Cloud Volume アカウントに接続されている VPC を選択します。
+
+** * サブネット *
++
+データブローカーに使用する使用可能なサブネットを選択してください。
+
++
+image::diagram_creating_cloud_sync_data_broker.png[Cloud Sync データブローカーの作成]
+
+
+
+. [ データブローカーの作成 *] をクリックして、データブローカー作成プロセスを開始します。
++
+データブローカーの作成には数分かかります。作成されたデータブローカーは、準備が完了したことを示す緑の点でマークされます。
+
+
+
+に進みます link:task_creating_cloud_sync_relationship.html["Cloud Sync 関係を作成しています"]。

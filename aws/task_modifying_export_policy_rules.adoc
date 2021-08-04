@@ -1,0 +1,30 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/task_modifying_export_policy_rules.html 
+keywords: Cloud Volumes Service for AWS, export policy rules, client access, access types 
+summary: ボリュームのエクスポートポリシールールは必要に応じて変更できます。 
+---
+= エクスポートポリシールールの変更
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+ボリュームのエクスポートポリシールールは必要に応じて変更できます。
+
+.手順
+. ボリューム名をクリックし、 * エクスポートポリシー * を選択します。
+. 既存のエクスポートポリシールールを変更するには、必要に応じて次のフィールドを変更します。
++
+** * 許可されたクライアント *
+** * アクセスタイプ *
+
+
+. [ 変更の保存 *] をクリックします。
+

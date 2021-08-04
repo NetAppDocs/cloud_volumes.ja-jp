@@ -1,0 +1,42 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/task_creating_on_demand_snapshots.html 
+keywords: Cloud Volumes Service for AWS, snapshots, on-demand 
+summary: クラウドボリュームの Snapshot をオンデマンドで作成するには、ボリュームまたは Snapshot ページを使用します。 
+---
+= クラウドボリューム用のオンデマンド Snapshot を作成する
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+クラウドボリュームの Snapshot をオンデマンドで作成するには、ボリュームまたは Snapshot ページを使用します。
+
+
+
+== Volumes （ボリューム）ページからスナップショットを作成します
+
+.手順
+. ボリューム名をクリックし、 * Snapshots * を選択して、 * + Create new snapshot * をクリックします。
+. Snapshot の名前を入力するか、自動生成された名前を使用します。
+. ボリューム名を選択し、ドロップダウンリストから Snapshot を作成するボリュームを選択します。
+. スナップショットの作成 * をクリックします。
+
+
+作成した Snapshot が表示されます。
+
+
+
+== Snapshots （スナップショット）ページからスナップショットを作成します
+
+.手順
+. [ * + 新しいスナップショットの作成 * ] をクリックします。
+. Snapshot の名前を入力するか、自動生成された名前を使用します。
+. ドロップダウンリストから、 Snapshot を作成するボリュームを選択します。
+. スナップショットの作成 * をクリックします。
+
+
+作成した Snapshot が表示されます。

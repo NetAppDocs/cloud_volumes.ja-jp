@@ -1,0 +1,54 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/task_mounting_cloud_volumes_for_aws.html 
+keywords: Cloud Volumes Service for AWS, mount targets, Elastic Compute Cloud, EC2, NFSv3, NFSv4.1, Linux, UNIX, SMB, Windows 
+summary: クラウドボリュームは AWS インスタンスにマウントできます。Cloud Volume は現在、 Linux および UNIX クライアント用の NFSv3 と NFSv4.1 、および Windows クライアント用の SMB 2.1 、 3.0 、および 3.1.1 をサポートしています。 
+---
+= クラウドボリュームをマウント
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+クラウドボリュームは AWS インスタンスにマウントできます。Cloud Volume は現在、 Linux および UNIX クライアント用の NFSv3 と NFSv4.1 、および Windows クライアント用の SMB 2.1 、 3.0 、および 3.1.1 をサポートしています。
+
+* 注： * クライアントがサポートしているハイライトされたプロトコル / ダイアレクトを使用してください。
+
+.手順
+. 作成したボリュームのマウント手順を、青い疑問符（ ? ）をクリックして取得します。 ボリューム名の横にある Export Paths フィールドの最後に表示されます。
++
+疑問符にカーソルを合わせると、 * マウント手順を表示 * と表示されます。
+
++
+image:diagram_mount_1.png["マウント手順を表示します"]
+
+. 疑問符をクリックすると、マウント手順が表示されます。
++
+* nfs の例： *
+
++
+image:diagram_mount_instructions_nfs.png["NFS のマウント手順"]
+
++
+rsize' および wsize オプションで定義された最大 I/O サイズは 1048576 ですが、ほとんどのユースケースでは 65536 が推奨されています。
+
++
+バージョンを指定しない場合、 Linux クライアントのデフォルトは NFSv4.1 です。
+
++
+* SMB の例： *
+
++
+image:diagram_mount_instructions_smb.png["SMB のマウント手順"]
+
+. SSH または RDP クライアントを使用して Amazon Elastic Compute Cloud （ EC2 ）インスタンスに接続し、インスタンスのマウント手順に従います。
++
+マウント手順の手順が完了すると、クラウドボリュームが AWS インスタンスにマウントされました。
+
+

@@ -1,0 +1,37 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/reference_known_issues.html 
+keywords: Cloud Volumes Service for AWS limitations and known issues 
+summary: Cloud Volumes Service for AWS には、次の既知の問題と制限事項があります。 
+---
+= 既知の問題および制限事項
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Cloud Volumes Service for AWS には、次の既知の問題と制限事項があります。
+
+* * 問題 * ：既存のボリュームが NFSv3 のみをサポートしていて、 NFSv4.1 または NFSv3 と NFSv4.1 の両方をサポートしてボリュームを作成または変換した場合、 NFS バージョンを指定しないと既存ボリュームがマウントできなくなることがあります（ vers=3 ）。
++
+* 回避策 * ：マウントコマンドに NFS バージョンを指定するオプションを追加します。たとえば、「 `m ount-o vers=3...` 」のように指定するか、すべてのボリュームが NFSv4.1 をサポートするように変換されていることを確認します。バージョンを指定しない場合、 Linux クライアントのデフォルトは NFSv4.1 です。
+
+* * 問題 * ： Snapshot から新しいボリュームを作成する際に、「 Unable to set volume attribute "files" for volume_<volume>> _… … .超え ました」というメッセージが表示されて処理が失敗する場合があります。理由：新しい数は現在の <number>_ という割り当て数よりも大きくなければなりません。
++
+* 問題 * ：この回避策は、 Snapshot からボリュームを作成する際に、新しいボリュームに割り当てられる容量よりも多くのファイルが現在割り当てられている場合に発生します。新しいボリュームに十分なファイル（ inode ）を割り当てるためには、割り当て容量を増やす必要があります。を参照してください link:reference_selecting_service_level_and_quota.html#allocated-capacity["割り当て容量を選択しています"] を参照してください。
+
+* * 問題 * ：ネットワーク仮想インターフェイスは、 72 時間後にボリュームを持たない CVS リージョンでは自動的に削除されます。新しいボリュームを作成するときは、 AWS アカウント番号と CIDR を指定し直す必要があります。
++
+* 回避策 * ：ネットワーク仮想インターフェイスがアクティブでない期間に削除されないようにするには、少なくとも 1 つのボリュームを残し、割り当てとサービスレベルを下げてコストを最小限に抑えます。
+
+* * Cloud Volumes Service * ：有効期限が切れたサブスクリプションを持つユーザーは、問題ユーザーインターフェイスにログインしたり、 API を操作したりすることはできません。
++
+* 回避策 * ： AWS Marketplace の Cloud Volumes Service のページに移動して、サブスクリプションを更新してください。
+
+

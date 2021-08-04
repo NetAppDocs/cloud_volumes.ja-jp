@@ -1,0 +1,39 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/task_deleting_snapshots.html 
+keywords: Cloud Volumes Service for AWS, snapshots 
+summary: ボリュームまたは Snapshot ページから Snapshot を削除できます。 
+---
+= Snapshot を削除しています
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+ボリュームまたは Snapshot ページから Snapshot を削除できます。
+
+
+
+== Volumes （ボリューム）ページからスナップショットを削除します
+
+.手順
+. ボリューム名をクリックし、「 * Snapshots * 」を選択して、ボリュームの Snapshot のリストを確認します。
+. 対応するチェックボックスをオンにして削除するスナップショットを指定し、 * アクション * をクリックして、ドロップダウンリストから * スナップショットの削除 / 秒 * を選択します。
++
+または、 [ アクション ] の下の [ 使用可能 *] をクリックし、ドロップダウンリストから [ スナップショットの削除 *] を選択することもできます。
+
+. 確認ダイアログボックスで「削除」と入力し、「削除」をクリックします。
+
+
+
+
+== Snapshot ページから Snapshot を削除します
+
+.手順
+. （オプション）検索ボックスを使用して、リストされた Snapshot をフィルタリングします。
+. 対応するチェックボックスをオンにして削除するスナップショットを指定し、 * アクション * をクリックして、ドロップダウンリストから * スナップショットの削除 / 秒 * を選択します。
+. 確認ダイアログボックスで「削除」と入力し、「削除」をクリックします。
+

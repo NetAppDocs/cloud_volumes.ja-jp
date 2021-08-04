@@ -1,0 +1,1078 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blocks>
+  <block id="3165aa7969fa5516d6d71f3de4c1b582" category="summary">Web UI から使用できる Cloud Volume 機能は、 RESTful API からも使用できます。この API を使用して、 Cloud Volume の作成と管理、およびプロビジョニングスクリプトとツールの開発を行うことができます。</block>
+  <block id="a412bcd83657e0286a1fee405c89100d" category="doc">Cloud Volumes APIs</block>
+  <block id="7f47ff02f0a7984381cf01d7e6172be1" category="section-title">API の URL 、 API キー、およびシークレットキーの確認</block>
+  <block id="d13969ed9b830ef86f2dc7b680bdd148" category="paragraph">API 呼び出しを実行するには、 Cloud Volume API の URL 、 API キー、およびシークレットキーを取得する必要があります。</block>
+  <block id="f3a29486bed19a90f2da6d007818b427" category="list-title">手順</block>
+  <block id="f501546877aba95069ce239bf409ffe2" category="list-text">ストレージページまたはユーザ名の下のドロップダウンメニューで、 * API access * をクリックします。</block>
+  <block id="871354df0af5016899bedcade2b3b689" category="list-text">Cloud Volume API の URL 、 API キー、およびシークレットキーを記録します。</block>
+  <block id="7e747db2968cd6dc818b43dbf7ba6476" category="inline-link-macro">アカウントの API URL 、 API キー、およびシークレットキーを記載したサンプルファイル</block>
+  <block id="8c2872d6714a6a50ea8c1912bcf43bba" category="paragraph"><block ref="8c2872d6714a6a50ea8c1912bcf43bba" category="inline-link-macro-rx"></block></block>
+  <block id="4cc8b363e2c17c696e7397ff80bc3797" category="section-title">使用可能な API の一覧を表示します</block>
+  <block id="b4b43a44289217b967abaf92899b47f4" category="paragraph">ストレージページには、使用可能な API が表示されます。</block>
+  <block id="a300ef370d0d1dab6d3bfe48214c4f26" category="list-text">ストレージページで * API ドキュメント * をクリックします。</block>
+  <block id="c33825dfec89a1a030d1d0fe7f41054b" category="paragraph">ページには使用可能な API がリストされます。</block>
+  <block id="a7614b8fc371c044de07ea99fc398824" category="list-text">ページをスクロールして使用可能な API を確認します。</block>
+  <block id="73d03ea35c94efd436f404d5aeabb786" category="paragraph">API は、次のような関数別に一覧表示されます。</block>
+  <block id="707325d27093188691659cc218115f02" category="list-text">「ボリューム」</block>
+  <block id="821c3259a2d2dc5b2f8d894874f51a23" category="list-text">「目標」</block>
+  <block id="fd3e64f45143425a49161c4e76e3d347" category="list-text">「ストレージ」</block>
+  <block id="5ba59db5cc80ee016bd3350d071b8004" category="list-text">「ナプショット」</block>
+  <block id="bd64a465814992b1c2b9b93a194179ff" category="list-text">API 呼び出しの使用方法の詳細と例を取得するには、関数を選択し、次のいずれかのアクションをクリックします。</block>
+  <block id="db3288a1c1073472dc757f20d2348c76" category="list-text">'get': 読み取り</block>
+  <block id="e1f2b5e55543a56862633fcacca8b8ae" category="list-text">'POST': 作成します</block>
+  <block id="4181bcd1edc0f5c41a62295a16ee0437" category="list-text">「 PUT 」：更新または変更</block>
+  <block id="4a45f9a1929598df3fa5aa597a398ac6" category="list-text">「削除」 : 破棄</block>
+  <block id="7e4ebd342bb7e41a1d4dc8a8415e460b" category="section-title">Cloud Volume API を使用する</block>
+  <block id="1a2e2934b53e9075f32a18d1d0b4862d" category="paragraph">このセクションでは、 Cloud Volume API の使用方法について説明します。この例では、 Linux bash シェルから curl を使用しています。'&lt;api_url&gt;'`&lt;api_key&gt;'`&lt;secret_key&gt;` を ' から記録した値に置き換える必要があります <block ref="e7dca76a03ba418d05678cd43dcfc889" category="inline-xref-macro-rx"></block>。</block>
+  <block id="92e9d6227d5534e7afc27a11179c808e" category="section-title">構文</block>
+  <block id="7d36329259eb9461e88f0d81a2c33392" category="paragraph">*curl -s -H accept: application/json -H "Content-type: application/json" -H api-key: &lt;api_key&gt; -H secret-key: &lt;secret_key&gt; -X [get 、 POST 、 PUT 、 delete] &lt;api_url&gt;/v2/&lt;command&gt;*`</block>
+  <block id="ff7c0fcd6a31e735a61c001f75426961" category="section-title">例</block>
+  <block id="417f1d595a24eeebf126fa0d34676529" category="section-title">ボリュームをリストします</block>
+  <block id="644b48292d8519f40fb516945b88bcff" category="paragraph">次の例は、すべてのボリュームに関する情報を表示します。</block>
+  <block id="ddc5b619db27da42c436d2dce99b6f13" category="admonition">「 jq 」を使用してコマンドをパイピングすると、「 json 出力のフォーマットが改善されます。システムに「 jq 」をインストールする必要があります。</block>
+  <block id="e0f6cbfd035b028c1bc8e71c97ed3abf" category="inline-link-macro">アカウントの Cloud Volume を一覧表示するスクリプト</block>
+  <block id="76efd86ffdf9b4ba0276b48246583ebb" category="paragraph"><block ref="76efd86ffdf9b4ba0276b48246583ebb" category="inline-link-macro-rx"></block></block>
+  <block id="1b1f7340d341033e481b038866817574" category="section-title">特定のボリュームの詳細のリスト</block>
+  <block id="ba63bdfc66b5014f9eb68abd5bde5a76" category="paragraph">各ボリュームには、「 volumeID 」という ID があります。たとえば、「 07c9ab6c-b655-a9fe-f904-b9b97ef9baa'.API 呼び出しで ID を指定すると、特定のボリュームの詳細が表示されます。</block>
+  <block id="5f0b1efca897384b8f67839d6cf866d5" category="section-title">ボリュームを作成します</block>
+  <block id="5a18f96110d1e8b54d3ec437bd8aea74" category="paragraph">次の例では 'POST' コールを使用して 'Test' という名前のボリュームを作成しますこのボリュームは 'us-west-1 領域では '100 GB の割り当て済み容量 'nfsv3 を使用してエクスポートされます</block>
+  <block id="b5c9f42eedd286c271953e9c3ab850da" category="inline-link-macro">クラウドボリュームを作成するスクリプト</block>
+  <block id="29397ff9a9ac55722aff77334948d1f3" category="paragraph"><block ref="29397ff9a9ac55722aff77334948d1f3" category="inline-link-macro-rx"></block></block>
+  <block id="d0e7a5d112a601cfd58f131f6a6f155a" category="section-title">ボリュームを更新しています</block>
+  <block id="3212fd143472c532ff82ac4344441aa9" category="paragraph">次の例では 'put' 呼び出しを使用して 'Test' というボリュームを更新し ' サービス・レベルをエクストリームに変更し ' 割り当て容量を 600 GB に変更します</block>
+  <block id="2a74a589fbf2ef0088700f7241041164" category="inline-link-macro">クラウドボリュームを更新するスクリプト</block>
+  <block id="5b1c0e0c039f28352f31f4a43500e03e" category="paragraph"><block ref="5b1c0e0c039f28352f31f4a43500e03e" category="inline-link-macro-rx"></block></block>
+  <block id="314f9451416a4448b65c6850ff15f8e7" category="section-title">ボリュームを削除する</block>
+  <block id="bf38a32d15762f9e14ab0ffe2b757d2f" category="paragraph">次に、「 volumeID 」で指定されたボリュームを削除するために「削除」コールを使用する例を示します。</block>
+  <block id="5bb5a449d40e6b8a3aa844cf61c53a2f" category="inline-link-macro">マウントポイントごとにクラウドボリュームを削除するスクリプト</block>
+  <block id="6662ba991d8a455389b5d9c65fb5a14c" category="paragraph"><block ref="6662ba991d8a455389b5d9c65fb5a14c" category="inline-link-macro-rx"></block></block>
+  <block id="fc6c542d42ee24898826aee8afdffc2a" category="admonition">注意して使用してください。この API 呼び出しは、ボリュームとそのすべてのデータを削除します。</block>
+  <block id="010dac8c2d7f8ba8580c0092723049ed" category="section-title">Snapshot を作成しています</block>
+  <block id="30a438700fef86494db7de62e3946239" category="paragraph">次の例では 'POST' 呼び出しを使用して ' 特定のボリューム用の 'nappy' というスナップショットを作成します</block>
+  <block id="cf126360635de78f351b260f31fa438f" category="inline-link-macro">マウントポイント別のクラウドボリュームの Snapshot を作成するスクリプト</block>
+  <block id="277e9dc08a3aa11c1e9466cef3644483" category="paragraph"><block ref="277e9dc08a3aa11c1e9466cef3644483" category="inline-link-macro-rx"></block></block>
+  <block id="ba33208e705836c12b7e1e6e2fa6b492" category="section-title">Snapshot ポリシーを作成しています</block>
+  <block id="a9a183b7e786e3cb8bff49462b4f44d3" category="paragraph">次の例では 'put' 呼び出しを使用して ' 特定のボリュームのスナップショット・ポリシーを作成します</block>
+  <block id="065deb600317f9ff553e4b0cfb22d25d" category="inline-link-macro">マウントポイント別のクラウドボリュームの Snapshot ポリシーを作成するスクリプト</block>
+  <block id="537451b067dec98a30f3a9beacd83742" category="paragraph"><block ref="537451b067dec98a30f3a9beacd83742" category="inline-link-macro-rx"></block></block>
+  <block id="efac3ce0ce2b4ea795d45be44bfa0e86" category="section-title">特定のボリュームの Snapshot をリストします</block>
+  <block id="c1d075778ef1cbac55475b7abb275e28" category="paragraph">次の例では 'get' 呼び出しを使用して ' 特定のボリュームのスナップショットを一覧表示します</block>
+  <block id="d203d6e61d436dcd1071d07f840c18a6" category="inline-link-macro">マウントポイントごとにクラウドボリュームの Snapshot を一覧表示するスクリプト</block>
+  <block id="b41d5d91a0d2e096cfc6e8692d38f807" category="paragraph"><block ref="b41d5d91a0d2e096cfc6e8692d38f807" category="inline-link-macro-rx"></block></block>
+  <block id="237dcff463ff393300d9aa2f5dcc4f52" category="section-title">Snapshot をリバートします</block>
+  <block id="d78b05481062bddefc484324b50d5183" category="paragraph">次の例では 'POST' 呼び出しを使用して 'napshotId' および 'volumeID で指定されたスナップショットからボリュームを復元します</block>
+  <block id="86bee8c8000f653ec429682200c099a8" category="inline-link-macro">マウントポイントと Snapshot ID でクラウドボリュームの Snapshot にリバートするスクリプト</block>
+  <block id="b2ae3645c0298bd967a6a3bcaf17a043" category="paragraph"><block ref="b2ae3645c0298bd967a6a3bcaf17a043" category="inline-link-macro-rx"></block></block>
+  <block id="a1826f70bcd0d51c2279f0be06bef208" category="admonition">注意して使用してください。この API 呼び出しは、その Snapshot の日付よりあとに書き込まれたデータをすべて失われます。</block>
+  <block id="f0e6db7bd1f0f3bc93f1b8e2b7edb37e" category="section-title">Snapshot から新しいボリュームを作成します</block>
+  <block id="8377cd85d9ce514dc0d5ff2f4af70fc0" category="paragraph">次の例では 'POST' 呼び出しを使用して 'SnapshotId' で指定された既存のボリュームのスナップショットに基づいて新しいボリュームを作成します</block>
+  <block id="e7299de9faa88a3de61ca5cea7dc2539" category="inline-link-macro">クラウドボリュームをコピーするスクリプト</block>
+  <block id="e464545ae8c0d0adc7349c3be492a19e" category="paragraph"><block ref="e464545ae8c0d0adc7349c3be492a19e" category="inline-link-macro-rx"></block></block>
+  <block id="2f904ee6008397e7f99e9f0555d41276" category="section-title">Snapshot を削除しています</block>
+  <block id="f001b99ba918af62817671c9a2293a14" category="paragraph">次の例では、「 Delete 」呼び出しを使用して「 napshotId 」で指定されたスナップショットを削除します。</block>
+  <block id="5595b37e5615614913fa916343ba08f7" category="inline-link-macro">マウントポイントと Snapshot ID でクラウドボリュームの Snapshot を削除するスクリプト</block>
+  <block id="ff2601e5c0bc593cf7e9b22a74e03eaa" category="paragraph"><block ref="ff2601e5c0bc593cf7e9b22a74e03eaa" category="inline-link-macro-rx"></block></block>
+  <block id="fd9241a307d3cbf53276add7a202762f" category="admonition">注意して使用してください。この API 呼び出しは、 Snapshot とそのすべてのデータを削除します。</block>
+  <block id="d2893306795716426893a2953b449c35" category="section-title">ディレクトリサービスに参加する</block>
+  <block id="e0f3670fcd3f9b9d5281771fb7845849" category="paragraph">次の例では 'POST' コールを使用してディレクトリ・サービスに参加し 'DNS IP アドレス ' ドメイン 'SMB サーバの NetBIOS 名 ' ディレクトリ・サービス管理者のユーザ名とパスワード ' および組織単位（オプションでデフォルトは CN=Computers ）を提供します</block>
+  <block id="14bf7ab761531a5763acced5079246e2" category="inline-link-macro">ディレクトリサービスに参加するスクリプト</block>
+  <block id="f6909b0eb29ea546856dcedd03479f65" category="paragraph"><block ref="f6909b0eb29ea546856dcedd03479f65" category="inline-link-macro-rx"></block></block>
+  <block id="c9492debb28dace2e21d2e69b60fc170" category="section-title">ディレクトリサービスの統合を表示しています</block>
+  <block id="2a7bef74200cf4304f1ab7c416cbe68c" category="paragraph">次の例では 'get' 呼び出しを使用して ' ディレクトリサービス統合の構成を表示します</block>
+  <block id="ac257fab8992db7942025a29fc805416" category="inline-link-macro">ディレクトリサービスの統合を表示するスクリプト</block>
+  <block id="03274b33c2a9a2197f0819cf1c944846" category="paragraph"><block ref="03274b33c2a9a2197f0819cf1c944846" category="inline-link-macro-rx"></block></block>
+  <block id="1724dc1a3be546ba86b7ada930916739" category="section-title">ディレクトリサービスを削除します</block>
+  <block id="36249526ed79dcaae394fe65d64d115e" category="paragraph">次の例では、「削除」コールを使用して、ディレクトリサービス統合を解除します。これには、上記の「 GET 」コールを使用して検索できる、現在の参加の UUID が必要です。</block>
+  <block id="158aa6ad10b7113e6d669a4ee5a2bb1c" category="admonition">使用中のディレクトリサービスは削除できません。ステータスは「使用中」です。</block>
+  <block id="0ad9fb34ed559d5c8188814fc25cdc8c" category="inline-link-macro">ディレクトリサービスを解除するスクリプト</block>
+  <block id="cfe6276a56410b6f8d52ea83790ff15a" category="paragraph"><block ref="cfe6276a56410b6f8d52ea83790ff15a" category="inline-link-macro-rx"></block></block>
+  <block id="4951fd131b0c557f3befdf9e50a5c79a" category="section-title">パフォーマンス統計を取得します</block>
+  <block id="9562cca80f464aafc3271ecbb5dad9c2" category="paragraph">次の例では 'get' コールを使用して 'volumeID で指定されたボリュームの特定の期間における読み取りと書き込みの IOPS ' スループット ' および遅延の統計情報を一覧表示します</block>
+  <block id="05ba930ea1b0e9120679e186909a4c1e" category="inline-link-macro">マウントポイント別のクラウドボリュームのパフォーマンス統計情報を取得するスクリプト</block>
+  <block id="ab7093fff7711570f804bcae3b0d7478" category="paragraph"><block ref="ab7093fff7711570f804bcae3b0d7478" category="inline-link-macro-rx"></block></block>
+  <block id="77ae50ef3e08c161ce77ba68d707720f" category="summary">ネットアップでは、 Cloud Volumes Service for AWS を定期的に更新して、新機能と拡張機能を提供しています。</block>
+  <block id="0d0fe9d4502b73205ab12ea52a357e69" category="doc">Cloud Volumes Service for AWS の新機能</block>
+  <block id="8aa90565fb34d8b0aeab74ab74ffdf4a" category="section-title">2021年2月</block>
+  <block id="3fdf0ec98b1a63c86b4e4dacb0cfa521" category="list-text">新しい Cloud Volume API (PerformanceMetrics) を使用して、 IOPS 、帯域幅、およびレイテンシなどのパフォーマンス統計情報を取得できるようになりました。詳細については、を参照してください <block ref="e502fc9fa2f84fd70d41eb87d0259048" category="inline-link-macro-rx"></block>。</block>
+  <block id="ca82c7bf0a12e1bd7623c916688916ff" category="section-title">2020 年 7 月</block>
+  <block id="fa619a7facccecd95dffcfdf8bef639c" category="list-text">Cloud Volumes Service では、 /16 ～ /28 の範囲の広い RFC 1918 プライベートネットワークがサポートされるようになりました。以前は、 /28 の範囲のみがサポートされていました。</block>
+  <block id="0f809d87f50a9201964bee05a3689722" category="list-text">「同期」機能が Cloud Sync UI に直接統合され、機能が強化されました。</block>
+  <block id="d2390df519d4530109168db7a9c4d7a0" category="list-text">ボリュームは、 API 呼び出しを使用して NSv3 、 NFSv4.1 、および NFSv3 と NFSv4.1 の両方との間で変換できます。</block>
+  <block id="fb1b5fb993aca43165cf053826a4fd00" category="inline-link-macro">Cloud Volume API を参照</block>
+  <block id="7e5e3cff2a3e22c19f42ba60fba52948" category="list-text">API の例とサンプルの Python スクリプトが v2 API に更新されました。 <block ref="8cf82d92253e589dfa4efae9d85c2b7c" category="inline-link-macro-rx"></block>。</block>
+  <block id="9b98513a9d35526671bb2362bc109bcb" category="list-text">NFSv4.1 ボリュームの ACL が有効になりました。</block>
+  <block id="18e643dc88eb8bea7319191a7706f2aa" category="list-text">Cloud Volumes Service は SOC 2 Type 1 の認定を受けています。</block>
+  <block id="cb408597e447395fe55a5c5169094ae9" category="list-text">Cloud Volumes Service はシンガポール（ AP-南東 -1 ）で利用可能になりました。</block>
+  <block id="342aa26fa2cc7e365c1b819a4e86b6f1" category="section-title">2020年3月</block>
+  <block id="4fda518158d164de867798bf9512d1a0" category="list-text">Cloud Volumes Service で、 NFSv3 マウントと NFSv4.1 マウントの最大 I/O サイズとして 1MiB がサポートされるようになりました。これまでの最大 I/O サイズは 64KiB です。I/O サイズを増やすと、一部のワークロードのパフォーマンスが向上する可能性があります。I/O サイズを増やすには、 mount options 「 rsize" and / or "wsize 」を使用します。たとえば、「 m ount -o nfsvers=4.1 、 rsize=1048576 、 wsize=1048576 172.25.0.4 ： /vol1//mnt/cv 」のように指定します</block>
+  <block id="cf2dfa7ef96d78d1f3ec76316e1481d0" category="section-title">2020年2月</block>
+  <block id="d41d8cd98f00b204e9800998ecf8427e" category="inline-link"></block>
+  <block id="ff2c50fca31063bca7c7a4fdbdadd0aa" category="list-text">Cloud Volumes Service は、 AWS Marketplace で従量課金制（従量課金制）サブスクリプションとして提供されるようになりました。詳細については、 Marketplace のリストを参照してください。<block ref="c3992234bf098607943f4710edfa77cf" category="inline-link-rx"></block>元の月単位および年単位のサブスクリプションプランは引き続きご利用いただけます。</block>
+  <block id="d835981d77534f5f20446d4648ad7e5b" category="section-title">2020年1月</block>
+  <block id="65d173ac8563e7ccb65bd04bfb9cafa1" category="list-text">Cloud Volumes Service では、複数のネットワーク接続を同時に使用してパフォーマンスを向上させる SMB マルチチャネルがサポートされるようになりました。マルチチャネルは Windows クライアントではデフォルトで有効になっていますが、 EC2 インスタンスでは RSS （受信側スケーリング）をサポートするネットワークアダプタを使用する必要があります。</block>
+  <block id="6293473d5ffaf1d19f91c9a271df2519" category="inline-link-macro">Snapshot からボリュームをリバートします</block>
+  <block id="fe8552e6e906f75f07bc07d06306d7c4" category="list-text">Snapshot からのボリュームのリバートが Cloud Volumes Service ユーザインターフェイスから実行できるようになりました。これにより、クライアントを再マウントしなくても、ボリュームをある時点の Snapshot にリバートできます。を参照してください <block ref="ff647bf166f606f514d0e8a2dbd7ea01" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="5a4ffc2a48fff0d5a02140c3350feb15" category="summary">Cloud Volumes Service for AWS のコストは、選択したサービスレベルと割り当てられた容量に基づいて決まります。適切なサービスレベルと容量を選択することで、ストレージのニーズを最小限のコストで満たすことができます。</block>
+  <block id="be23d9937449997aeea8905aa6d4bfc9" category="doc">適切なサービスレベルと割り当て容量を選択します</block>
+  <block id="f54527d3facbaa2f576181ccd64f2a6b" category="paragraph">Cloud Volumes Service for AWS のコストは、選択したサービスレベル _ と割り当て済み容量 _ に基づいて決まります。適切なサービスレベルと容量を選択することで、ストレージのニーズを最小限のコストで満たすことができます。</block>
+  <block id="7fc630f0203a2975f2645b17b5f1f777" category="admonition">_ この記事のすべての価格情報は、 2018 年 9 月 12 日時点の販売価格に基づいています。この情報は例としてのみ提供され、変更される場合があります。 _</block>
+  <block id="ea61e2c2ff507048203824add1eb7c21" category="section-title">考慮事項</block>
+  <block id="e9e60dd401a5b937180118755b2c516f" category="paragraph">ストレージのニーズには、次の 2 つの基本的な側面</block>
+  <block id="fec28a2ae3528c66f53ebe76c854e92f" category="list-text">データを保持する storage_capacity_</block>
+  <block id="9d7a4264a0f7f44695b988f88cdbf00d" category="list-text">データとやり取りするための Storage _bandwidth_</block>
+  <block id="38d12ff54e360686263308a96fd9217c" category="paragraph">ボリュームに選択した容量よりも多くのストレージスペースを消費する場合は、次の点を考慮してください。</block>
+  <block id="9b177f3b5012cc7a7fdc682fc2988847" category="list-text">サービスレベルで定義された価格で消費される追加のストレージ容量については、お客様に課金されます。</block>
+  <block id="a24fb87327e01f9d972fcc8f148a8006" category="list-text">ボリュームで使用可能なストレージ帯域幅は、割り当てられた容量サイズを増やすかサービスレベルを変更するまで増加しません。</block>
+  <block id="c6f45ce2284ef7f44c38a58ebbd013e0" category="section-title">サービスレベル</block>
+  <block id="421405600dbac51a8d526a6ba0b154c6" category="paragraph">Cloud Volumes Service for AWS は、 3 つのサービスレベルをサポートします。サービスレベルはボリュームの作成時または変更時に指定します。</block>
+  <block id="3243d5989806ef5df5d5d629a6f6c7a7" category="inline-link-macro">Cloud Volume を作成しています</block>
+  <block id="1829b4e7aed90332ecd6c2073e1c3876" category="inline-link-macro">Cloud Volume の変更</block>
+  <block id="a807f4d8cac4e736cd520b7038cd420f" category="paragraph"><block ref="1d07822b08600a72487112c7f7e5fd7c" category="inline-link-macro-rx"></block>
+<block ref="6b3190b7ad0ab49d1e6d97b9bc4c71c0" category="inline-link-macro-rx"></block></block>
+  <block id="60bc680f6244fa7d54528486e2d2b04d" category="paragraph">サービスレベルには、さまざまなストレージ容量とストレージ帯域幅のニーズがあります。</block>
+  <block id="92a6e56b5e5d5f811a086aaa714742b2" category="list-text">** 標準 ** ( 容量 )</block>
+  <block id="8da6204306af19ccd70ab85e1c1f1029" category="paragraph">容量を最小限のコストで提供したい場合、帯域幅のニーズに制限があるときは、 Standard サービスレベルが最適な場合があります。たとえば、ボリュームをバックアップターゲットとして使用しているとします。</block>
+  <block id="3c8acce87eebd8be15cf2b20b0858a7d" category="list-text">販売価格： GB あたり月額 0.10 ドル（ 2018 年 9 月 12 日現在）</block>
+  <block id="3ac69ccfc6792ec21bd8ffab1dfb98c8" category="list-text">帯域幅：プロビジョニングされた GB あたりの帯域幅は 16KB です</block>
+  <block id="be3cebf083f37aeffebd57d996548f8e" category="list-text">** Premium ** （容量とパフォーマンスのバランス）</block>
+  <block id="55b8415db4209b79aecffe10679fc602" category="paragraph">アプリケーションでストレージ容量と帯域幅がバランスよく必要な場合は、 Premium サービスレベルが最適な場合があります。このレベルは、 Standard サービスレベルよりも MBps あたりのコストが低く、ストレージ容量あたりのコストも Extreme サービスレベルよりも少なくなります。</block>
+  <block id="f2f3eb5c345861cab3a7ec66ad9db4e0" category="list-text">販売価格： GB あたり月額 0.20 ドル（ 2018 年 9 月 12 日現在）</block>
+  <block id="ba7e1ee82476be180981f31a6c955bb5" category="list-text">帯域幅：プロビジョニングされた GB あたりの帯域幅は 64KB</block>
+  <block id="ce14cf4662be2609e919850db18c8bc1" category="list-text">** Extreme ** ( パフォーマンス )</block>
+  <block id="5aec843c7eadedb02c34978da08e431a" category="paragraph">ストレージの帯域幅に関しては、 Extreme サービスレベルが最も低いため、コストがかかりません。多くのストレージ容量を必要とせずにストレージ帯域幅を必要とするアプリケーションの場合は、 Extreme サービスレベルが最適です。</block>
+  <block id="2c6a43d572e99c76b7bc56222543243f" category="list-text">販売価格： GB あたり月額 0.30 ドル（ 2018 年 9 月 12 日現在）</block>
+  <block id="69af2908469ea6cc3270e8598edb606c" category="list-text">帯域幅：プロビジョニングされた GB あたりの帯域幅は 128 KB</block>
+  <block id="fba79ccafdb2717d0f2107ecca0bab16" category="section-title">割り当て容量</block>
+  <block id="8be570b19c302676d406e242a338cc98" category="paragraph">ボリュームを作成または変更するときに、ボリュームに割り当てられている容量を指定します。</block>
+  <block id="6e7b7bcdf649d898ca61befdc7ebe633" category="paragraph">一般的なビジネスニーズに基づいてサービスレベルを選択しますが、アプリケーション固有のニーズに基づいて、割り当てられた容量のサイズを選択する必要があります。次に例を示します。</block>
+  <block id="7a514d592ea09e8cf39304fb5fd687ff" category="list-text">アプリケーションに必要なストレージスペース容量</block>
+  <block id="78c779a14fb92b89e0ba07d2d0a58e51" category="list-text">アプリケーションまたはの 1 秒あたりのストレージ帯域幅 ユーザには必須です</block>
+  <block id="168810665e2ff23a35f7868f1cd8d31c" category="paragraph">割り当て容量は GB 単位で指定します。ボリュームの割り当て容量は、 100GB ~ 100,000 GB （ 100TB に相当）の範囲で設定できます。</block>
+  <block id="6f979818230d4e05c5e0e6a622be92fd" category="section-title">inode の数</block>
+  <block id="4befc62c5b2a3509b19a274cdb519659" category="paragraph">1TB 以下のボリュームでは、最大 2 、 000 万個の inode を使用できます。inode の数は、割り当てた TB ごとに 2 、 000 万個増加し、最大 1 、 000 万個の inode になります。</block>
+  <block id="b5ad4a53f7910efad5e0b32480ac4644" category="list-text">\&lt;= 1TB = 2 、 000 万の inode</block>
+  <block id="9048dd5aaea9ea899eb5d3c504a388e4" category="list-text">1 TB 以上 2 TB 以上 = 4 、 000 万個の inode</block>
+  <block id="84e9ea4a8cb6dda1638be3c1085d4794" category="list-text">2 TB 以上 3 TB 以上 = 6 、 000 万個の inode</block>
+  <block id="fad0f1d113e957c55c7adaf192b41c90" category="list-text">3 TB 以上 4 TB 以上 = 8 、 000 万個の inode</block>
+  <block id="968c9954af08101b6859a753070b5cfd" category="list-text">4 TB 以上 100 TB 以上 = 1 億個の inode</block>
+  <block id="7d724e4bd163fe8323200b15500517f9" category="section-title">帯域幅</block>
+  <block id="7c710de840d663ce1b41ce18323e24d4" category="paragraph">選択したサービスレベルと割り当て容量の両方の組み合わせによって、ボリュームの最大帯域幅が決まります。</block>
+  <block id="b6b860ad9bd23cc49cf7d156afff6df4" category="paragraph">選択した帯域幅よりも多くの帯域幅が必要な場合は、サービスレベルを変更するか、割り当て容量を増やすことができます。変更によってデータアクセスが中断されることはありません。</block>
+  <block id="d166390b76a18ea782161fb36dba3f2b" category="section-title">サービスレベルと割り当て容量を選択</block>
+  <block id="e175cfd89a253264b4cf1a5738f8c75f" category="paragraph">ニーズに最も適したサービスレベルと割り当て容量を選択するには、ピーク時またはエッジ時に必要な容量と帯域幅を把握する必要があります。</block>
+  <block id="537c3aaba2230386e08f53eadf5a6769" category="section-title">サービスレベルと割り当て容量のコスト比較</block>
+  <block id="fe90609cec4caaf8cb5bf3d197c6473e" category="paragraph">次の表は、サービスレベル別のコストと割り当て済み容量のサイズを比較したものです。表の左端の列は容量を示し、残りの列は各容量ポイントで使用可能な MBps とそのコストを定義します。</block>
+  <block id="dd68926c0207f5bf0deff6339a03335a" category="admonition">_ すべての価格情報は、 2018 年 9 月 12 日時点の販売価格に基づいています。この情報は例としてのみ提供され、変更される場合があります。 _</block>
+  <block id="3b8f7696879f77dfc8c74aa8df8db24b" category="cell">容量</block>
+  <block id="eb6d8ae6f20283755b339c0dc273988b" category="cell">標準</block>
+  <block id="8d5e7e72f12067991186cdf3cb7d5d9d" category="cell">Premium サービス</block>
+  <block id="ba1f6c59525d71aee4c027798d2470fd" category="cell">最高レベル</block>
+  <block id="b3614c2c56659e3d47a607083815532d" category="cell">** TB**</block>
+  <block id="660261132e690aa83925decdd50a27da" category="cell">** MB/ 秒 **</block>
+  <block id="a198c147e163dc9adee4a0c7201cc1c5" category="cell">** コスト **</block>
+  <block id="d30afcce0a79de2f0b4b40521ccf9d80" category="cell">0.1 （ 100GB ）</block>
+  <block id="4341447b6ad78bf4d7eb59ebb5a53d63" category="cell">1.6</block>
+  <block id="52604aaf9d0fec52d4ffb195924623d8" category="cell">10 ドル</block>
+  <block id="ded681fc154529ebbc7562fb0c73ba47" category="cell">6.4</block>
+  <block id="3c6713ed0b513644dc1f892bf008d1f4" category="cell">20 ドル</block>
+  <block id="e76af95319f03251bdf6c3771f39afbe" category="cell">12.8.</block>
+  <block id="b8e03d4998077cd92ddb0e4252a09764" category="cell">30 ドル</block>
+  <block id="c4ca4238a0b923820dcc509a6f75849b" category="cell">1.</block>
+  <block id="c74d97b01eae257e44aa9d5bade97baf" category="cell">16</block>
+  <block id="530029252abcbda4a2a2069036ccc7fc" category="cell">100 ドル</block>
+  <block id="ea5d2f1c4608232e07d3aa3d998e5135" category="cell">64</block>
+  <block id="baaa3cde5d56dc506ddb0fae184a5238" category="cell">200 ドル</block>
+  <block id="76dc611d6ebaafc66cc0879c71b5db5c" category="cell">128</block>
+  <block id="c600da429be893170d47a0e7fc8f39f9" category="cell">300 ドル</block>
+  <block id="c81e728d9d4c2f636f067f89cc14862c" category="cell">2.</block>
+  <block id="6364d3f0f495b6ab9dcf8d3b5c6e0b01" category="cell">32</block>
+  <block id="513845366c2bc8fe8669fbab5231a805" category="cell">400 ドル</block>
+  <block id="f718499c1c8cef6730f9fd03c8125cab" category="cell">256</block>
+  <block id="488b78b337f4ec1e2d6e5afb536a96a5" category="cell">600 ドル</block>
+  <block id="eccbc87e4b5ce2fe28308fd9f2a7baf3" category="cell">3.</block>
+  <block id="642e92efb79421734881b53e1e1b18b6" category="cell">48</block>
+  <block id="58a2fc6ed39fd083f55d4182bf88826d" category="cell">192</block>
+  <block id="0584ce565c824b7b7f50282d9a19945b" category="cell">384</block>
+  <block id="58d1927824d8b164739bdeca5c6a1562" category="cell">900 ドル</block>
+  <block id="a87ff679a2f3e71d9181a67b7542122c" category="cell">4.</block>
+  <block id="9ffc82e6d39b418623fea8fb846c6d0c" category="cell">800 ドル</block>
+  <block id="10a7cdd970fe135cf4f7bb55c0e3b59f" category="cell">512</block>
+  <block id="04d008b1065ba083df383d847bac4e74" category="cell">1,200</block>
+  <block id="e4da3b7fbbce2345d7772b0674a318d5" category="cell">5.</block>
+  <block id="f033ab37c30201f73f142449d037028d" category="cell">80</block>
+  <block id="239e87316e51a3050c7d7a108d1f961a" category="cell">500 ドル</block>
+  <block id="320722549d1751cf3f247855f937b982" category="cell">320</block>
+  <block id="c3f36e316dffa1394151fc7c56fff158" category="cell">1,000</block>
+  <block id="4ffce04d92a4d6cb21c1494cdfcd6dc1" category="cell">640</block>
+  <block id="d5b7284b7282bbf4c243332ee423c542" category="cell">1 、 500 ドル</block>
+  <block id="1679091c5a880faf6fb5e6087eb1b2dc" category="cell">6.</block>
+  <block id="26657d5ff9020d2abefe558796b99584" category="cell">96</block>
+  <block id="3a835d3215755c435ef4fe9965a3f2a0" category="cell">768</block>
+  <block id="90eedf2e9773844ea8b5c0dbd9460bee" category="cell">1 、 800 ドル</block>
+  <block id="8f14e45fceea167a5a36dedd4bea2543" category="cell">7.</block>
+  <block id="7f6ffaa6bb0b408017b62254211691b5" category="cell">112</block>
+  <block id="6f8c5eacd7432bebab7b4ab57eda8c54" category="cell">700 ドル</block>
+  <block id="9b70e8fe62e40c570a322f1b0b659098" category="cell">448</block>
+  <block id="16531c4017c7a4e55fa6aeb8c8a8798f" category="cell">1 、 400 ドル</block>
+  <block id="061412e4a03c02f9902576ec55ebbe77" category="cell">896</block>
+  <block id="58076f0f8afec2271177c0accc61f91e" category="cell">2 、 100 ドル</block>
+  <block id="c9f0f895fb98ab9159f51fd0297e236d" category="cell">8.</block>
+  <block id="4ca3395cfd4f7d44b5af8685883706e9" category="cell">1,600</block>
+  <block id="a980f22074119d4103953f70f2fd69ce" category="cell">1,024</block>
+  <block id="b5a94aad3bc3e86d65024bb527c76f1c" category="cell">2 、 400 ドル</block>
+  <block id="45c48cce2e2d7fbdea1afc51c7c6ad26" category="cell">9.</block>
+  <block id="0a09c8844ba8f0936c20bd791130d6b6" category="cell">144</block>
+  <block id="a7aeed74714116f3b292a982238f83d2" category="cell">576</block>
+  <block id="a2ec7ea68d10c1832eb7bc24417b4c73" category="cell">1,152</block>
+  <block id="8abca8484c3e011aa8b4077f2ccc7a9b" category="cell">2 、 700 ドル</block>
+  <block id="d3d9446802a44259755d38e6d163e820" category="cell">10.</block>
+  <block id="b73ce398c39f506af761d2277d853a92" category="cell">160</block>
+  <block id="dd5f865c529f13e5a9983f8d2fbbb198" category="cell">2,000</block>
+  <block id="d074a76497ac7c9cf90be2933f171e07" category="cell">1,280</block>
+  <block id="a51ea84c6fa22dfbe17ff5f2155dd877" category="cell">3 、 000 ドル</block>
+  <block id="6512bd43d9caa6e02c990b0a82652dca" category="cell">11.</block>
+  <block id="38af86134b65d0f10fe33d30dd76442e" category="cell">176</block>
+  <block id="fbd9e527c3da7273291f6ea83c5d9b8b" category="cell">1 、 100 ドル</block>
+  <block id="f64eac11f2cd8f0efa196f8ad173178e" category="cell">704</block>
+  <block id="d01e032a2c4c9b852bace0a612321185" category="cell">2 、 200 ドル</block>
+  <block id="b5433fb6d3b738bfc5bf19637b8c12a0" category="cell">1,408</block>
+  <block id="4e8e331483d1bdc7fe70b31d2cbeaf48" category="cell">3 、 300 ドル</block>
+  <block id="c20ad4d76fe97759aa27a0c99bff6710" category="cell">12.</block>
+  <block id="d969ae360b7ff6fa704401ecb7d4424d" category="cell">1,536</block>
+  <block id="731fee82a88c3e7a360533d7e74e97ba" category="cell">3 、 600 ドル</block>
+  <block id="c51ce410c124a10e0db5e4b97fc2af39" category="cell">13</block>
+  <block id="091d584fced301b442654dd8c23b3fc9" category="cell">208</block>
+  <block id="7aa6fc8a1e75fd01c5a24c09a42edd04" category="cell">1 、 300 ドル</block>
+  <block id="7250eb93b3c18cc9daa29cf58af7a004" category="cell">832</block>
+  <block id="e67205092ab29ee5e5235fbbb6a54bd7" category="cell">2 、 600 ドル</block>
+  <block id="ca17fb4ccf34589606ea20f51fb67572" category="cell">1,664</block>
+  <block id="7d22f5bfe358a1b8a9e54241d4932c27" category="cell">3 、 900 ドル</block>
+  <block id="aab3238922bcc25a6f606eb525ffdc56" category="cell">14</block>
+  <block id="13fe9d84310e77f13a6d184dbf1232f3" category="cell">224</block>
+  <block id="a92f6b233128aacc3d83ab56adc4c55e" category="cell">2 、 800 ドル</block>
+  <block id="51f8a71bd595aee58a4d31fcc5b7251e" category="cell">1,792</block>
+  <block id="90c23d245c8ff44281e8bb2c4e876803" category="cell">4,200 ドル</block>
+  <block id="9bf31c7ff062936a96d3c8bd1f8f2ff3" category="cell">15</block>
+  <block id="335f5352088d7d9bf74191e006d8e24c" category="cell">240</block>
+  <block id="437d7d1d97917cd627a34a6a0fb41136" category="cell">960 個</block>
+  <block id="c9ce3b8b108f8145e2fc3eb7064c3516" category="cell">1,920</block>
+  <block id="131cac8402e1322ba1f7a6d24115eb89" category="cell">4,500</block>
+  <block id="72e3d4d8bafc26f47a36d6be204bb764" category="cell">3,200</block>
+  <block id="4546199e2bcb9ae49a13edef9675fd03" category="cell">2 、 048</block>
+  <block id="df8df1500baf2bb457828f4a26ec0e04" category="cell">4,800 ドル</block>
+  <block id="70efdf2ec9b086079795c442636b55fb" category="cell">17</block>
+  <block id="7a614fd06c325499f1680b9896beedeb" category="cell">272</block>
+  <block id="4e962fb8f92d11f704d85ff5ef11c6a6" category="cell">1 、 700 ドル</block>
+  <block id="857a14696a060a6cd2faa38c7b476305" category="cell">1,088</block>
+  <block id="78119155254de2cda0428fbf1b127cab" category="cell">3 、 400 ドル</block>
+  <block id="408fef2b76c44f4ca6fb5c74b192b429" category="cell">2 、 176</block>
+  <block id="1bb70ddfe350a9d08f6c5133eaa7dc1a" category="cell">5,100 ドル</block>
+  <block id="6f4922f45568161a8cdf4ad2299f6d23" category="cell">18</block>
+  <block id="48aedb8880cab8c45637abc7493ecddd" category="cell">288</block>
+  <block id="1ced3beb6929d932c52fd501ac7ef9c2" category="cell">2,304</block>
+  <block id="fb04e6f8c3cef4d74949a50aa0d40877" category="cell">5,400 ドル</block>
+  <block id="1f0e3dad99908345f7439f8ffabdffc4" category="cell">19</block>
+  <block id="37bc2f75bf1bcfe8450a1a41c200364c" category="cell">304</block>
+  <block id="aef9a149034f443e5a9c311e1068db54" category="cell">1 、 900 ドル</block>
+  <block id="32ad3356163eab16620a49733767a241" category="cell">1,216</block>
+  <block id="e86a577306a732bf9adcf21f8398475e" category="cell">3 、 800 ドル</block>
+  <block id="85862250c8d12522fa16feede37b89ae" category="cell">2 、 432</block>
+  <block id="ad276936a09383f04a535de2511c6526" category="cell">5 、 700 ドル</block>
+  <block id="98f13708210194c475687be6106a3b84" category="cell">20</block>
+  <block id="4b325c2a5e831ae52cfc17736eda18b0" category="cell">4 、 000 ドル</block>
+  <block id="2372fbbe5b31f0a06ff46aae4e94d156" category="cell">2 、 560</block>
+  <block id="3204a3cb09a2f0a39c540811a454bf4f" category="cell">6 、 000 ドル</block>
+  <block id="3c59dc048e8850243be8079a5c74d079" category="cell">21</block>
+  <block id="6855456e2fe46a9d49d3d3af4f57443d" category="cell">336</block>
+  <block id="bfacb0cda62d58861198f46c8f59999d" category="cell">1,344</block>
+  <block id="e586434102dc24b1e7c7dd19995d8ba2" category="cell">2,688</block>
+  <block id="5d467019d642d292d699d7b078d97163" category="cell">6 、 300 ドル</block>
+  <block id="b6d767d2f8ed5d21a44b0e5886680cb9" category="cell">22</block>
+  <block id="371bce7dc83817b7893bcdeed13799b5" category="cell">352</block>
+  <block id="8122d32637f1bedba9bf826e12280f37" category="cell">4,400 ドル</block>
+  <block id="5d172485a2518083f572ac0c7b774a8d" category="cell">2 、 816</block>
+  <block id="013351dbd6b661d97bf5b01de1e8ac7d" category="cell">6 、 600 ドル</block>
+  <block id="37693cfc748049e45d87b8c7d8b9aacd" category="cell">23</block>
+  <block id="cf004fdc76fa1a4f25f62e0eb5261ca3" category="cell">368</block>
+  <block id="1ea294a9c8e20ff5440d7bdd61c1e601" category="cell">2 、 300 ドル</block>
+  <block id="3299f7267db8fe9f13dc0b68a8ebcc66" category="cell">1,472</block>
+  <block id="b2fd76e6a0476713762d5dfd9eedcd6d" category="cell">4,600 ドル</block>
+  <block id="2e7b19fc245c368ab19620107880cd28" category="cell">2,944</block>
+  <block id="29fdc73e0c803d1c8548314f05f7cd7e" category="cell">6 、 900 ドル</block>
+  <block id="1ff1de774005f8da13f42943881c655f" category="cell">24</block>
+  <block id="6b4f9c381e764df5528ccd7edfbfbc0e" category="cell">3 、 072</block>
+  <block id="251a16748cd5f7164f98963c0bc0bef3" category="cell">7 、 200 ドル</block>
+  <block id="8e296a067a37563370ded05f5a3bf3ec" category="cell">25</block>
+  <block id="18d8042386b79e2c279fd162df0205c8" category="cell">400</block>
+  <block id="e594f42bb1d723403592962f91fb5c36" category="cell">2 、 500 ドル</block>
+  <block id="9f62f1974f653574a79b51175c6f815a" category="cell">1,600</block>
+  <block id="e778bd3756acf55c287fb6038c545a97" category="cell">5 、 000 ドル</block>
+  <block id="9b27a8f7b7b1e02d20f94ccd0f705c81" category="cell">3,200</block>
+  <block id="37649c400583224095345eb32fc43932" category="cell">7,500</block>
+  <block id="4e732ced3463d06de0ca9a15b6153677" category="cell">26</block>
+  <block id="8fe0093bb30d6f8c31474bd0764e6ac0" category="cell">416</block>
+  <block id="84c7ba0412ca0099c6fc791f4a856dd1" category="cell">5 、 200 ドル</block>
+  <block id="03798723555b0ede4dde0e36f0728fcd" category="cell">3 、 328</block>
+  <block id="ce935acb223bad2bae98e78bbbacec16" category="cell">7 、 800 ドル</block>
+  <block id="02e74f10e0327ad868d138f2b4fdd6f0" category="cell">27</block>
+  <block id="248e844336797ec98478f85e7626de4a" category="cell">432</block>
+  <block id="438af5a7df39d4656ece3cd1c1499b0f" category="cell">1,728</block>
+  <block id="6f5b269f08bebe3bf5aa67d20c8a1982" category="cell">3 、 456 個</block>
+  <block id="8f4d4d9c054aaf124ce684120e9efbc2" category="cell">8 、 100 ドル</block>
+  <block id="33e75ff09dd601bbe69f351039152189" category="cell">28</block>
+  <block id="e49668c2daaf972b88f69d19a052c270" category="cell">5 、 600 ドル</block>
+  <block id="9a003cffecc0e8671073944fd9257b22" category="cell">3,584</block>
+  <block id="565c7a7609eaf7ee6d37b0417289c36c" category="cell">8 、 400 ドル</block>
+  <block id="6ea9ab1baa0efb9e19094440c317e21b" category="cell">29</block>
+  <block id="f1b6f2857fb6d44dd73c7041e0aa0f19" category="cell">464</block>
+  <block id="cd04fb5963b4e83fbb81ed1a6b0bfba7" category="cell">2 、 900 ドル</block>
+  <block id="c2a2f0121b38748f2ea78a331b2bb22c" category="cell">1,856</block>
+  <block id="e55385c6bf0a7a802fdfd45292907f3a" category="cell">5 、 800 ドル</block>
+  <block id="cfd5cf9297bab50b5bad09036e9e0dc3" category="cell">3,712</block>
+  <block id="2b18d12c6feaffe1e8b7a58e092fabad" category="cell">8 、 700 ドル</block>
+  <block id="34173cb38f07f89ddbebc2ac9128303f" category="cell">30</block>
+  <block id="6ea2ef7311b482724a9b7b0bc0dd85c6" category="cell">480</block>
+  <block id="eebe33fdc6823a44adbcad8ecf8b68c1" category="cell">3 、 840</block>
+  <block id="e6016e80598ff3a4a8f96027dab08c6d" category="cell">9 、 000 ドル</block>
+  <block id="c16a5320fa475530d9583c34fd356ef5" category="cell">31.</block>
+  <block id="b534ba68236ba543ae44b22bd110a1d6" category="cell">496</block>
+  <block id="0bf9537dad08165082e26fd1d7e4cfd1" category="cell">3 、 100 ドル</block>
+  <block id="ae3945f38f605859bc5371bf14b18ac9" category="cell">1,984</block>
+  <block id="59d9b8876c484f3aceb084d299cd52d3" category="cell">6 、 200 ドル</block>
+  <block id="1f0c0806adc2bddfe63d7d7379aea76d" category="cell">3 、 968</block>
+  <block id="dfd386b9ffc64163117054f184cc3030" category="cell">9 、 300 ドル</block>
+  <block id="e5f2adedbf969b8fc310133aeabaceb4" category="cell">6 、 400 ドル</block>
+  <block id="c9ca1ec49e8aac1615059e421cbb4793" category="cell">4,096</block>
+  <block id="4bdeed5f8844bfc5baf215ba45faef7f" category="cell">9,600 ドル</block>
+  <block id="182be0c5cdcd5072bb1864cdee4d3d6e" category="cell">33</block>
+  <block id="f4be00279ee2e0a53eafdaa94a151e2c" category="cell">528</block>
+  <block id="4eabed92a3b9b17a9e978ae065374304" category="cell">2 、 112</block>
+  <block id="0f6e26643fab7063e44bbb4a11e2340e" category="cell">4,224</block>
+  <block id="5d7b3a041bbb60cbf9fc1d1596e2a027" category="cell">9 、 900 ドル</block>
+  <block id="e369853df766fa44e1ed0ff613f563bd" category="cell">34</block>
+  <block id="97e8527feaf77a97fc38f34216141515" category="cell">544 の場合</block>
+  <block id="8fe5ba40228a8192fdf48c86904af1b8" category="cell">6,800</block>
+  <block id="e2cdf56d6e1982c6471048ba70156221" category="cell">4,352</block>
+  <block id="4de1359946a99628590912a38a0d4c7c" category="cell">10 、 200 ドル</block>
+  <block id="1c383cd30b7c298ab50293adfecb7b18" category="cell">35</block>
+  <block id="a9a6653e48976138166de32772b1bf40" category="cell">560</block>
+  <block id="6d21386e1bb02fbbf085a177e125e773" category="cell">3 、 500 ドル</block>
+  <block id="be186c804064fc0b6325f6b5f3bd64ab" category="cell">2 、 240</block>
+  <block id="adc126ae7ddf288326fab8cbd99fa62d" category="cell">7 、 000 ドル</block>
+  <block id="876272968baa90d7368e3b1a6672dbcf" category="cell">4,480</block>
+  <block id="72e7691c8a1f1e09ae9367e55ccc1f1f" category="cell">10 、 500 ドル</block>
+  <block id="19ca14e7ea6328a42e0eb13d585e4c22" category="cell">36</block>
+  <block id="c7a406813eceb19ae792b1eb5cb3c9f2" category="cell">4,500</block>
+  <block id="ca5a7ac3e35af00d313bb71ba0b2d9e8" category="cell">10 、 800 ドル</block>
+  <block id="a5bfc9e07964f8dddeb95fc584cd965d" category="cell">37</block>
+  <block id="dbe272bab69f8e13f14b405e038deb64" category="cell">592</block>
+  <block id="b5956fae6f24e2f6bc64f43b385daf30" category="cell">3 、 700 ドル</block>
+  <block id="95f3d05f7452cc80901a5c4e9350d15c" category="cell">2 、 368</block>
+  <block id="c9b9a3daa6e47f7c26aeea4e0e636e5e" category="cell">7,400 ドル</block>
+  <block id="6a49552c8a8c24728b651f8695279593" category="cell">11 、 100 ドル</block>
+  <block id="a5771bce93e200c36f7cd9dfd0e5deaa" category="cell">38</block>
+  <block id="996a7fa078cc36c46d02f9af3bef918b" category="cell">608</block>
+  <block id="b23e38b0d9bcc8f55f0853b4b1b18684" category="cell">7 、 600 ドル</block>
+  <block id="df4174b4c2a5eb91c588955535672f01" category="cell">11 、 400 ドル</block>
+  <block id="d67d8ab4f4c10bf22aa353e27879133c" category="cell">39</block>
+  <block id="48ab2f9b45957ab574cf005eb8a76760" category="cell">624</block>
+  <block id="a49d5fec73f3733f1991638259163bb4" category="cell">2,496</block>
+  <block id="654a7501882051eacb3b443411155c1e" category="cell">11 、 700 ドル</block>
+  <block id="d645920e395fedad7bbbed0eca3fe2e0" category="cell">40</block>
+  <block id="d5e50c1e2ffd9ab603a7e6e1789595e3" category="cell">8 、 000 ドル</block>
+  <block id="2d30bccb3b569ab57bf3a1f218fcde5c" category="cell">12 、 000 ドル</block>
+  <block id="3416a75f4cea9109507cacd8e2f2aefc" category="cell">41.</block>
+  <block id="26408ffa703a72e8ac0117e74ad46f33" category="cell">656.</block>
+  <block id="3848f43e1be9ffbb47ae79df35c8eab9" category="cell">4,100 ドル</block>
+  <block id="748ec101eac6bc8826c843ea0e3e8e30" category="cell">2 、 624</block>
+  <block id="d78e423452b86fa01741b9e5437f8d8d" category="cell">8 、 200 ドル</block>
+  <block id="3a3090a0bbd3e45f29ff429376cbd741" category="cell">12 、 300 ドル</block>
+  <block id="a1d0c6e83f027327d8461063f4ac58a6" category="cell">42</block>
+  <block id="2dea61eed4bceec564a00115c4d21334" category="cell">672</block>
+  <block id="9b9932065443dfb3e5d881ab33051c49" category="cell">12 、 600 ドル</block>
+  <block id="17e62166fc8586dfa4d1bc0e1742c08b" category="cell">43</block>
+  <block id="f79921bbae40a577928b76d2fc3edc2a" category="cell">688</block>
+  <block id="3ada608df0e514f6202a207d39b63d77" category="cell">4,300 ドル</block>
+  <block id="fa064943223d179f779ba445cdcbe40b" category="cell">2 、 752</block>
+  <block id="13c7d2dbc70eb8a88d7c343ff6591302" category="cell">8 、 600 ドル</block>
+  <block id="a4b3b81841606ef7665fe042b59f08de" category="cell">12 、 900 ドル</block>
+  <block id="f7177163c833dff4b38fc8d2872f1ec6" category="cell">44</block>
+  <block id="2b354be3b9b055cb3663037db7988289" category="cell">8 、 800 ドル</block>
+  <block id="091c6b36f47424a63295fb1f871e6fb4" category="cell">13 、 200 ドル</block>
+  <block id="6c8349cc7260ae62e3b1396831a8398f" category="cell">45</block>
+  <block id="5f2c22cb4a5380af7ca75622a6426917" category="cell">720</block>
+  <block id="8dbe5468ca4a7bd73018d84ae2927c88" category="cell">2 、 880</block>
+  <block id="bec5050b7d6b3fef4299de990bfdb6d4" category="cell">$14,500</block>
+  <block id="d9d4f495e875a2e075a1a4a6e1b9770f" category="cell">46</block>
+  <block id="6bc24fc1ab650b25b4114e93a98f1eba" category="cell">736</block>
+  <block id="bb2d0e6c31e3f8930ba4ac4d2dcb39fa" category="cell">9 、 200 ドル</block>
+  <block id="7d735f09851c166de295f02c80f694a5" category="cell">13,800 ドル</block>
+  <block id="67c6a1e7ce56d3d6fa748ab6d9af3fd7" category="cell">47</block>
+  <block id="a1d33d0dfec820b41b54430b50e96b5c" category="cell">752</block>
+  <block id="7f938a656490e565973f589e0ad9c79c" category="cell">4,700 ドル</block>
+  <block id="d1b624f9e54d26f767a5c6b47d9b8bd1" category="cell">3,008</block>
+  <block id="9b3547dd6befbafead9eef053329195f" category="cell">9,400 ドル</block>
+  <block id="efbfa51cb7ea403dbd0cb090f5ef6421" category="cell">14 、 100 ドル</block>
+  <block id="35a55f758dc87785cdad44e7d028d62d" category="cell">14 、 400 ドル</block>
+  <block id="f457c545a9ded88f18ecee47145a72c0" category="cell">49</block>
+  <block id="fc8001f834f6a5f0561080d134d53d29" category="cell">784</block>
+  <block id="7219000e527da329d1419f40967b329f" category="cell">4,900 ドル</block>
+  <block id="206dd327ff78959436387abeb90993b4" category="cell">3 、 136</block>
+  <block id="85652fe823e592a519f3be2b17441c92" category="cell">9,800 ドル</block>
+  <block id="9556c99ed90a7a9986200bd257b7b303" category="cell">14 、 700 ドル</block>
+  <block id="c0c7c76d30bd3dcaefc96f40275bdc0a" category="cell">50</block>
+  <block id="7a53928fa4dd31e82c6ef826f341daec" category="cell">800</block>
+  <block id="3fa4be9dddcae8581430eb80b7e1014d" category="cell">10 、 000 ドル</block>
+  <block id="f12f4e77772e71d833f0df7c8e47b463" category="cell">15 、 000 ドル</block>
+  <block id="2838023a778dfaecdc212708f721b788" category="cell">51</block>
+  <block id="43fa7f58b7eac7ac872209342e62e8f1" category="cell">816</block>
+  <block id="6b3910c5f8852c3c30def4f020546d57" category="cell">3 、 264</block>
+  <block id="5caaa4efcbec1a31216f0d5d201de19a" category="cell">15 、 300 ドル</block>
+  <block id="9a1158154dfa42caddbd0694a4e9bdc8" category="cell">52</block>
+  <block id="01e6c8b55f7b29017bd838ebd8a6e5d7" category="cell">10,400 ドル</block>
+  <block id="cfbf84a220c4b80caed526e474c7bef5" category="cell">15 、 600 ドル</block>
+  <block id="d82c8d1619ad8176d665453cfb2e55f0" category="cell">53</block>
+  <block id="362e80d4df43b03ae6d3f8540cd63626" category="cell">848</block>
+  <block id="d4613a01da59234c2eb29812a688f971" category="cell">5 、 300 ドル</block>
+  <block id="46a5c57c26aa123579e97dcaadbc7c18" category="cell">3 、 392</block>
+  <block id="4d6368ef01d3a65cc4ff2792f673427e" category="cell">10 、 600 ドル</block>
+  <block id="7b65883e68cdbf716a2a99abd72fe353" category="cell">15 、 900 ドル</block>
+  <block id="a684eceee76fc522773286a895bc8436" category="cell">54</block>
+  <block id="1fc214004c9481e4c8073e85323bfd4b" category="cell">864</block>
+  <block id="d93f22ce1eea345e6d1ae7ee5e38aa0c" category="cell">16 、 200 ドル</block>
+  <block id="b53b3a3d6ab90ce0268229151c9bde11" category="cell">55</block>
+  <block id="1f50893f80d6830d62765ffad7721742" category="cell">880</block>
+  <block id="7b5ac0f0ee6f0a20bea3503fbc79b62d" category="cell">5 、 500 ドル</block>
+  <block id="7a4a23bb30197f2a80c076cb01b2fa05" category="cell">3 、 520</block>
+  <block id="0f03ccf36687da3a04aa7d2376d0bd40" category="cell">11,000 ドル</block>
+  <block id="d2cbc36d77b8ed8ab20be83ac4009a30" category="cell">16,500 ドル</block>
+  <block id="9f61408e3afb633e50cdf1b20de6f466" category="cell">56</block>
+  <block id="ca4a271264b6a391e6a77947b90165c6" category="cell">11 、 200 ドル</block>
+  <block id="81f59e4743da2b2f6fc1a5b00ed5e291" category="cell">16,800 ドル</block>
+  <block id="72b32a1f754ba1c09b3695e0cb6cde7f" category="cell">57</block>
+  <block id="2a9d121cd9c3a1832bb6d2cc6bd7a8a7" category="cell">912</block>
+  <block id="1cd253a16c59c151a850058a2fb45048" category="cell">3,648</block>
+  <block id="18f623b9983aad051e0fa443bb9361fc" category="cell">17,100 ドル</block>
+  <block id="66f041e16a60928b05a7e228a89c3799" category="cell">58</block>
+  <block id="d045c59a90d7587d8d671b5f5aec4e7c" category="cell">928</block>
+  <block id="41ba18773a1a545cd44ec05301c9838d" category="cell">11 、 600 ドル</block>
+  <block id="e6555d37ea882bc8f0032158dbe66b81" category="cell">17,400 ドル</block>
+  <block id="093f65e080a295f8076b1c5722a46aa2" category="cell">59</block>
+  <block id="64223ccf70bbb65a3a4aceac37e21016" category="cell">944</block>
+  <block id="5906a22ae431da5929bdb24be904e7a8" category="cell">5,900 ドル</block>
+  <block id="085de5f9b74520ffc33f61eee5ceccb5" category="cell">3 、 776</block>
+  <block id="0e1e97680994d02103792fa079fcd663" category="cell">11 、 800 ドル</block>
+  <block id="654e6e68acba5b4f100a40bc1a4edbf5" category="cell">17,700 ドル</block>
+  <block id="072b030ba126b2f4b2374f342be9ed44" category="cell">60</block>
+  <block id="a907a756488216298ebeb2f427b8c324" category="cell">$18,000</block>
+  <block id="7f39f8317fbdb1988ef4c628eba02591" category="cell">61</block>
+  <block id="9c01802ddb981e6bcfbec0f0516b8e35" category="cell">976</block>
+  <block id="9f95aa2cc8bc74c296a755254729c7cb" category="cell">6 、 100 ドル</block>
+  <block id="3940498a028fde51f06fa4cde9e50415" category="cell">3 、 904</block>
+  <block id="47328efac62e65af13d5853291b1c5af" category="cell">12 、 200 ドル</block>
+  <block id="690a8d7249fb47bb61f7542008a0aa74" category="cell">18 、 300 ドル</block>
+  <block id="44f683a84163b3523afe57c2e008bc8c" category="cell">62</block>
+  <block id="860320be12a1c050cd7731794e231bd3" category="cell">992</block>
+  <block id="e50d4b1c60a6063e27c6e107814e6f5a" category="cell">12 、 400 ドル</block>
+  <block id="1c0ff5ae07926d93672fc383cf4b7517" category="cell">18 、 600 ドル</block>
+  <block id="03afdbd66e7929b125f8597834fa83a4" category="cell">63</block>
+  <block id="a05e4b899cf743ddd918378a76eac8e9" category="cell">1,008</block>
+  <block id="9e4b5af50e6a366d8d86df8387c3a565" category="cell">4,032</block>
+  <block id="c0a7db06712964d92225a9493f1aa2f4" category="cell">18 、 900 ドル</block>
+  <block id="9e7dfca780ce12456d60f5967e4c6f5e" category="cell">12,800 ドル</block>
+  <block id="c674b4e8eaa2319b49a14239e59678c8" category="cell">19 、 200 ドル</block>
+  <block id="fc490ca45c00b1249bbe3554a4fdf6fb" category="cell">65</block>
+  <block id="509ac89bed3b5145496da59f08c40d6d" category="cell">1,040</block>
+  <block id="7470fddb1eec7ea6c8b866f7c86f6b94" category="cell">6 、 500 ドル</block>
+  <block id="cd3ed66a43a07436c3ad4004455146fa" category="cell">4,160</block>
+  <block id="130ddec80306247361991575dc54f235" category="cell">13 、 000 ドル</block>
+  <block id="483b05fdf5b51ebf61d0f00039fd21c9" category="cell">19 、 500 ドル</block>
+  <block id="3295c76acbf4caaed33c36b1b5fc2cb1" category="cell">66</block>
+  <block id="025feabccb15b838c0aa44d506a0c9d6" category="cell">1,056</block>
+  <block id="6c907d501226b8ae0f6a89be5e134267" category="cell">19 、 800 ドル</block>
+  <block id="735b90b4568125ed6c3f678819b6e058" category="cell">67</block>
+  <block id="f41e86d0228dc7e98791219608c15e1a" category="cell">1,072</block>
+  <block id="36ddf29adf847f6492cc6b78644d55fd" category="cell">6 、 700 ドル</block>
+  <block id="e12dc67763b9a83e57fbdefec9c34fbe" category="cell">4,288</block>
+  <block id="4752b4eceedf35daeacf3a588e7c9530" category="cell">13,400 ドル</block>
+  <block id="630a7c94cadff82ae90c7ec169a6c2d8" category="cell">20 、 100 ドル</block>
+  <block id="a3f390d88e4c41f2747bfa2f1b5f87db" category="cell">68</block>
+  <block id="a05329065ad9bea5098cc114211852c0" category="cell">13,600 ドル</block>
+  <block id="387c35b7162eaa5720df611880dafdba" category="cell">20 、 400 ドル</block>
+  <block id="14bfa6bb14875e45bba028a21ed38046" category="cell">69</block>
+  <block id="2edf192feb13fed040b98437b7c33fe4" category="cell">1,104</block>
+  <block id="f68705e07feef5698cad56559f238036" category="cell">4,416</block>
+  <block id="57f9a81bf2ece3d9cd3101c795affcf7" category="cell">20 、 700 ドル</block>
+  <block id="7cbbc409ec990f19c78c75bd1e06f215" category="cell">70</block>
+  <block id="5048b05ed2c0a5c28962ee489c5735ba" category="cell">1,120</block>
+  <block id="37601027479becc24be379085129d442" category="cell">14,000 ドル</block>
+  <block id="25e87f705d45e54cccc0f16e22e95d7c" category="cell">21 、 000 ドル</block>
+  <block id="e2c420d928d4bf8ce0ff2ec19b371514" category="cell">71.</block>
+  <block id="2bdfdb04330a310f641722ad9b91da04" category="cell">1,136</block>
+  <block id="ec4d7d0a8492c4b146bbcd39004c2634" category="cell">7,100 ドル</block>
+  <block id="1a2fefd3972cdd547629f25b540b7d56" category="cell">14 、 200 ドル</block>
+  <block id="971dab3eb34331312d4d6898cba22e56" category="cell">21 、 300 ドル</block>
+  <block id="32bb90e8976aab5298d5da10fe66f21d" category="cell">72</block>
+  <block id="58af640723e9db81e0fb9fe11ab841bb" category="cell">21 、 600 ドル</block>
+  <block id="d2ddea18f00665ce8623e36bd4e3c7c5" category="cell">73</block>
+  <block id="69a206ef4a9fe2be7093b3a6a9860cc7" category="cell">1,168</block>
+  <block id="3472923ec847bbaef0c5ebe5d53d9d98" category="cell">7 、 300 ドル</block>
+  <block id="d47cdb515732d60256efb11905773712" category="cell">14 、 600 ドル</block>
+  <block id="e33ff6485c31db30d8a11e523e8c0e3f" category="cell">21 、 900 ドル</block>
+  <block id="ad61ab143223efbc24c7d2583be69251" category="cell">74</block>
+  <block id="0d5f5715f3dd10192b0cf94a13a19a4b" category="cell">1,184</block>
+  <block id="b992e179e4809576be7c941112efb1a1" category="cell">14 、 800 ドル</block>
+  <block id="4b9bcfe253c167d262e84a44dffddddb" category="cell">22 、 200 ドル</block>
+  <block id="d09bf41544a3365a46c9077ebb5e35c3" category="cell">75</block>
+  <block id="bc82c542d7228d85b06c977c78cb3f48" category="cell">1,200</block>
+  <block id="e208a97c22a55317443fc8da90e526a1" category="cell">22 、 500 ドル</block>
+  <block id="fbd7939d674997cdb4692d34de8633c4" category="cell">76</block>
+  <block id="dcc98ad6ccdba8687e4ea3892d86c9b7" category="cell">15 、 200 ドル</block>
+  <block id="0d551e80c290fcfe70ac2105da7f5196" category="cell">22 、 800 ドル</block>
+  <block id="28dd2c7955ce926456240b2ff0100bde" category="cell">77</block>
+  <block id="b53361efb8d974b1650dacdf8cfb7ea1" category="cell">1,232</block>
+  <block id="7eaa9934dad62607498842ce0d462908" category="cell">7 、 700 ドル</block>
+  <block id="517929b412ee8d889fd7c46455ee1cbd" category="cell">15 、 400 ドル</block>
+  <block id="0c3802bc1898fdc414daacb561279095" category="cell">23 、 100 ドル</block>
+  <block id="35f4a8d465e6e1edc05f3d8ab658c551" category="cell">78</block>
+  <block id="f9259e8f14e952df0f8855dbf5281085" category="cell">1,248</block>
+  <block id="60740ba4f71b0a8e734ac66d4b71a42c" category="cell">23 、 400 ドル</block>
+  <block id="d1fe173d08e959397adf34b1d77e88d7" category="cell">79</block>
+  <block id="68c5694ab439f927c54dd6e31d93556b" category="cell">1,264</block>
+  <block id="d4af1026eedce56ae4ab1f5b0b63f94f" category="cell">7 、 900 ドル</block>
+  <block id="bd2f160217544665703cd9f0c1fac8c9" category="cell">15 、 800 ドル</block>
+  <block id="b2dfd57ef1fba0ab8793b2e8b397defe" category="cell">23 、 700 ドル</block>
+  <block id="2b9b6d952c18741e7930c90904151945" category="cell">1 万 6 、 000 ドル</block>
+  <block id="59631e0d402977db2ec7e97e79123f52" category="cell">24 、 000 ドル</block>
+  <block id="43ec517d68b6edd3015b3edc9a11367b" category="cell">81</block>
+  <block id="7d42f60239bc3d3efa15de0f608f56e1" category="cell">1,296</block>
+  <block id="1759d72cc5fed4d7dd47fb204c6a5562" category="cell">24,300 ドル</block>
+  <block id="9778d5d219c5080b9a6a17bef029331c" category="cell">82</block>
+  <block id="eba2f9ba8a8dad26362a4a3fe2eb174f" category="cell">1,312</block>
+  <block id="176f35c090b3ecc4c47402e67a2eab2c" category="cell">16 、 400 ドル</block>
+  <block id="551ad677ee67785ca555bce4f7262b98" category="cell">24,600 ドル</block>
+  <block id="fe9fc289c3ff0af142b6d3bead98a923" category="cell">83</block>
+  <block id="ff0b19b22f8d89f3584367a37d312d87" category="cell">1,328</block>
+  <block id="8f2936475c24926642478c115cb95d99" category="cell">8 、 300 ドル</block>
+  <block id="07200ba3ce9b797c17a7bd82cd44b443" category="cell">16 、 600 ドル</block>
+  <block id="49aa65813949280223e06da0a90ad2ca" category="cell">24,900 ドル</block>
+  <block id="68d30a9594728bc39aa24be94b319d21" category="cell">84</block>
+  <block id="c4b2abc9439e7893d70df7a883ee71d3" category="cell">25 、 200 ドル</block>
+  <block id="3ef815416f775098fe977004015c6193" category="cell">85</block>
+  <block id="9348df72c44b30c92f21c45bf60c134a" category="cell">1,360</block>
+  <block id="e5e0b764cc972c86af0bc536f2f6f518" category="cell">8 、 500 ドル</block>
+  <block id="4e3fbe6ec562fb549f0c1e4dd788e6ea" category="cell">17,000 ドル</block>
+  <block id="260c2853bac64cc0879727fc88fc1bfb" category="cell">25 、 500 ドル</block>
+  <block id="93db85ed909c13838ff95ccfa94cebd9" category="cell">86</block>
+  <block id="9174cb2ab6b0e84a25d9860c030731c8" category="cell">1,376</block>
+  <block id="54ed65e9c68a1e371a94600c1161da3b" category="cell">17,200 ドル</block>
+  <block id="03a41cf81cdbfd67afe73447bd8cf8d9" category="cell">25 、 800 ドル</block>
+  <block id="c7e1249ffc03eb9ded908c236bd1996d" category="cell">87</block>
+  <block id="77d42bfaff62ddcf6cc3aae13aa0cc6e" category="cell">1,392</block>
+  <block id="22931987f181e7c7e478bb1b4d3ab6b0" category="cell">26 、 100 ドル</block>
+  <block id="2a38a4a9316c49e5a833517c45d31070" category="cell">88</block>
+  <block id="216dd68f037ead6b06e3f1334436254f" category="cell">17,600 ドル</block>
+  <block id="c7ee6aeb0c8a2fc24823bc029f731e3c" category="cell">26 、 400 ドル</block>
+  <block id="7647966b7343c29048673252e490f736" category="cell">89</block>
+  <block id="27014f48b87d72edd8a665f08e889d5f" category="cell">1,424</block>
+  <block id="6adbaede8a77d2dd8472b8a1671a68bf" category="cell">8 、 900 ドル</block>
+  <block id="ad841a9de2f22fac924ea70490931327" category="cell">17,800 ドル</block>
+  <block id="eed50b503a043bae654317e299adea74" category="cell">26 、 700 ドル</block>
+  <block id="8613985ec49eb8f757ae6439e879bb2a" category="cell">90</block>
+  <block id="5533cffca7ce34e5c108e9bf7f72fbb0" category="cell">1,440</block>
+  <block id="b5e593368546548b6e19d3c88b3c9a48" category="cell">27 、 000 ドル</block>
+  <block id="54229abfcfa5649e7003b83dd4755294" category="cell">91.</block>
+  <block id="4a978f81d22037721b213fb8408f6472" category="cell">1,456</block>
+  <block id="696f31fe5d5b67f8c1656f5ad97c9d8e" category="cell">9,100 ドル</block>
+  <block id="8aecfd8a0e6038beae50f32d729b2d67" category="cell">18 、 200 ドル</block>
+  <block id="83a45784b96d3e899ccafa0a6edb6178" category="cell">27,300 ドル</block>
+  <block id="92cc227532d17e56e07902b254dfad10" category="cell">92</block>
+  <block id="3e4202ad177148ca487d14aca955f6ab" category="cell">18 、 400 ドル</block>
+  <block id="e066e6e41e3620cf86db6f6c6a3595ef" category="cell">27,600 ドル</block>
+  <block id="98dce83da57b0395e163467c9dae521b" category="cell">93</block>
+  <block id="b83f104e5c1f891a958af843fec85b56" category="cell">1,488</block>
+  <block id="f16a2aaa5604b12c45e63134561b56bd" category="cell">27,900 ドル</block>
+  <block id="f4b9ec30ad9f68f89b29639786cb62ef" category="cell">94</block>
+  <block id="197037d3aa278839fd3e8ba3e6ff29fb" category="cell">1,504</block>
+  <block id="7317b65c113de6ee7299bcf4aba8dab8" category="cell">18 、 800 ドル</block>
+  <block id="f7c85032be17cdfdf4e39cd911d7887b" category="cell">28,200 ドル</block>
+  <block id="812b4ba287f5ee0bc9d43bbf5bbe87fb" category="cell">95</block>
+  <block id="e5a0bd6a23e4860bd04bbc6da5a2a010" category="cell">1,520</block>
+  <block id="ee19b1f8c608c45d846ab325eabd8977" category="cell">9,500</block>
+  <block id="d4fd4f9d12fea8a171a989a8cf2e3da6" category="cell">19,000 ドル</block>
+  <block id="1fbe75f9586ae852377219c6b70bc6d8" category="cell">28,500 ドル</block>
+  <block id="780e5c6c46c21fb785caf7ca90440652" category="cell">28,800 ドル</block>
+  <block id="e2ef524fbf3d9fe611d5a8e90fefdc9c" category="cell">97</block>
+  <block id="363f8c34a0b6c80a00e0b12482cf3455" category="cell">1,552</block>
+  <block id="685e5a70d9b039a0a140bbb04b9afff8" category="cell">9 、 700 ドル</block>
+  <block id="406c9cc385b552a1a133f20ad6995286" category="cell">19 、 400 ドル</block>
+  <block id="5e35b57ba2b41b1d9ac351a917c1d964" category="cell">29,100 ドル</block>
+  <block id="ed3d2c21991e3bef5e069713af9fa6ca" category="cell">98</block>
+  <block id="7168998a626bd21d89aab5103a9a2c22" category="cell">1,568</block>
+  <block id="1237815886d92682295d8f3e75505792" category="cell">19 、 600 ドル</block>
+  <block id="6f827c31f7cb1e0b62ad2e4f87e49ba7" category="cell">29,400 ドル</block>
+  <block id="ac627ab1ccbdb62ec96e702f07f6425b" category="cell">99</block>
+  <block id="5d3ad0ff825f78b6dda0692f7d7c67bc" category="cell">1,584</block>
+  <block id="53ef17ea537ac6bdba8db2bc260e1f40" category="cell">29,700 ドル</block>
+  <block id="f899139df5e1059396431415e770c6dd" category="cell">100</block>
+  <block id="f715f9ab45b5537b33999f5b826dc943" category="cell">20 、 000 ドル</block>
+  <block id="68da0938692f24559fc3ea76422b7309" category="cell">3 万ドル</block>
+  <block id="5504977cb47d642da3d1264eefb7edda" category="section-title">例 1.</block>
+  <block id="b53853437e958b2ada74339c5a15080e" category="paragraph">たとえば、アプリケーションには、 25TB の容量と 100MB/s の帯域幅が必要です。容量が 25TB の場合、 Standard サービスレベルでは帯域幅が 400MB/ 秒に、 2 、 500 ドルのコストで提供されるため、 Standard はこの場合に最適なサービスレベルです。</block>
+  <block id="96eade91ea8ad3a768b45fae66e4a317" category="inline-image-macro">サービスレベルと容量を選択。例 1</block>
+  <block id="fa1e629ff9f8ba28a5b87f520d0f978b" category="paragraph"><block ref="fa1e629ff9f8ba28a5b87f520d0f978b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="5f3a8aa007370d00f3fd3b293a6a1118" category="section-title">例 2</block>
+  <block id="e3c01a8104d16b1a5dbd3786dcb09e17" category="paragraph">たとえば、アプリケーションには、 12 TB の容量と 800 MB/s のピーク帯域幅が必要です。Extreme サービスレベルでは、 12 TB のマークでアプリケーションのニーズに対応できますが、 Premium サービスレベルでは 13 TB を選択する方がコスト効率が高くなります。</block>
+  <block id="47d1178d43da1c44b8c4b656a839d0b9" category="inline-image-macro">サービスレベルと容量の選択（例 2</block>
+  <block id="fdd6098304bebbe4ab182205872c90df" category="paragraph"><block ref="fdd6098304bebbe4ab182205872c90df" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="5b618ec153a442d925e7e3cc93bb65d8" category="summary">クラウドボリュームで Windows Active Directory （ AD ）サーバを使用する場合は、 AWS セキュリティグループの設定に関するガイダンスを確認しておく必要があります。この設定により、クラウドボリュームが AD に正しく統合されます。</block>
+  <block id="b79db32b660a9bbc01887de0acbc4f26" category="doc">Windows AD サーバ用の AWS セキュリティグループの設定</block>
+  <block id="c546611c5f302cd6f19dc2dba0bcf1b0" category="paragraph">デフォルトでは、 EC2 Windows インスタンスに適用されている AWS セキュリティグループには、 RDP 以外のプロトコルのインバウンドルールは含まれていません。Cloud Volumes Service からのインバウンド通信を有効にするには、各 Windows AD インスタンスに接続されているセキュリティグループにルールを追加する必要があります。必要なポートは次のとおりです。</block>
+  <block id="c2ba7e785c49050f48da9aacc45c2b85" category="cell">サービス</block>
+  <block id="60aaf44d4b562252c04db7f98497e9aa" category="cell">ポート</block>
+  <block id="888a77f5ac0748b6c8001822417df8b6" category="cell">プロトコル</block>
+  <block id="5ca2a54c1065dd7d05391f89a278ad2a" category="cell">AD Web サービス</block>
+  <block id="2747e3c644b9a085cd4d3a7718b16024" category="cell">9389</block>
+  <block id="b136ef5f6a01d816991fe3cf7a6ac763" category="cell">TCP</block>
+  <block id="ed5f2bdecbd4bd349d09412d1ff6a6fb" category="cell">DNS</block>
+  <block id="f5ef036b4d8b630721e51fe23489fbc9" category="cell">UDP</block>
+  <block id="5985e830fae65f37a46ae22075a4ca48" category="cell">ICMPv4</block>
+  <block id="382b0f5185773fa0f67a8ed8056c7759" category="cell">該当なし</block>
+  <block id="e0b221d2923b98ecd9ef35504d787365" category="cell">エコー応答</block>
+  <block id="87b3695bfd6f672e2c7c4da7ca2b46a8" category="cell">Kerberos</block>
+  <block id="2363dee608bcd9f6ce7f980bfdad5789" category="cell">LDAP</block>
+  <block id="c86a7ee3d8ef0b551ed58e354a836f2b" category="cell">389</block>
+  <block id="a4d92e2cd541fca87e4620aba658316d" category="cell">3268</block>
+  <block id="b19cdd862134a63196f20f8257d2834a" category="cell">NetBIOS 名</block>
+  <block id="013d407166ec4fa56eb1e1f8cbe183b9" category="cell">138</block>
+  <block id="56440062188d73f60d350ea349366299" category="cell">SAM/LSA</block>
+  <block id="67f7fb873eaf29526a11a9b7ac33bfac" category="cell">445</block>
+  <block id="3f0dca2433e91d5f3ab7109c68143794" category="cell">セキュアな LDAP</block>
+  <block id="c5ab0bc60ac7929182aadd08703f1ec6" category="cell">636</block>
+  <block id="c91e3483cf4f90057d02aa492d2b25b1" category="cell">3269</block>
+  <block id="010b192f04e8eee11d74c4802cc24093" category="cell">W32 時間</block>
+  <block id="202cb962ac59075b964b07152d234b70" category="cell">123</block>
+  <block id="6d0cda859aaf15ba029d2fa7848c128f" category="paragraph">AWS EC2 インスタンスに AD インストールドメインコントローラとメンバーサーバを導入して管理する場合は、 Cloud Volumes Service のトラフィックを許可するセキュリティグループのルールがいくつか必要になります。以下は、 AWS CloudFormation テンプレートの一部として AD アプリケーションにこれらのルールを実装する方法の例です。</block>
+  <block id="08d3f7987f9191254ac2a098580ceca6" category="summary">クラウドボリュームの Snapshot をオンデマンドで作成するには、ボリュームまたは Snapshot ページを使用します。</block>
+  <block id="5eadbf3a82cbca9c34336a6621ddc4c0" category="doc">クラウドボリューム用のオンデマンド Snapshot を作成する</block>
+  <block id="0b24d7ddffbb29497b17927a7d594dc4" category="section-title">Volumes （ボリューム）ページからスナップショットを作成します</block>
+  <block id="f164a8e831a3a815b4407d42da65ff1c" category="list-text">ボリューム名をクリックし、 * Snapshots * を選択して、 * + Create new snapshot * をクリックします。</block>
+  <block id="97f92a716f462fcd2526684bae637352" category="list-text">Snapshot の名前を入力するか、自動生成された名前を使用します。</block>
+  <block id="c5bf430593e42ecdfdafbb40e81e38eb" category="list-text">ボリューム名を選択し、ドロップダウンリストから Snapshot を作成するボリュームを選択します。</block>
+  <block id="98f824fcf352eba6d33065f2f741a1ef" category="list-text">スナップショットの作成 * をクリックします。</block>
+  <block id="274058659e495fd9c42f5042b420f59f" category="paragraph">作成した Snapshot が表示されます。</block>
+  <block id="f58ecdfd2fc8906a44c80f16e04d0174" category="section-title">Snapshots （スナップショット）ページからスナップショットを作成します</block>
+  <block id="35d8e3c0405b8aa0b608015318c7bd97" category="list-text">[ * + 新しいスナップショットの作成 * ] をクリックします。</block>
+  <block id="c16419e6ff4ca77861aa35637895dcd7" category="list-text">ドロップダウンリストから、 Snapshot を作成するボリュームを選択します。</block>
+  <block id="9297331ca7cbadab93fdcead25710142" category="paragraph">作成した Snapshot が表示されます。</block>
+  <block id="f54f63939b49a2e897f6f6370866f7aa" category="summary">NetApp Cloud Sync は NetApp Cloud Volumes Service for AWS と統合されており、クラウドボリュームとの間のデータ同期を高速化できます。Cloud Sync データブローカーを使用すると、データを同期するための Cloud Sync 関係を作成できます。</block>
+  <block id="0b9d898ef08ae0a527e709926f601b27" category="doc">Cloud Sync データブローカーの作成</block>
+  <block id="72ec00722826443159fbc980b807f44c" category="paragraph">NetApp Cloud Sync は NetApp Cloud Volumes Service for AWS と統合されており、クラウドボリュームとの間で NFS 経由のデータを高速に同期できます。Cloud Sync データブローカーを使用すると、データを同期するための Cloud Sync 関係を作成できます。</block>
+  <block id="fc64c429f54c97f722ee7a82818baef0" category="paragraph">Cloud Volume アカウントに使用するのと同じ AWS Virtual Private Cloud （ VPC ）に Cloud Sync データブローカーがすでに含まれている場合は、このタスクをスキップできます。</block>
+  <block id="eb3729105d2f2cce55d8299916ef0852" category="inline-link">NetApp Cloud Sync のドキュメント</block>
+  <block id="5f221db16b7611b1bed8d69f54a32bfd" category="paragraph"><block ref="5f221db16b7611b1bed8d69f54a32bfd" category="inline-link-rx"></block></block>
+  <block id="5fe795faf539f79e16bea4cf2a17ca87" category="list-text">[ 同期 ] ページまたは [ ボリューム ] ページでボリュームの [ 同期 ] タブに移動します。</block>
+  <block id="63ae667b42de9970b210c0cab46a6ba6" category="list-text">[ データブローカーの作成 ] をクリックして、データブローカーを作成します。</block>
+  <block id="7d2c5257f8c80e600828a1232e020759" category="list-text">次のフィールドに情報を入力します。</block>
+  <block id="496ee322ba138fdbc777e5ab2e30145e" category="list-text">* 名前 *</block>
+  <block id="3bad38ae961eabbc2fa9c33b611132d5" category="paragraph">データブローカーの名前を指定します。</block>
+  <block id="7464a7978b1ad9e7f36e5f0181e97eb5" category="list-text">* タイプ *</block>
+  <block id="f69f20d2c40a5e0d0c5e11f6443d21d9" category="paragraph">AWS を選択します。</block>
+  <block id="c748e5cad0f18e9780f35a23a21dd5e4" category="list-text">* 地域 *</block>
+  <block id="98994f4ce54bafe9687bb25c8f66075a" category="paragraph">使用可能なリージョンを選択します。</block>
+  <block id="7e4401bd51b149c6034056ac77524f43" category="list-text">* API キー *</block>
+  <block id="bb7092c027d5039a90a707cfb8a1c1a3" category="paragraph">AWS アカウントのアクセスキーを指定します。</block>
+  <block id="ffbe4f76fc85855b9824b00eafa30e1b" category="list-text">* 秘密鍵 *</block>
+  <block id="ba584e68baad1f98c82cc31a3370f1a4" category="paragraph">AWS アカウントのシークレットキーを指定します。</block>
+  <block id="da21cdc8f1a4309f32bb9a9cd84e8d07" category="list-text">* キーペア *</block>
+  <block id="5ecf85943167fb99caf42a9a2c629199" category="paragraph">使用可能なキーペアを選択します。</block>
+  <block id="97cee68f6d20624a128aba88410a0463" category="paragraph">キーペアは、有効なキーを入力すると更新されます。</block>
+  <block id="5a27c4fb594c9f679329c31622b59a04" category="list-text">* VPC *</block>
+  <block id="6568c492b57364154f504c2637f2b10b" category="paragraph">Cloud Volume アカウントに接続されている VPC を選択します。</block>
+  <block id="a5ede60043f381fbec4810d49c62a7e7" category="list-text">* サブネット *</block>
+  <block id="20ab92d58e5556afa57f78268d7e56a4" category="paragraph">データブローカーに使用する使用可能なサブネットを選択してください。</block>
+  <block id="181f3b61f2d84afdf97ab3b04d449165" category="list-text">[ データブローカーの作成 *] をクリックして、データブローカー作成プロセスを開始します。</block>
+  <block id="fbaf95f8cc4dd41d3bc156dc8a08ff11" category="paragraph">データブローカーの作成には数分かかります。作成されたデータブローカーは、準備が完了したことを示す緑の点でマークされます。</block>
+  <block id="d87231fba149b6158b5dc4f85d2365f1" category="inline-link-macro">Cloud Sync 関係を作成しています</block>
+  <block id="7e7078cd7ddb3ff9ff1be4fae310ea2a" category="paragraph">に進みます <block ref="bb8654c06ea701c5ccb6dcbb9dc12cb1" category="inline-link-macro-rx"></block>。</block>
+  <block id="c8183a8f29be06a75306004e7b83b8e1" category="summary">追加のエクスポートポリシールールを作成して、柔軟なクライアントアクセスを有効にすることができます。たとえば、特定の IP 範囲でボリュームへの読み取り専用アクセスのみを許可するように指定できます。</block>
+  <block id="badd31e1f4f5929ae6e6051c43acc459" category="doc">追加のエクスポートポリシールールを作成しています</block>
+  <block id="a463e3464532c364ba51bf909b2d7c83" category="list-text">ボリューム名をクリックし、 * エクスポートポリシー * を選択します。</block>
+  <block id="fb38b28c54a9e3b34dea9ed233f56a6b" category="list-text">+ Add export policy rule * をクリックします。</block>
+  <block id="dbf4e34206a31801abd0cfefa4e6ad20" category="list-text">次のフィールドの値を設定します。</block>
+  <block id="c84536fb3c475f36dd94316a1e964b23" category="list-text">* 許可されたクライアント *</block>
+  <block id="5c4fb2e80c745961db1f1b122d90daa6" category="list-text">* アクセスタイプ *</block>
+  <block id="3dca1b912e3d43e2a746fbcde32a6018" category="list-text">[ 変更の保存 *] をクリックします。</block>
+  <block id="b84d400414400c87a14ad22cf930e8a0" category="summary">既存の Snapshot から以前の時点の状態にボリュームをリバートできます。</block>
+  <block id="722fda043af9bcf84505c8529d00eefe" category="paragraph">ボリュームをリバートすると、 Snapshot の内容によって既存のボリューム構成が上書きされます。Snapshot の作成後にボリューム内のデータに加えた変更はすべて失われます。</block>
+  <block id="5e69623e5ef5b2074e9208bfd305062a" category="paragraph">リバート処理後にクライアントでボリュームを再マウントする必要はありません。</block>
+  <block id="27d56f3c7de39edfa2281add88470866" category="list-text">[ スナップショット ] ページまたは [ ボリュームの詳細 ] の [ スナップショット ] タブで、元に戻すスナップショットを選択し、 [ 使用可能 *] をクリックして、 [ ボリュームをスナップショットに戻す *] を選択します。</block>
+  <block id="87a911a689c13b1996b26f989b762033" category="list-text">スナップショットの復元ダイアログボックスで、復元するボリュームの名前を再入力し、 * 復帰 * をクリックします。</block>
+  <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="summary">著作権に関する声明、商標、特許などにアクセスできます。</block>
+  <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">法的通知</block>
+  <block id="6016a2b341113bf496b719905398ecd2" category="section-title">著作権</block>
+  <block id="09e95b77ffe81fe465a83ba99efad5c8" category="paragraph"><block ref="09e95b77ffe81fe465a83ba99efad5c8" category="inline-link-rx"></block></block>
+  <block id="126a02652da6de02962cf1b654fd6376" category="section-title">商標</block>
+  <block id="c4ce4761e466527d26b3e3d5ed1006fd" category="paragraph">NetApp 、 NetApp のロゴ、および NetApp の商標ページに記載されているマークは、 NetApp, Inc. の商標です。その他の会社名および製品名は、それぞれの所有者の商標である場合があります。</block>
+  <block id="7aa531e9acfe2b98e34d2c92fe9846ff" category="paragraph"><block ref="7aa531e9acfe2b98e34d2c92fe9846ff" category="inline-link-rx"></block></block>
+  <block id="be89498d2f8a22ce47c02ba9795fe2af" category="section-title">特許</block>
+  <block id="d0b19d36be2c5f16e9aef46c8a452d3d" category="paragraph">ネットアップが所有する特許の最新リストは、次のサイトで入手できます。</block>
+  <block id="d7f1fbcf9ce4e42f705add574d262b2c" category="paragraph"><block ref="d7f1fbcf9ce4e42f705add574d262b2c" category="inline-link-rx"></block></block>
+  <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">プライバシーポリシー</block>
+  <block id="fc248f74f5e36542f7f5627b8610e9a3" category="paragraph"><block ref="fc248f74f5e36542f7f5627b8610e9a3" category="inline-link-rx"></block></block>
+  <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">オープンソース</block>
+  <block id="9b73989307c1975dfa4d5e1581e4afe8" category="paragraph">通知ファイルには、ネットアップソフトウェアで使用されるサードパーティの著作権およびライセンスに関する情報が記載されています。</block>
+  <block id="fdd6f311911c5ac6b3d7fa483c4361a4" category="inline-link-macro">NetApp Cloud Volumes Service の通知</block>
+  <block id="2eddbc97a9bb8863399f4edfdcd0d4c7" category="list-text"><block ref="2eddbc97a9bb8863399f4edfdcd0d4c7" category="inline-link-macro-rx"></block></block>
+  <block id="8a11b7df22322ab2814174e7745c863f" category="inline-link-macro">ONTAP に関する注意</block>
+  <block id="587b9b965541a8045104931f22045c2b" category="list-text"><block ref="587b9b965541a8045104931f22045c2b" category="inline-link-macro-rx"></block></block>
+  <block id="8b9f9b0e63f1a86cc6b639972644976b" category="summary">Cloud Volumes Service は、多くの AWS リージョンで利用できます。クラウドボリュームを作成する前に、サービスを使用するリージョンを指定する必要があります。</block>
+  <block id="8bc6a1267631e7efc719b0823643828f" category="doc">リージョンを選択します</block>
+  <block id="940753e5b9fc6075a74b1db65010cdc4" category="inline-link">NetApp Cloud Orchestrator</block>
+  <block id="e39bff1f0720bfb155ff93f726e278ee" category="list-text">に移動します<block ref="e1ae8f67f4b7e40d13b946f09e02a05e" category="inline-link-rx"></block> サイトにアクセスし、サブスクリプションで指定した E メールアドレスでログインします。</block>
+  <block id="b40e3ac8963740941342f5cb16f06116" category="paragraph">この URL はブックマークに登録する必要があります。あとでこの画面に戻る必要があります。</block>
+  <block id="3e27a282c15af74f0f8417b067bf023e" category="list-text">トップパネルの * 使用可能な領域 * ドロップダウンメニューから、作業する領域を選択します。</block>
+  <block id="b9f6d8286b9543482a4c496f020f00c7" category="paragraph">この選択プロセスは、 AWS コンソールでリージョンを変更する場合とほぼ同じです。</block>
+  <block id="2e124fd39616970cb0d84a0817df2234" category="list-text">クラウドボリュームを作成する場合は、追加するリージョンごとに上記の手順を繰り返します。</block>
+  <block id="6101f8901ac322b1f3b7a4ab12a3eccd" category="inline-link">リージョンとアベイラビリティゾーン</block>
+  <block id="b000e3ffba81c003d15c3d27a6a5aaa7" category="paragraph">* 注： * Cloud Volume ユーザインターフェイスに表示されるリージョンは、 AWS ユーザインターフェイスで選択したリージョンと異なる形式になる場合があります。たとえば、 Cloud Volume UI の _us-east-1_in は、 AWS コンソールで選択した _N. Virginer_region に対応します。を参照してください<block ref="04a445bd4d302f79cc47f5dea32fb59b" category="inline-link-rx"></block> 両方のインターフェイスで同じリージョンを確実に選択できるように、リージョン名をマッピングする場合。</block>
+  <block id="62a8d0c8fcff03f0622fc6cbd111dbec" category="summary">ボリュームのエクスポートポリシールールは必要に応じて変更できます。</block>
+  <block id="bd6a37a7558217618594fbda64bc80bc" category="doc">エクスポートポリシールールの変更</block>
+  <block id="3c4facb5eb90728a1c0a6e5d4157dd59" category="list-text">既存のエクスポートポリシールールを変更するには、必要に応じて次のフィールドを変更します。</block>
+  <block id="86065a7c5be198b0b451c329712a6e5e" category="summary">クラウドボリュームに対して、必要に応じて Snapshot ポリシーを作成または変更できます。</block>
+  <block id="c1a54c459a2c68ef7bce2776b02dda72" category="doc">Snapshot ポリシーを作成または変更します</block>
+  <block id="5aca16be49856649ef6f361c031985cf" category="list-text">Volumes （ボリューム）ページでボリューム名をクリックし、 * Snapshot policy * を選択します。</block>
+  <block id="4c2120dd76d528a83820084c1413b9d8" category="list-text">「 * Hourly * 」、「 * Daily * 」、「 * Weekly * 」、または「 * Monthly * 」を選択して、 Snapshot を作成する頻度を指定します。</block>
+  <block id="0dea4e4a8d31f5f42a6d768847468712" category="paragraph">設定済みのポリシーは緑の点で示されます。未定義のポリシーは赤い点でマークされます。</block>
+  <block id="95f0f96e7a13d18ec4b4cc683cac354a" category="list-text">保持する Snapshot の数を選択します。</block>
+  <block id="d83574476baea70ecfe273fcb08a92b1" category="list-text">Snapshot を作成する曜日、時間、および分を選択します。</block>
+  <block id="fea98e2809d15fb87a8bbea9800bd2be" category="list-text">頻度の異なる Snapshot （月単位と日単位の Snapshot など）を追加で作成する場合は、手順 2~4 を繰り返します。</block>
+  <block id="4c0abf2d4c54820b8d33061abaf30759" category="inline-image-macro">スナップショットポリシー</block>
+  <block id="7568b0b850141bed61ca92cb7e6bc5f8" category="paragraph"><block ref="7568b0b850141bed61ca92cb7e6bc5f8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7d9525412e509e5ed89e6eb646ce23d3" category="list-text">[*enabled*] ボタンがまだ [*on *] に設定されていない場合は、ボタンをクリックしてポリシーを有効または有効にし直します。</block>
+  <block id="8200b1de489c95095faff60ea363d1bc" category="summary">Snapshot ポリシーの設定を保持しながら Snapshot が短時間作成されないようにするには、 Snapshot ポリシーを無効にします。</block>
+  <block id="4a61d7d79701fa8cda34100236b743ac" category="doc">Snapshot ポリシーを無効にします</block>
+  <block id="f2dd955514c60fad76437ba0f7550a7f" category="paragraph">Snapshot ポリシーを無効にして、 Snapshot ポリシーの設定を保持しながら Snapshot が短時間作成されないようにすることができます。</block>
+  <block id="5c2a7b98dbf4984dc5a8077cc2209264" category="list-text">スナップショットの作成を無効にするには、 * 有効 * ボタンを * オフ * にします。</block>
+  <block id="1d4ea42cd22f735c69c50ec8e0d347c9" category="inline-image-macro">Snapshot ポリシーの有効化ボタン</block>
+  <block id="56f2499084530f15e1dd7e25fd69cb80" category="paragraph"><block ref="56f2499084530f15e1dd7e25fd69cb80" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1286c3c4202e7e744c12c6a5a9d6eae5" category="paragraph">スナップショット・ポリシーを再度有効にするには '*enabled* ボタンをクリックして *On* にし '*Save Changes] をクリックします</block>
+  <block id="77231c870dc9aeccee4a56fd6274db6d" category="summary">Cloud Volumes Service for AWS には、次の既知の問題と制限事項があります。</block>
+  <block id="fd1a06373f49d3ccd9bc28e476270b72" category="doc">既知の問題および制限事項</block>
+  <block id="e65d325097e18ab96473896f6252e103" category="list-text">* 問題 * ：既存のボリュームが NFSv3 のみをサポートしていて、 NFSv4.1 または NFSv3 と NFSv4.1 の両方をサポートしてボリュームを作成または変換した場合、 NFS バージョンを指定しないと既存ボリュームがマウントできなくなることがあります（ vers=3 ）。</block>
+  <block id="6b582d170adeff7858e636d8688553af" category="paragraph">* 回避策 * ：マウントコマンドに NFS バージョンを指定するオプションを追加します。たとえば、「 `m ount-o vers=3...` 」のように指定するか、すべてのボリュームが NFSv4.1 をサポートするように変換されていることを確認します。バージョンを指定しない場合、 Linux クライアントのデフォルトは NFSv4.1 です。</block>
+  <block id="ea065621eb7a1c456ed58ba0e8947bc7" category="list-text">* 問題 * ： Snapshot から新しいボリュームを作成する際に、「 Unable to set volume attribute "files" for volume_&lt;volume&gt;&gt; _… … .超え ました」というメッセージが表示されて処理が失敗する場合があります。理由：新しい数は現在の &lt;number&gt;_ という割り当て数よりも大きくなければなりません。</block>
+  <block id="ccddeb0f19b9ffec3baad89f47d3580b" category="inline-link-macro">割り当て容量を選択しています</block>
+  <block id="b29eee0342f918569b8ea64c909e70a6" category="paragraph">* 問題 * ：この回避策は、 Snapshot からボリュームを作成する際に、新しいボリュームに割り当てられる容量よりも多くのファイルが現在割り当てられている場合に発生します。新しいボリュームに十分なファイル（ inode ）を割り当てるためには、割り当て容量を増やす必要があります。を参照してください <block ref="03d96eecc7bfdfcecd22d71657187c7a" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="28b3a9ecb69f8af46affe94c1ca3c15e" category="list-text">* 問題 * ：ネットワーク仮想インターフェイスは、 72 時間後にボリュームを持たない CVS リージョンでは自動的に削除されます。新しいボリュームを作成するときは、 AWS アカウント番号と CIDR を指定し直す必要があります。</block>
+  <block id="fd99bc77eb960aa7e29912794c166c21" category="paragraph">* 回避策 * ：ネットワーク仮想インターフェイスがアクティブでない期間に削除されないようにするには、少なくとも 1 つのボリュームを残し、割り当てとサービスレベルを下げてコストを最小限に抑えます。</block>
+  <block id="684efdafc2aa207cfcf90a145bc1f138" category="list-text">* Cloud Volumes Service * ：有効期限が切れたサブスクリプションを持つユーザーは、問題ユーザーインターフェイスにログインしたり、 API を操作したりすることはできません。</block>
+  <block id="4a997170782a4cc2ec95f310f150d558" category="paragraph">* 回避策 * ： AWS Marketplace の Cloud Volumes Service のページに移動して、サブスクリプションを更新してください。</block>
+  <block id="db14c162453073ef938af228cf5fbafb" category="summary">NetApp Cloud Volumes Service for AWS のドキュメントポータルへようこそ。</block>
+  <block id="a56dd8ec8161b0604a81c32a36cb8a74" category="doc">NetApp Cloud Volumes Service for AWS のドキュメント</block>
+  <block id="cffa933a10458e8374fbef2e21507c9d" category="paragraph">NetApp Cloud Volumes Service for AWS は、 NFS や SMB 経由で NAS ボリュームにオールフラッシュのパフォーマンスを提供するクラウドネイティブのファイルサービスです。このサービスを使用すると、従来型アプリケーションを含むあらゆるワークロードを AWS クラウドで実行できます。</block>
+  <block id="2756711ac396119b969ba6b553ad278e" category="section-title">Cloud Volumes Service for AWS を使用するメリット</block>
+  <block id="55208bdbb7b4fa51eb7ae63a26d71791" category="paragraph">Cloud Volumes Service for AWS には次のようなメリットがあります。</block>
+  <block id="3c853c4f551f244cc50b205d0109390d" category="list-text">一貫したハイパフォーマンス</block>
+  <block id="41ef7ad0f46081cf00f281841023188c" category="list-text">パフォーマンスに影響を与えることなくデータを保護</block>
+  <block id="aa22ee2f190c11df7537e86bb610faba" category="list-text">瞬時のクローニングで、運用、開発、テストのワークフローをサポート</block>
+  <block id="a28b8cc0668ed4d431f1863c997f5b75" category="list-text">NFSv3 および NFSv4.1 、 SMB 2.1 、 3.0 、 3.1.1 の NAS プロトコルがサポートされます</block>
+  <block id="cdcd5a58d731470edacf43406346e5d2" category="list-text">Linux インスタンスと Windows Elastic Container Service （ ECS ）インスタンスへのセキュアなアクセス。以下のサポートが含まれます。</block>
+  <block id="2d284a6be9a90f9d7d98ef4f9543b6b1" category="list-text">Amazon Linux 2 、 Red Hat Enterprise Linux 7.5 、 SLES 12 SP3 、および Ubuntu 16.04 LTS</block>
+  <block id="b5ef382c617bf480eb64c50a38e3cbfa" category="list-text">Windows Server 2008 R2 、 Windows Server 2012 R2 、および Windows Server 2016</block>
+  <block id="ece95ef94c2dfbf3d6cac29bd306038d" category="list-text">フルマネージドサービス。ストレージデバイスの構成や管理は不要です</block>
+  <block id="17dfcb3ae68171678fbe713c5cfb13eb" category="list-text">バンドル価格と従量課金制のいずれかを選択できます</block>
+  <block id="3cf6c89cfed847168ff080c9d334a94b" category="section-title">上位のタスクを実行します</block>
+  <block id="fed7554061f6235eb9cbb1cf6a1fe7f7" category="list-text"><block ref="fed7554061f6235eb9cbb1cf6a1fe7f7" category="inline-link-macro-rx"></block></block>
+  <block id="da246f4d785119f04f4bc71d836d4110" category="inline-link-macro">クラウドボリュームを作成</block>
+  <block id="520f043b5bdac5e7f9049b1a384638af" category="list-text"><block ref="520f043b5bdac5e7f9049b1a384638af" category="inline-link-macro-rx"></block></block>
+  <block id="f216fc5e384284eaa455a2e659e036ea" category="inline-link-macro">クラウドボリュームをマウント</block>
+  <block id="3a29a578a1c336cebd60475bac919dfb" category="list-text"><block ref="3a29a578a1c336cebd60475bac919dfb" category="inline-link-macro-rx"></block></block>
+  <block id="1dfd5fcf7214f027cdc25e3fd14d3d6e" category="list-text"><block ref="1dfd5fcf7214f027cdc25e3fd14d3d6e" category="inline-link-macro-rx"></block></block>
+  <block id="6681a3ff8cf8540f05355c680f9f8fd5" category="section-title">Cloud Volumes Service for AWS の詳細については、こちらをご覧ください</block>
+  <block id="9c83e144e5481ac6766f4055e566594d" category="section-title">詳細については、こちらをご覧ください</block>
+  <block id="49fc376ed35249f3841846ede4dab884" category="inline-link">NetApp Cloud Central</block>
+  <block id="24d234fce5b4e0608a37069ac65a0027" category="list-text"><block ref="24d234fce5b4e0608a37069ac65a0027" category="inline-link-rx"></block></block>
+  <block id="d54cd37c0797b45abe231544dc9fc6f6" category="inline-link">新しい NetApp Cloud Volumes Service for AWS をぜひご利用ください</block>
+  <block id="379fc28f0bbce493c5460a2ec6ea1c8c" category="list-text"><block ref="379fc28f0bbce493c5460a2ec6ea1c8c" category="inline-link-rx"></block></block>
+  <block id="a30ef1dc943afe195679c63f621c5de1" category="summary">Cloud Sync 関係により、クラウドボリュームとの間でデータを同期できます。</block>
+  <block id="9584de5f451ba290f9ee51d34ea31394" category="doc">Cloud Sync 関係を作成</block>
+  <block id="135b308ed83c53f1516b7c754566d1c4" category="list-title">作業を開始する前に</block>
+  <block id="5edd2ba906ba52517ebdb24395edfad6" category="list-text">Cloud Sync データブローカーが必要です。</block>
+  <block id="50d707f58d3099957988dcbedf22f399" category="paragraph"><block ref="50d707f58d3099957988dcbedf22f399" category="inline-link-macro-rx"></block></block>
+  <block id="29baeaf751978df46659760a343a669c" category="list-text">ソースボリュームとターゲットボリュームの両方について、データブローカーの IP アドレスがエクスポートポリシーに追加されている必要があります。</block>
+  <block id="b21eaf7e4619c762b7bf17348f2fe553" category="paragraph">ターゲットボリュームのエクスポートポリシーで、データブローカーへの書き込みアクセスを許可する必要があります。</block>
+  <block id="92ac5b93eac333d6ed9e0e69d3115aaa" category="paragraph"><block ref="92ac5b93eac333d6ed9e0e69d3115aaa" category="inline-link-macro-rx"></block></block>
+  <block id="ac44e5ceba504ad4024e6f887af9dcaa" category="inline-link">Cloud Sync サービス</block>
+  <block id="262372b527aa43f160ed4faa45b11757" category="paragraph">Cloud Volumes Service に統合された Cloud Sync 機能で現在サポートされているのは、 NFSv3 のみです。SMB ボリューム間で同期する場合は、を使用します<block ref="7b16cbffe4f261ace2aa399d57889e44" category="inline-link-rx"></block> 直接（ cloudsync.netapp.com ）。</block>
+  <block id="713102bd718701d81f12310137c726a0" category="list-text">Cloud Sync 関係を作成するには、 * 新しい関係を作成 * をクリックします。</block>
+  <block id="4d65ef8cf84d37cbb99560183afc8431" category="list-text">次のいずれかを実行します。</block>
+  <block id="6c40fca4086e30fd4007f910e8b9d463" category="list-text">ボリュームにデータを同期するには、 * ターゲットとしてボリュームを使用する * を選択します。</block>
+  <block id="a8d48feeab61a71b2a50cf8f11966101" category="list-text">ボリュームからデータを同期するには、 * ソースとしてボリュームを使用 * を選択します。</block>
+  <block id="fd06bef5818ad51a79a072161931b895" category="list-text">［ * Host * ］ フィールド（何も指定されていない場合）に、同期または同期する NFS サーバの IP アドレスを入力します。</block>
+  <block id="e79d38c4a43db031ff494ac78b2c5cd4" category="paragraph">しばらくすると、使用可能なエクスポートのリストが自動的に検出されます。</block>
+  <block id="f2036709ae7c5bb1355d71da1454dac2" category="list-text">[ * エクスポート * （ * Export * ） ] フィールドで、使用可能なエクスポートのいずれかを選択する。</block>
+  <block id="61015974bec548b3b5586484eb7413f7" category="list-text">（オプション）ターゲット上のファイルをソースから削除するときにファイルを削除する場合は、ターゲット上のファイルを削除する * （ * Delete files on target when deleted from source * ）ボックスをオンにします。</block>
+  <block id="92f136eec1b6f3fa355ff970d44a903c" category="list-text">[ 関係の作成（ Create Relationship ） ] をクリックする。</block>
+  <block id="ba6f9b0fb69eab0140a64107003c7b49" category="paragraph">関係のステータスが表示され、ファイルの進捗状況のフィールドにコピーされるファイル数が表示されます。</block>
+  <block id="75e22bc0bd8a367d4636c51b9755302f" category="summary">不要になったエクスポートポリシールールを削除することができます。</block>
+  <block id="f2ad816f97d17f57e40c015ccbc369d6" category="doc">エクスポートポリシールールを削除しています</block>
+  <block id="4679a1d210be95f431d4a0bb6d746a75" category="list-text">削除するポリシールールの「 * X 」をクリックします。</block>
+  <block id="17f8876fa5de4bb64c2d9e7c042e2497" category="inline-image-macro">エクスポートポリシーを削除する</block>
+  <block id="556c65707182e8e81aca5636c0cc0e13" category="paragraph"><block ref="556c65707182e8e81aca5636c0cc0e13" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6394dfb6ad4f4dfc002a350b4e0d335d" category="summary">ボリュームまたは Snapshot ページから Snapshot を削除できます。</block>
+  <block id="c50bbf87cb333b45731afcd2dc9cf17a" category="section-title">Volumes （ボリューム）ページからスナップショットを削除します</block>
+  <block id="7a9237e616becd923c2ebbba4563c273" category="list-text">ボリューム名をクリックし、「 * Snapshots * 」を選択して、ボリュームの Snapshot のリストを確認します。</block>
+  <block id="9a9cf07ba560da56fc2e7b7bea23f524" category="list-text">対応するチェックボックスをオンにして削除するスナップショットを指定し、 * アクション * をクリックして、ドロップダウンリストから * スナップショットの削除 / 秒 * を選択します。</block>
+  <block id="bf967386910f61504fb53108a0298d19" category="paragraph">または、 [ アクション ] の下の [ 使用可能 *] をクリックし、ドロップダウンリストから [ スナップショットの削除 *] を選択することもできます。</block>
+  <block id="6fe968fbed96f25c1102441d2d1e7341" category="list-text">確認ダイアログボックスで「削除」と入力し、「削除」をクリックします。</block>
+  <block id="09f8028ca28cba34eaf92d19e5970bd0" category="section-title">Snapshot ページから Snapshot を削除します</block>
+  <block id="27cb14677321b6ef499cc15bcf125416" category="list-text">（オプション）検索ボックスを使用して、リストされた Snapshot をフィルタリングします。</block>
+  <block id="93255d5b967adbb05931601c7961bce3" category="summary">Cloud Sync 関係を最初に作成すると、自動同期がデフォルトで有効になり、 1 日に 1 回実行するようにスケジュールされます。Cloud Sync スケジュールは必要に応じて変更できます。</block>
+  <block id="694387b87e801050b5dac0771fcf4359" category="doc">Cloud Sync スケジュールを変更する</block>
+  <block id="ad5078b682cd59d6224ba78a42926d64" category="list-text">Cloud Sync 関係を確認するには、 Volumes （ボリューム）ページでボリュームの Sync （同期）ページまたは Sync （同期）タブに移動します。</block>
+  <block id="fe40a17d17b2dced5e9387341551cc5e" category="image-alt">同期関係</block>
+  <block id="675456ee72f1a689d9278ba923861abd" category="list-text">Cloud Sync 関係の自動同期をオフにするには、関係の青い * オン * スライダをクリックします。</block>
+  <block id="b8e70665413cb3870d9e87320561d2ea" category="image-alt">自動同期スライダ</block>
+  <block id="e2fe847cb8bfe6d0bf68fb7870b35a0a" category="list-text">同期スケジュールを変更するには、 [ スケジュール ] の下のドロップダウンリストをクリックし、 [ * 曜日 / 秒 ] または [ * 時間 / 秒 ] を選択し、間隔番号を選択して、チェックマークをクリックします。</block>
+  <block id="41e123b9d6f5c0e01128cb2041032218" category="list-text">Cloud Sync をすぐに開始するには、 [ アクション ] の下の [ * 完了 * ] をクリックし、 [ 今すぐ同期 * ] を選択して、もう一度 [ * 今すぐ同期 * ] をクリックして確定します。</block>
+  <block id="440c69ab0022ce5c91acb45580969321" category="summary">不要になったクラウドボリュームを削除できます。</block>
+  <block id="bc5244252503ef8a3671a88565a540c9" category="doc">クラウドボリュームを削除する</block>
+  <block id="e7d176ac7539a52a08943f65ecc19e32" category="list-text">ボリュームをすべてのクライアントからアンマウントします。</block>
+  <block id="23394565644d9607267c2577190c4654" category="list-text">Linux クライアントでは 'umount' コマンドを使用します</block>
+  <block id="b70c71384dfeac0e536c343872f2fb55" category="list-text">Windows クライアントでは、 [ ネットワークドライブの切断 ] をクリックします。</block>
+  <block id="e53edf03ed15597dedd48cee102d7a10" category="list-text">Volumes （ボリューム）ページで、対応するチェックボックスをオンにして削除するボリュームを指定し、 * Actions （アクション） * をクリックして、ドロップダウンリストから * Delete volume/s * （ボリュームの削除）を選択します。</block>
+  <block id="5371fba68a83007644927951787e6122" category="list-text">確認ダイアログボックスで「削除」と入力し、ボリュームを削除することを確認してから「削除」をクリックします。</block>
+  <block id="2ca6d31f8d60669a0f87dad46b3f3150" category="summary">Cloud Volume は使いやすく、導入も高速です。Cloud Volumes Service for AWS を使用する際にはいくつかの前提条件が適用されます</block>
+  <block id="32ac6e1aa2f558fdf3c0cfa9da90aaf9" category="doc">Cloud Volumes Service for AWS の前提条件</block>
+  <block id="4fe27e17b02228491de0c851dbac97d3" category="paragraph">Cloud Volume は使いやすく、導入も高速です。Cloud Volumes Service for AWS を使用する際にはいくつかの前提条件が適用されます</block>
+  <block id="94a6dfdf4a3ed548fefdb4adca150f05" category="paragraph">このドキュメントに記載されている Cloud Volume タスクを実行するには、 Cloud Volumes Service for AWS に登録しておく必要があります。サブスクリプションプロセスには、サービスの使用に必要な初期セットアップと設定が含まれます。</block>
+  <block id="924988a65a07792cd431caa7102e4b91" category="paragraph">を参照してください<block ref="b4ffe6fc9debe4aaf5715606bd5ac041" category="inline-link-rx"></block> 詳細については、を参照してください。</block>
+  <block id="3d1f395f071b82aa2483997ed6a950f4" category="summary">必要に応じて、新しいボリュームに Snapshot をリストアできます。</block>
+  <block id="67738a79260ff9449a61ca45df2ab602" category="doc">新しいボリュームへの Snapshot のリストア</block>
+  <block id="8daaa955f0d018ade75a4c07aa92b4f8" category="list-text">[ スナップショット ] ページまたは [ ボリュームの詳細 ] の [ スナップショット ] セクションで、復元するスナップショットを選択し、 [ * 使用可能 * ] をクリックして、 [ ボリュームに復元 ] を選択します。</block>
+  <block id="a45ac00db210e447bf3e0306a3317848" category="list-text">Create Volume （ボリュームの作成）ダイアログボックスで、新しいボリュームの名前を入力し、必要に応じてその他の設定を編集します。</block>
+  <block id="34ee9e64e22b96fe684dd2268d670864" category="list-text">設定を確認し、 * Create volume * （ボリュームの作成）をクリックして、新しいボリュームへのスナップショットのリストアを完了します。</block>
+  <block id="d87b0f737e871fea336b4f2500359709" category="summary">Cloud Volume は、ネットアップクラウドオーケストレーションツールサイトから作成します。</block>
+  <block id="ee68e5b99222bbc29a480fcb0d1d6ee2" category="section-title">前提条件</block>
+  <block id="35698d6cc9c191fe3da0a24b66d03f60" category="paragraph">最初のクラウドボリュームを作成する前に、 AWS 環境が特定の要件を満たしている必要があります。Cloud Volume を導入する AWS リージョンごとに、次の情報が必要です。</block>
+  <block id="c6edceb8cebc49ebbb0854a6151e1d7b" category="list-text">仮想プライベートクラウド（ VPC ）</block>
+  <block id="e474331e2d11b5bc1ebf067c037ab7a7" category="list-text">VPC に接続された Virtual Private Gateway （ VGW ；仮想プライベートゲートウェイ）</block>
+  <block id="5d39b619ff3d0875befbbc7efebb8a54" category="list-text">VPC のサブネット</block>
+  <block id="881647a98def56e8a5d8660f5ac12913" category="list-text">Cloud Volume を実行するネットワークを含むルートが定義されています</block>
+  <block id="d98eef44de75c77af79a864fd321bfe2" category="list-text">必要に応じて、 Direct Connect Gateway</block>
+  <block id="1c62c36d04886b80fc78af5af9a14175" category="paragraph">リージョンに最初のクラウドボリュームを作成する際には、次の情報を確認しておく必要があります。</block>
+  <block id="c7a4d5f41a6628927a5f3dc8cbe3f85b" category="list-text">* AWS アカウント ID * ：ダッシュを表示しない 12 桁の Amazon アカウント ID です。</block>
+  <block id="740d5be035e948e76cf57673adb2d55e" category="list-text">* Classless Inter-Domain Routing （ CIDR ） Block * ：未使用の IPv4 CIDR ブロック。ネットワークプレフィックスの範囲は /16 ~ /28 である必要があり、またプライベートネットワーク用に予約された範囲内である必要があります（ RFC 1918 ）。VPC CIDR の割り当てと重複するネットワークは選択しないでください。</block>
+  <block id="1a2ef8048b932ecee79408bc7aac0ba2" category="list-text">サービスを使用する正しいリージョンを選択しておく必要があります。を参照してください <block ref="fed7554061f6235eb9cbb1cf6a1fe7f7" category="inline-link-macro-rx"></block>。</block>
+  <block id="75b39ab3345678229acb6ac8a0e5a6e2" category="inline-link-macro">NetApp Cloud Volumes Service for AWS アカウントのセットアップ</block>
+  <block id="bec4ee2a329a5dc066718aaf59fd1e52" category="paragraph">必要な AWS ネットワークコンポーネントを設定していない場合は、を参照してください <block ref="bacf78eb53f951a3286830620d5565e5" category="inline-link-macro-rx"></block> 詳細については、『ガイド』を参照</block>
+  <block id="19837c9b7feb512deb30e6cfc7b8ff62" category="paragraph">* 注： * SMB ボリュームを作成する場合は、接続可能な Windows Active Directory サーバが必要です。この情報は、ボリュームの作成時に入力します。また、管理者ユーザが指定された Organizational Unit （ OU ；組織単位）パスでマシンアカウントを作成できることを確認してください。</block>
+  <block id="1246c64cc4c28e7414bd7caf48cd35f6" category="section-title">ボリュームの詳細を入力します</block>
+  <block id="33b69ef20ded987ec62c187903d78a5a" category="paragraph">ボリュームの作成ページの上部にあるフィールドに必要な情報を入力して、ボリューム名、サイズ、サービスレベルなどを定義します。</block>
+  <block id="66e17e4749c9270c48bbba9234423875" category="inline-link-macro">リージョンを選択しました</block>
+  <block id="7e49dd067eb6131e86fd8e564c7935d2" category="list-text">にログインしたあとに<block ref="e1ae8f67f4b7e40d13b946f09e02a05e" category="inline-link-rx"></block> サブスクリプション中に指定した電子メールアドレスを持つサイト <block ref="b4f2d1e0d581193822b668c0f317a916" category="inline-link-macro-rx"></block>をクリックし、 * 新しいボリュームの作成 * ボタンをクリックします。</block>
+  <block id="38ecca3144a6a5ae246de29d61853d9c" category="image-alt">Create Volume （ボリュームの作成）ページ</block>
+  <block id="d1a6d1aae33e39997d32fdfc8b293aa9" category="list-text">Create Volume （ボリュームの作成）ページで、作成するボリュームのプロトコルとして * nfs * 、 * smb * 、または * Dual-protocol * を選択します。</block>
+  <block id="6b23fea904896e3c4fd2b4391705dc9f" category="list-text">名前 * フィールドで、ボリュームに使用する名前を指定します。</block>
+  <block id="18182ea2bf5f4443d9e50b6ca7f0a2e8" category="list-text">[* Region] * フィールドで、ボリュームを作成する AWS リージョンを選択します。このリージョンは、 AWS で設定したリージョンと同じである必要があります。</block>
+  <block id="f27700904a62ff6e06a00916cbde9c03" category="list-text">［ * タイムゾーン * ］ フィールドで、タイムゾーンを選択します。</block>
+  <block id="4d5b8e63717f480726b57183490981f3" category="list-text">[* ボリューム・パス * ] フィールドで、使用するパスを指定するか、自動生成されたパスを受け入れます。</block>
+  <block id="e2797e0311fa11abdc459f7d2e7f7b49" category="list-text">「 * サービスレベル * 」フィールドで、ボリュームのパフォーマンスレベルを「 * Standard * 」、「 * Premium * 」、または「 * Extreme * 」から選択します。</block>
+  <block id="43a4addf37bd09753818a033e001e520" category="inline-link-macro">サービスレベルを選択しています</block>
+  <block id="2498bb2d1d4740c0e55e4a81ffc24bbf" category="paragraph">を参照してください <block ref="159a13c1fbb204344232901db2b637f6" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="f0e510d4fd8ecf737f0fdff2df938ce0" category="list-text">[* Allocated capacity * （割り当て容量 * ） ] フィールドで、必要な容量を選択します。使用可能な inode の数は、割り当てられている容量によって異なります。</block>
+  <block id="a62e4605cbe98b23969f5f8a84635981" category="paragraph">を参照してください <block ref="03d96eecc7bfdfcecd22d71657187c7a" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="efa3c5ad14771c22eb93e9bfad991a01" category="list-text">NFS version * フィールドで、要件に応じて * nfsv3 * 、 * NFSv4.1 * 、または * both * を選択します。</block>
+  <block id="1a88e36f404f2f38a659ce269445f7af" category="list-text">デュアルプロトコルを選択した場合は、ドロップダウンメニューから *NTFS* または *UNIX* を選択して、 [ セキュリティスタイル *] フィールドでセキュリティスタイルを選択できます。</block>
+  <block id="e0e8f77700c5127f0d69a2bd10fe6c24" category="paragraph">セキュリティ形式は、使用するファイル権限の種類と権限の変更方法に影響します。</block>
+  <block id="35c7690cdd2979341dcfe1409203a6f8" category="list-text">UNIX では NFSv3 モードビットが使用され、 NFS クライアントのみが権限を変更できます。</block>
+  <block id="74851bf5ac7ba83cb1934d5c1c768a00" category="list-text">NTFS では NTFS ACL が使用され、 SMB クライアントのみが権限を変更できます。</block>
+  <block id="c6958989235975768fe5da1f8430e5f8" category="list-text">Show snapshot directory * フィールドでは、このボリュームの Snapshot ディレクトリを表示できるデフォルトの場所をそのまま使用するか、ボックスをオフにして Snapshot コピーのリストを非表示にします。</block>
+  <block id="55fed733b1494d1522d0225e7ed268e2" category="section-title">ネットワークの詳細を入力（ AWS リージョンごとに 1 回限りの設定）</block>
+  <block id="7cb9e7757aeaff71b7ca9d32ba6cafad" category="paragraph">この AWS リージョンで初めてクラウドボリュームを作成した場合は、 Cloud Volume アカウントを AWS アカウントに接続できるように「 * Network * 」セクションが表示されます。</block>
+  <block id="f947fba32a64a0a12760e6915387a497" category="list-text">*CIDR (IPv4) * フィールドに、リージョンに希望する IPv4 範囲を入力します。ネットワークプレフィックスの範囲は /16 ～ /28 です。また、このネットワークはプライベートネットワーク用に予約された範囲内にある必要があります（ RFC 1918 ）。VPC CIDR の割り当てと重複するネットワークは選択しないでください。</block>
+  <block id="aa5ea6a107004b364c40ea3cfd629967" category="list-text">「 * AWS account ID * 」フィールドに、 12 桁の Amazon アカウント ID をダッシュなしで入力します。</block>
+  <block id="e2a7e1b0e5f6f59b627d2fc40fab294f" category="image-alt">ネットワークの設定を行います</block>
+  <block id="4854eb549e6538878c4819844120cb0f" category="section-title">エクスポートポリシールールを入力（オプション）</block>
+  <block id="bb6e52fff0551a8fa2a4ad22d834e7fc" category="paragraph">NFS またはデュアルプロトコルを選択した場合は、 * エクスポートポリシー * セクションでエクスポートポリシーを作成して、ボリュームにアクセスできるクライアントを特定できます。</block>
+  <block id="d026032e7430667238eae46d5670f6b8" category="list-text">[ * 許可されたクライアント * ] フィールドで、 IP アドレスまたは Classless Inter-Domain Routing （ CIDR ）を使用して、許可するクライアントを指定します。</block>
+  <block id="04f7102bca3b180f0691b811a5991e57" category="list-text">[*Access] フィールドで、 [*Read&amp;Write*] または [*Read Only*] を選択します。</block>
+  <block id="2073725bf2530a7eb9ef004a9f18f081" category="list-text">Protocols * フィールドで、ユーザアクセスに使用するプロトコル（ NFSv3 アクセスと NFSv4.1 アクセスの両方をボリュームで許可する場合はプロトコル）を選択します。</block>
+  <block id="dec4cc6b03e5860377f58b9b4a6077f0" category="image-alt">エクスポートポリシールールを追加します</block>
+  <block id="8c957b9a3ed692a6d3fd994376a226f3" category="paragraph">追加のエクスポートポリシールールを定義する場合は、 * + Add export policy rule * をクリックします。</block>
+  <block id="c387e8b87d015be7778dec231f27c787" category="section-title">データ暗号化を有効にする（オプション）</block>
+  <block id="a2f1d334c8b990b999f5182df7b34bc3" category="list-text">SMB またはデュアルプロトコルを選択した場合は、 [* SMB3 プロトコル暗号化を有効にする * ] フィールドのチェックボックスをオンにすると、 SMB セッションの暗号化を有効にできます。</block>
+  <block id="7c19445fe7d72699dd4ef814528b3ca3" category="paragraph">* 注： * SMB 2.1 クライアントでボリュームのマウントが必要な場合は、暗号化を有効にしないでください。</block>
+  <block id="7f7c8da7e5bf421630735f6be8de21b1" category="section-title">ボリュームを Active Directory サーバ（ SMB およびデュアルプロトコル）と統合する</block>
+  <block id="4f9ba56a645e255791c13d95a227e7e5" category="paragraph">SMB またはデュアルプロトコルを選択した場合は、「 * Active Directory * 」セクションでボリュームを Windows Active Directory サーバまたは AWS Managed Microsoft AD と統合できます。</block>
+  <block id="8675b3d88ef474e29922d386aee74d51" category="paragraph">[ 使用可能な設定 * ] フィールドで、既存の Active Directory サーバーを選択するか、新しい AD サーバーを追加します。</block>
+  <block id="7d6e3c06d00b2efd16349d559530fdba" category="paragraph">新しい AD サーバへの接続を設定するには、次の手順を実行します。</block>
+  <block id="a710ecfc0bb3536d8f9da8f5e317d469" category="list-text">*DNS サーバ * フィールドに、 DNS サーバの IP アドレスを入力します。複数のサーバを参照する場合は、カンマを使用して IP アドレスを区切ります。たとえば、 172.31.25.223 、 172.31.2.74 のようになります。</block>
+  <block id="6a4b2fa2aa4ac00bb34a400f24a51ecb" category="list-text">[* Domain*] フィールドに、 SMB 共有のドメインを入力します。</block>
+  <block id="b4d9711d0b118127e897c1e0c952b681" category="paragraph">AWS Managed Microsoft AD を使用する場合は、「 Directory DNS name 」フィールドの値を使用します。</block>
+  <block id="144df9198adc8e74333aaa04fda0628d" category="list-text">[* SMB Server NetBIOs] フィールドに、作成する SMB サーバの NetBIOS 名を入力します。</block>
+  <block id="74383c87802b0b42b2e7fc667c975dcc" category="list-text">［ * 組織単位 * ］ フィールドに、自分の Windows Active Directory サーバーに接続するための「 CN=Computers 」と入力します。</block>
+  <block id="32cd7b9f964b4e14757281b9c0e95cce" category="paragraph">AWS Managed Microsoft AD を使用する場合は、組織単位を「 OU=&lt;NetBIOS_name&gt; 」の形式で入力する必要があります。たとえば、 * OU=AWSmanagedAD* と入力します。</block>
+  <block id="075fbcc9db41433bce63ddcdac9310a1" category="paragraph">ネストされた OU を使用するには、最上位レベルの OU に最初に最下位レベルの OU を呼び出す必要があります。例： * OU=THIRDLEVEL 、 OU=secondlevel 、 OU=FIRSTLEVEL* 。</block>
+  <block id="3fb110a46c12c87871188806e72c0b3f" category="list-text">[*Username*] フィールドに、 Active Directory サーバのユーザ名を入力します。</block>
+  <block id="9c6fed6c5d85f24a9021628c55dbb81f" category="paragraph">SMB サーバの追加先となる Active Directory ドメイン内のマシンアカウントの作成が許可されている任意のユーザ名を使用できます。</block>
+  <block id="29000350d0565c230bbe33ef28ca7186" category="list-text">[* パスワード *] フィールドに、指定した AD ユーザ名のパスワードを入力します。</block>
+  <block id="4fbbbcdfcdfad5270a20167c67509f0b" category="image-alt">Active Directory</block>
+  <block id="c95576166e4663a31b82fa1099617567" category="inline-link">Active Directory ドメインサービスのサイトトポロジの設計</block>
+  <block id="7fd00e2c6b7fddc169d77473e9f42559" category="paragraph">を参照してください<block ref="abb2be0c994e7cb7ee24dbd2d510a3e8" category="inline-link-rx"></block> 最適な Microsoft AD 実装の設計に関するガイドラインについては、を参照してください。</block>
+  <block id="7022d8421ebd7fca86a1202b2053e180" category="inline-link-macro">NetApp Cloud Volumes Service for AWS を使用した AWS ディレクトリサービスのセットアップ</block>
+  <block id="3c189ab8b9737d3e08ce7b9d166a4043" category="paragraph">を参照してください <block ref="eebcb52612726313dceeb3c98c94c66d" category="inline-link-macro-rx"></block> AWS Managed Microsoft AD の使用手順の詳細については、ガイドを参照してください。</block>
+  <block id="5258e68685a763ee454fc7ad84a26e3b" category="admonition">クラウドボリュームが Windows Active Directory サーバと正しく統合されるようにするには、 AWS セキュリティグループ設定に関するガイダンスに従う必要があります。を参照してください <block ref="44a3cafff3b6eb48f1fa4125688b0162" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="c81ef832003f35deb65a481a567fa75d" category="paragraph">* 注： * NFS を使用してボリュームをマウントしている UNIX ユーザは、 UNIX root の場合は Windows ユーザ「 root 」、その他すべてのユーザの場合は「 pcuser 」として認証されます。NFS を使用するときにデュアルプロトコルボリュームをマウントする前に、これらのユーザアカウントが Active Directory に存在していることを確認してください。</block>
+  <block id="e089ec303e9a9e203ceb3e3e14cfc1c2" category="section-title">Snapshot ポリシーを作成する（オプション）</block>
+  <block id="dbe7189fc6872034be4cb75cdc8b109a" category="paragraph">このボリュームの Snapshot ポリシーを作成する場合は、「 * Snapshot policy * 」セクションに詳細を入力します。</block>
+  <block id="3615a0ea112ddfe977410afb3de068b3" category="list-text">Snapshot の頻度として、「 * Hourly * 」、「 * Daily * 」、「 * Weekly * 」、または「 * Monthly * 」を選択します。</block>
+  <block id="07dcb2348fe0a32858e67b73c2adf96d" category="list-text">保持する Snapshot の数を選択します。</block>
+  <block id="c46bd7895819e339ff03355120cc294b" category="list-text">Snapshot を作成する時刻を選択します。</block>
+  <block id="37bb666fbc242e5502ded21283fb12ac" category="paragraph">追加の Snapshot ポリシーを作成するには、上記の手順を繰り返します。または、左側のナビゲーション領域から Snapshot （スナップショット）タブを選択します。</block>
+  <block id="d86273d53aebfe922c4a88a7ca881f0b" category="section-title">ボリュームを作成します</block>
+  <block id="4c5f1fefbbbe2297b8261296cac921f2" category="list-text">ページの一番下までスクロールし、 * Create Volume * （ボリュームの作成）をクリックします。</block>
+  <block id="db2a2b62b79d1cc692490f5ea00e796e" category="paragraph">このリージョンにすでにクラウドボリュームを作成している場合は、ボリュームページに新しいボリュームが表示されます。</block>
+  <block id="51b47300dc2f110a300287e8331eb86e" category="paragraph">この AWS リージョンで最初に作成したクラウドボリュームで、このページのネットワークセクションにネットワーク情報を入力すると、ボリュームを AWS インターフェイスに接続するために実行する必要がある次の手順を示す進捗状況ダイアログが表示されます。</block>
+  <block id="18994c3aec9d3d9d5d7e8daee82c2573" category="inline-image-macro">仮想インターフェイスの受け入れダイアログ</block>
+  <block id="4d1f206cf88ee45bbcba5454577ebb86" category="paragraph"><block ref="4d1f206cf88ee45bbcba5454577ebb86" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="01ce52770c1296671a8937195ecdbbb0" category="list-text">のセクション 6.4 に記載されている仮想インターフェイスを受け入れます <block ref="5de60f3d06acf315859719dc096dad3a" category="inline-link-macro-rx"></block> ガイドこのタスクは 10 分以内に実行する必要があります。実行しないと、システムがタイムアウトする場合があります。</block>
+  <block id="3d7b51a881694d85de2da12eb4619cde" category="paragraph">インターフェイスが 10 分以内に表示されない場合は、設定問題が存在する可能性があります。その場合は、サポートにお問い合わせください。</block>
+  <block id="bbc84ab4db08d3d44fa09d8fe19b02c4" category="inline-image-macro">ボリュームが作成されます</block>
+  <block id="f3d8a56fbe7513d4b6b517a8fc8cd238" category="paragraph">インターフェイスおよびその他のネットワークコンポーネントが作成されると、作成したボリュームが Volumes （ボリューム）ページに表示され、 Actions （アクション）フィールドが Available （使用可能）と表示されます。<block ref="8cbf8912fb3b2f99322df366c8acaa2b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="aaf4892f631f96038e72a27c95cd4a65" category="paragraph">に進みます <block ref="3a29a578a1c336cebd60475bac919dfb" category="inline-link-macro-rx"></block>。</block>
+  <block id="3c1dcb9c8b45beff191ea00aa2f20bfd" category="summary">AWS Marketplace への登録後すぐに Cloud Volumes Service にアクセスできるようになったら、サポート利用資格を有効にすることを強く推奨します。サポート利用資格をアクティブにすると、オンラインチャット、 Web チケット発行システム、および電話でテクニカルサポートにアクセスできます。</block>
+  <block id="902d45c505e34d873cd427fc812f0cec" category="doc">サポート利用資格のアクティブ化とサポートへのアクセス</block>
+  <block id="30cbc44aad93ced2beecdbf7f7f7fec6" category="paragraph">シリアル番号のアクティブ化と登録が完了するまで、デフォルトのサポートレベルはセルフサービスです。</block>
+  <block id="e9d356ec51ae4d84881e70ea3c98b6dc" category="section-title">サポート資格をアクティブ化しています</block>
+  <block id="be95e2cfe33d221ef43e897ebe76de9c" category="paragraph">Cloud Volumes Service for AWS との初回サブスクリプションプロセスでは、 Cloud Volume インスタンスが生成するネットアップの 20 桁のシリアル番号は「 930 」から始まります。ネットアップのシリアル番号は、お客様の AWS アカウントに関連付けられた Cloud Volumes Service サブスクリプションです。サポート利用資格を有効にするには、ネットアップのシリアル番号を登録する必要があります。サポート登録には、次の 2 つのオプションがあります。</block>
+  <block id="23957c938fbe6783848a0c7c3651718a" category="list-text">ネットアップの現在のお客様がネットアップサポートサイト（ NSS ）の SSO アカウントをお持ちの場合</block>
+  <block id="63b11526307884ce31efc524f509c090" category="list-text">ネットアップサポートサイト（ NSS ）の SSO アカウントをお持ちでない新しいネットアップのお客様</block>
+  <block id="766f3d31e0bd393953854f6e09656987" category="section-title">オプション 1 ：ネットアップの既存のサポートサイト（ NSS ）の SSO アカウントをお持ちのお客様</block>
+  <block id="7539cbf9922878ac5ea7a50e44ff73f7" category="inline-link">NetApp Cloud Central ポータル</block>
+  <block id="c04559b3591d91b90cafc2eee58d541f" category="list-text">Cloud Volumes Service URL に移動するか、またはを使用してこのサービスにアクセスします<block ref="92934608ae6af31041e90caa3f54396c" category="inline-link-rx"></block>。NetApp Cloud Central のクレデンシャルでログインします。</block>
+  <block id="3ff70f5b598d5ae4fd3e3fecd8918128" category="list-text">Cloud Volumes Service のユーザインターフェイス（ UI ）で ** Support ** を選択して、ネットアップのシリアル番号を表示します。</block>
+  <block id="fd2a8f819ab8e42b6ec0be6d8de775da" category="image-alt">サポートページを表示します</block>
+  <block id="22a87fb83a61d9dfc90c784e297a7a30" category="list-text">** サポート ** ページで、サポートステータスが「未登録」と表示されていることを確認します。</block>
+  <block id="4008d83877c7ccfbcaa7bd36d9c0f204" category="image-alt">サポートステータスが登録されていません</block>
+  <block id="20fa88b6364f4bad6cd379a12f3e31fa" category="paragraph">サポートステータスとネットアップのシリアル番号が表示されない場合は、ブラウザページをリフレッシュしてください。</block>
+  <block id="0fc9c2a334a9b361f87a8e9043060be7" category="list-text">[** サポートの有効化 ** ] をクリックして、ネットアップシリアル番号を登録します。</block>
+  <block id="81d3e987d1ca98307e460e15a5eccd2a" category="list-text">NSS アカウントをお持ちの場合は、 **Activate support** ページに NSS のクレデンシャル（ユーザ名とパスワード）を入力し、 **Activate** をクリックして、ネットアップのシリアル番号のサポート資格を有効にします。</block>
+  <block id="83f88ebd41a2d4bf2440a2d134086a74" category="image-alt">サポートを有効にします</block>
+  <block id="fbf62905ff14cf2944029e8b9424e045" category="inline-link">ネットアップサポート登録サイト</block>
+  <block id="9c8b87a50dd659656a141c27dc247aa9" category="list-text">ネットアップの既存のお客様が NSS SSO クレデンシャルを持っていない場合は、にアクセスしてください<block ref="2995c8cd64db3ab408e3c867564074bd" category="inline-link-rx"></block> 最初にアカウントを作成してください。NSS のクレデンシャルに登録するには、ここに戻ってください。</block>
+  <block id="7d8439e5c479249957b26bc548b04e4f" category="list-text">ネットアップの新規のお客様の場合は、以下のオプション 2 の手順を参照してください。</block>
+  <block id="b7d095572c49cd0da541386a19f9d94d" category="paragraph">ネットアップのシリアル番号が有効になると、 **Support** ページに「 Registered 」ステータスが表示されます。これは、サポート契約が有効になったことを示します。</block>
+  <block id="ccd9f3251025937256b46396828d30b6" category="image-alt">サポートステータスが登録されました</block>
+  <block id="54e29fcae2e1546490105986804a9125" category="paragraph">これは、該当する Cloud Volumes Service シリアル番号に対するワンタイムサポート登録です。新しい Cloud Volumes Service サブスクリプションとそれ以降の新しいシリアル番号についても、サポートの有効化が必要です。サポート登録に関するご質問や問題については、 cvs-support@netapp.com までお問い合わせください。</block>
+  <block id="9c72e9218774375323f849ee08453718" category="section-title">オプション 2 ：ネットアップサポートサイト（ NSS ）の SSO アカウントがない新しいネットアップのお客様</block>
+  <block id="8e2e894a8f2d0c798eda10b04a6aae2c" category="inline-link">クラウドデータサービスサポート登録</block>
+  <block id="d15ddd92716258916f2997a149c0e1c9" category="list-text">に移動します<block ref="2151d866808a52a3eadb15c242a47970" category="inline-link-rx"></block> ページで NSS アカウントを作成します。</block>
+  <block id="1c50975feec0d84c66edb56f1126d033" category="list-text">[** I am not a registered NetApp Customer** ] を選択すると、 [ 新規顧客登録 ] フォームが表示されます。</block>
+  <block id="13057fbeba6fc2ea452df672598620da" category="image-alt">新規顧客登録フォーム</block>
+  <block id="ee364f11fd7d245e4d69ec062eb83cb8" category="list-text">フォームに必要な情報を入力します。</block>
+  <block id="cddef93549327dd0dc967c3c80b4f3e9" category="list-text">名前と会社情報を入力します。</block>
+  <block id="5fddeeeadbac57fc1e413c54bbe2136f" category="list-text">製品ラインとして **Amazon Cloud Volumes Service ** を選択し、クラウドサービスプロバイダーとして **Amazon Web Services ** を選択します。</block>
+  <block id="ca1fd1b529e3590bf05d6bbfd7555b8f" category="list-text">次の 2 つのフィールドに、 Cloud Volumes Service ** サポート ** ページから ** ネットアップのシリアル番号 ** と ** AWS カスタマー ID ** を入力します。</block>
+  <block id="dee616561cc7f504f6a9ea5ffb29fe5d" category="list-text">[** 登録の送信 ** ] をクリックします。</block>
+  <block id="3c4d0c718f64dc728edbccefce9a6a3c" category="list-text">送信された登録から確認の E メールが届きます。エラーが発生しない場合は、「登録が正常に送信されました」ページにリダイレクトされます。また、 1 時間以内に「お使いの製品はサポート対象になりました」という E メールも送信されます。</block>
+  <block id="e4c7b422a46f280870b3f268ba11a2a4" category="list-text">ネットアップの新規のお客様の場合は、サポートをアクティブにするためのネットアップサポートサイト（ NSS ）ユーザアカウントを作成し、テクニカルサポートのチャットや Web でのチケット発行をサポートポータルにアクセスできるようにする必要もあります。にアクセスします<block ref="2995c8cd64db3ab408e3c867564074bd" category="inline-link-rx"></block> このタスクを実行します。新しく登録した Cloud Volumes Service のシリアル番号を入力しておくと、プロセスを迅速に進めることができます。</block>
+  <block id="9373c0ca75df5603cb648bb12943f07d" category="section-title">サポート情報の入手方法</block>
+  <block id="4190f7b054c6bf5e70a45b6bb7a8e7fc" category="paragraph">ネットアップでは、さまざまな方法で Cloud Volumes Service をサポートしています。ナレッジベース（ KB ）記事やネットアップコミュニティなど、幅広いセルフサポートオプションを 24 時間 365 日ご利用いただけます。AWS SaaS マーケットプレイスから購入した Cloud Volumes Service サブスクリプションには、チャット、 E メール、 Web チケット発行、電話によるリモートテクニカルサポートが含まれています。これらの非セルフサービスサポートオプションを使用するには、最初に各ネットアップシリアル番号のサポートを有効にする必要があります。チャットや Web でのチケット発行、ケース管理には、ネットアップサポートサイト（ NSS ）の SSO アカウントが必要です。</block>
+  <block id="2a5fd010c9151aa446afcaeb77ddb758" category="paragraph">Cloud Volumes Service UI からサポートオプションにアクセスするには、メインメニューから ** サポート ** タブを選択します。利用可能なサポートオプションは、トライアルモードとサブスクリプションモードのどちらであるかによって異なります。</block>
+  <block id="07d41912a6ab6b97216f8cf89e93205c" category="section-title">セルフサポート</block>
+  <block id="1eaf00c3e60bf4d6ada37af5f9aa703b" category="paragraph">これらのオプションはトライアルモードで利用でき、 24 時間 365 日無料で利用できます。</block>
+  <block id="19111351b69b6b15668130b38b7f6038" category="inline-link">ナレッジベース</block>
+  <block id="633613fb5d0ad93edb696f9fe685fc7b" category="list-text"><block ref="2eb023f98447a7b9d0796d4a598b558f" category="inline-link-rx"></block>このセクションのリンクを選択すると、ネットアップナレッジベースに移動し、 Cloud Volumes Service に関する記事、ハウツー、 FAQ 、またはトラブルシューティング情報を検索できます。</block>
+  <block id="7b1329f5ca3d485bba602a815ffd4d6d" category="inline-link">ユーザーマニュアル</block>
+  <block id="54a4898cb0859902452f24e233ad7a5e" category="list-text"><block ref="159360ebed879dd5655e40a678966ca3" category="inline-link-rx"></block>[** ここをクリック ** ] リンクを選択すると、 Cloud Volumes Service for AWS ドキュメントセンターに移動します。</block>
+  <block id="14526abd8bda5af347775025cd5342cf" category="inline-link">コミュニティ</block>
+  <block id="3e2001e16c856c9dd701c91abe4ed12a" category="list-text"><block ref="744de2cadf11290893abb03340e471cb" category="inline-link-rx"></block>[** ここをクリック ** ] リンクを選択すると、 Cloud Volumes Service コミュニティに移動し、同僚やエキスパートとつながることができます。</block>
+  <block id="0c5a6aa558c218816e6fbd6d8ed8baec" category="list-text">電子メール [ フィードバック ] セクションの [** ここをクリック ** ] リンクを選択すると、 cvs-support@netapp.com を通じてサポートする電子メールが開始されます。サービスについて一般的な質問をしたり、フィードバックや提案を行ったり、オンボーディングに関連する問題についてサポートを求めたりするのに最適な場所です。</block>
+  <block id="52fcceb1925114589eec173daab1c999" category="section-title">サブスクリプションサポート</block>
+  <block id="2d171858498adf3d36222085f079f93a" category="paragraph">上記のセルフサポートオプションに加え、 Cloud Volumes Service の有料サブスクリプションがある場合は、ネットアップサポートエンジニアと協力して問題を解決できます。</block>
+  <block id="0262da3f439e4df14689dec8b54430c7" category="paragraph">Cloud Volumes Service のシリアル番号を有効にすると、次のいずれかの方法でネットアップテクニカルサポートリソースにアクセスできます。これらのサポートオプションを使用するには、アクティブな Cloud Volume サブスクリプションが必要です。</block>
+  <block id="55dcdf017b51fc96f7b5f9d63013b95d" category="inline-link">チャット</block>
+  <block id="7c3ee899ee3ed2e1c69a3ddeb2ce70c2" category="list-text"><block ref="f34fa7926cfb7f2704a258637db5d0a4" category="inline-link-rx"></block>これにより、サポートチケットも発行されます。</block>
+  <block id="0af89698bf5d1150026d4fcbbcf784a6" category="inline-link">サポートチケット</block>
+  <block id="d9b74aae4d86dd6ebe1e7d5b45dc3716" category="list-text"><block ref="0e15415017bcac169a4122be533e84df" category="inline-link-rx"></block>クラウドデータサービス &gt; Cloud Volumes Service AWS の順に選択します</block>
+  <block id="bcc254b55c4a1babdf1dcb82c207506b" category="inline-link">電話</block>
+  <block id="730e98d86dc7760bee1a7c5c00c06266" category="list-text"><block ref="91cd0fdb94d4d417072ea0006d1c5102" category="inline-link-rx"></block>新しい問題を報告したり、既存のチケットについて電話で問い合わせたりすることができます。この方法は、 P1 または緊急アシスタンスに最適です。</block>
+  <block id="0fb8dd59a0bef75c0f2ec966582f227b" category="inline-link">営業にお問い合わせください</block>
+  <block id="f5f2725fe1e9760da005d9b95caefa13" category="paragraph">をクリックして、セールスサポートをリクエストすることもできます<block ref="a2cda76faf53fb03dbec7610ce9cd123" category="inline-link-rx"></block> リンク</block>
+  <block id="734e99db37f7371ef9c12acb1553af95" category="paragraph">Cloud Volumes Service のシリアル番号は、サポートメニューオプションからサービス内に表示できます。サービスへのアクセスで問題が発生し、ネットアップにシリアル番号を登録済みの場合は、 cvs-support@netapp.com までお問い合わせください。Cloud Volumes Service のシリアル番号の一覧は、ネットアップサポートサイトで次の方法で確認することもできます。</block>
+  <block id="0373910e51252c7b97dcbea9f4942604" category="inline-link">mysupport.netapp.com</block>
+  <block id="c251a5a1be5b1e6d0fb464d2e96ec490" category="list-text">にログインします<block ref="d2d7cb2875e01b404c245a3a5e58fd46" category="inline-link-rx"></block>。</block>
+  <block id="80ea1edd18fe734adc3e09db4052ab87" category="list-text">製品 &gt; マイ製品メニュータブから製品ファミリー ** SaaS Cloud Volumes ** を選択して、登録済みのシリアル番号をすべて確認します。</block>
+  <block id="b7be7163ec921853688f069d0b016262" category="image-alt">インストール済みシステムの確認</block>
+  <block id="556dbb93ad650042bc2c55dabbdc8e62" category="summary">NFS Cloud Volume は、 Cloud Backup Service を使用してバックアップできます。</block>
+  <block id="c15e28ad98ea6112b893a32a8092c4cc" category="doc">Cloud Backup Service によるバックアップの管理（ US-West-2 のベータ版）</block>
+  <block id="a4aac98e26cfe48e280254c44f22fcf7" category="paragraph">Cloud Backup Service では、 Cloud Volumes Service のデータ保護機能を拡張するために、長期間のリカバリ、アーカイブ、コンプライアンスに対応できる専用バックアップを提供しています。サービスで作成されたバックアップは、ニアタームリカバリまたはクローニングに使用できるクラウドボリューム Snapshot とは無関係に、 AWS S3 オブジェクトストレージに格納されます。</block>
+  <block id="3bbf068c5edcecea4798ff8ee7844b0e" category="paragraph">Cloud Backup Service は現在ベータ版で、 AWS US-West-2 リージョンでは Cloud Volumes Service のみをサポートしています。</block>
+  <block id="85280c2ce27c8f045a8d6b65b5457cd8" category="inline-link-macro">NetApp Cloud Volumes Service for AWS 用に Cloud Backup Service をセットアップする</block>
+  <block id="69be1dc68ecd2393fc2a44122899b877" category="paragraph">Cloud Backup Service を使用する前に、ベータ版ソフトウェアを使用するための条件、要件、考慮事項を理解し、同意しておく必要があります。を参照してください <block ref="06c4f77b7ac77e2a55f10e367313476d" category="inline-link-macro-rx"></block> サービスの詳細と使用手順については、を参照してください。</block>
+  <block id="85d8107d25877ec192d67090bebbb48e" category="summary">Cloud Volumes Service for AWS を使い始めるには、いくつかの簡単な手順を実行します。</block>
+  <block id="ded5309ebea6d4cf5ed055e7034efeb8" category="doc">クイックスタートの手順</block>
+  <block id="98cd9fd436f3f06a4f633a68293ace22" category="inline-link-macro">[EN</block>
+  <block id="c4e8dfa1afd29fe4a9774a9a68d87b5f" category="inline-link-macro">[JA</block>
+  <block id="5ac3e76d06eb5d3e2a8eb1e2a93d6020" category="paragraph">* 注：クラウドボリュームを作成する前に、必要な AWS ネットワークコンポーネントを設定しておく必要があります。NetApp Cloud Volumes Service for AWS アカウントセットアップガイドを参照してください <block ref="ea1749da35be089b2ed08e644f3246da" category="inline-link-macro-rx"></block>]|<block ref="4b61c911928703a63f9e7f084d89a163" category="inline-link-macro-rx"></block>] これらの手順をまだ完了していない場合。</block>
+  <block id="e07d1c8552b02a9af8096c445a1f98f0" category="floating-title">&lt;span class="image"&gt;&lt;img src="../media/number1.png" alt="the number 1"&gt;&lt;/span&gt;&lt;a href="task_selecting_region.html"&gt; リージョンを選択 &lt;/a&gt; します</block>
+  <block id="348eb763eb8d49a86500b8ed6b6f30cb" category="paragraph">Cloud Volume を作成する AWS リージョンを指定します。</block>
+  <block id="89eb2085607ad7d0a08819a56cfd9b5c" category="floating-title">&lt;span class="image"&gt;&lt;img src="../media/number2.png" alt="the number 2"&gt;&lt;/span&gt;&lt;a href="task_creating_cloud_volumes_FOR_AWS_HTML"&gt; クラウドボリュームを作成 &lt;/a&gt; します</block>
+  <block id="c159d360fd7e6de751d0c82932215e11" category="paragraph">サイズとサービスレベルを指定して AWS クラウドにクラウドボリュームを作成し、その他のオプションを定義します。</block>
+  <block id="9052c494a743afff74600701fd6f6b27" category="floating-title">&lt;span class="image"&gt;&lt;img src="../media/number3.png" alt="the number 3"&gt;&lt;/span&gt;&lt;a href="task_mounting_cloud_volumes_FOR_AWS_HTML"&gt; クラウドボリュームをマウント &lt;/a&gt; します</block>
+  <block id="5374594906015b13962ce3076af203a6" category="paragraph">Linux および UNIX クライアントでは NFS 、 Windows クライアントでは SMB を使用して、クラウドボリュームを AWS インスタンスにマウントします。</block>
+  <block id="f44080b03577203d6c764d413f5ed1ea" category="summary">不要になった Cloud Sync 関係を削除できます。</block>
+  <block id="83b9a291807c68f75e73e458476c8ab3" category="doc">Cloud Sync 関係を削除しています</block>
+  <block id="78868aa9d3e48d0f5ae3596c531f2e0a" category="list-text">削除する関係のボックスをクリックし、 * アクション * をクリックして、 * 関係の削除 /s * を選択します。</block>
+  <block id="bc1e82d4547991a83618e5033c457a22" category="summary">不要になった Cloud Sync データブローカーを削除することができます。</block>
+  <block id="90a4e3335aa9fe45c887d203938f53c2" category="doc">Cloud Sync データブローカーの削除</block>
+  <block id="430fb0c6e1b6f971bf061efbb964e725" category="paragraph">このタスクでは、 Cloud Volume からデータブローカーを削除しますが、 AWS でデータブローカーインスタンスが削除されることはありません。</block>
+  <block id="702f16537513ec4a6af9c3116a23d1b3" category="paragraph">AWS でデータブローカーインスタンスを削除するには、アカウントの AWS コンソールでブローカーの EC2 インスタンスを探し、必要に応じて終了する必要があります。</block>
+  <block id="54a975ea836c7164ee64533d61bb890c" category="paragraph">データブローカーを削除するには、そのデータブローカーを使用するすべての Cloud Sync 関係が削除されている必要があります。</block>
+  <block id="85773e4a29542afcdff77da54c442399" category="inline-link-macro">Cloud Sync 関係を削除しています</block>
+  <block id="5dfc503a2d09c61a15786ca3c2b897b5" category="paragraph"><block ref="5dfc503a2d09c61a15786ca3c2b897b5" category="inline-link-macro-rx"></block></block>
+  <block id="9257fec4e31315c0fae27c6e9fe0116b" category="list-text">データブローカーの名前をクリックし、ごみ箱のアイコンをクリックして、データブローカーを削除します。</block>
+  <block id="9bb041017bc5d336c6f552e8516c6e2f" category="summary">ボリューム名、割り当て容量、サービスレベルなど、既存のボリュームを変更できます。</block>
+  <block id="08c5f538951ec3e1d10fb5c572936f1e" category="doc">クラウドボリュームの変更</block>
+  <block id="70d3d298cacf009b7e7bfcd2a08433e6" category="list-text">にログインします<block ref="e1ae8f67f4b7e40d13b946f09e02a05e" category="inline-link-rx"></block>。</block>
+  <block id="231df94443f6cd64d5d2c4270ce00ff3" category="list-text">管理するボリュームの名前をクリックします。</block>
+  <block id="92ade2558ccf062326e216774461e2bc" category="list-text">必要に応じて、次のボリュームフィールドを変更します。</block>
+  <block id="49ee3087348e8d44e1feda1917443987" category="list-text">名前</block>
+  <block id="189f63f277cd73395561651753563065" category="list-text">タグ</block>
+  <block id="6d59be48f566a73e053e12167b279be5" category="list-text">サービスレベル</block>
+  <block id="fa3a2b48f3b3b3b5ea1ca735ca1dbb2a" category="paragraph">サービスレベルの変更はシステムの停止を伴わないため、クライアントデータアクセスには影響しません。</block>
+  <block id="a316230541ad1a9b54deaff69c0c527d" category="paragraph">使用可能な inode の数は、割り当てられている容量によって異なります。</block>
+  <block id="feea0043a4123253fb2a5bb1e3f2c629" category="paragraph">を参照してください <block ref="1df882ef3fd92ff8f9d6b863dc00aa54" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="b033db96cf2833d3637e7b2b2a7dc879" category="summary">クラウドボリュームは AWS インスタンスにマウントできます。Cloud Volume は現在、 Linux および UNIX クライアント用の NFSv3 と NFSv4.1 、および Windows クライアント用の SMB 2.1 、 3.0 、および 3.1.1 をサポートしています。</block>
+  <block id="9ffb10eae8fc633ca6f16dadaba49b52" category="paragraph">クラウドボリュームは AWS インスタンスにマウントできます。Cloud Volume は現在、 Linux および UNIX クライアント用の NFSv3 と NFSv4.1 、および Windows クライアント用の SMB 2.1 、 3.0 、および 3.1.1 をサポートしています。</block>
+  <block id="7d3e2b7307444071e2aff9ce902f88d2" category="paragraph">* 注： * クライアントがサポートしているハイライトされたプロトコル / ダイアレクトを使用してください。</block>
+  <block id="edf98d71e9ead5b679c1110ac3ecf1b6" category="list-text">作成したボリュームのマウント手順を、青い疑問符（ ? ）をクリックして取得します。 ボリューム名の横にある Export Paths フィールドの最後に表示されます。</block>
+  <block id="b707ea881a434e6f1311733c415823f9" category="paragraph">疑問符にカーソルを合わせると、 * マウント手順を表示 * と表示されます。</block>
+  <block id="d50e8af1a37f2f146c82bbd2994263e9" category="inline-image-macro">マウント手順を表示します</block>
+  <block id="ee33b97ca9b14ea34add893e795143a3" category="paragraph"><block ref="ee33b97ca9b14ea34add893e795143a3" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="50c44b570d181bb18058f8b2c446ff85" category="list-text">疑問符をクリックすると、マウント手順が表示されます。</block>
+  <block id="f8b7bb7f28d1f1a0e9534f8d8582d615" category="paragraph">* nfs の例： *</block>
+  <block id="4817b93a9db766f5959990256de64ac8" category="inline-image-macro">NFS のマウント手順</block>
+  <block id="0bf04c2d2bf11553852f68735d4b7a17" category="paragraph"><block ref="0bf04c2d2bf11553852f68735d4b7a17" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="cb3bef40f931522adf1b31bfb5ba4e1b" category="paragraph">rsize' および wsize オプションで定義された最大 I/O サイズは 1048576 ですが、ほとんどのユースケースでは 65536 が推奨されています。</block>
+  <block id="db5d4fc10778d421fd3beb8b0e92b854" category="paragraph">バージョンを指定しない場合、 Linux クライアントのデフォルトは NFSv4.1 です。</block>
+  <block id="c33a261ec68784a847d41ccecc103bc1" category="paragraph">* SMB の例： *</block>
+  <block id="b51b4019a8ec4841677f28fc041aa3f2" category="inline-image-macro">SMB のマウント手順</block>
+  <block id="4a2cc8ebc3353a6428da6806b7d93166" category="paragraph"><block ref="4a2cc8ebc3353a6428da6806b7d93166" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="551922b0bc90cc1e1c104a41677df6f3" category="list-text">SSH または RDP クライアントを使用して Amazon Elastic Compute Cloud （ EC2 ）インスタンスに接続し、インスタンスのマウント手順に従います。</block>
+  <block id="48bdce5c154a8b0847bc13ad135c652b" category="paragraph">マウント手順の手順が完了すると、クラウドボリュームが AWS インスタンスにマウントされました。</block>
+  <block id="b454c4191e92c73442889214b58f36be" category="sidebar">Cloud Volumes Service for AWS のドキュメント</block>
+  <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">リリースノート</block>
+  <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">新機能</block>
+  <block id="558ab0bef1894a7a726109d36632d09d" category="sidebar">既知の問題</block>
+  <block id="cb59b87e00d11222bfd9159d0d23836f" category="sidebar">はじめに</block>
+  <block id="5d7f7cb12ae8a116d30dc2cde00fc75d" category="sidebar">Cloud Volume の管理</block>
+  <block id="580e45478c258aa0d5a4f704476a412b" category="sidebar">クラウドボリューム Snapshot を管理します</block>
+  <block id="397ff3bc347de43dbcde7cdb242690fe" category="sidebar">エクスポートポリシールールの管理</block>
+  <block id="ff2741973abb478532d388257d6165e5" category="sidebar">『 Managing Cloud Sync for Cloud Volume 』</block>
+  <block id="63d5049791d9d79d86e9a108b0a999ca" category="sidebar">参照</block>
+</blocks>

@@ -1,0 +1,28 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/task_deleting_export_policy_rules.html 
+keywords: Cloud Volumes Service for AWS, export policy rules 
+summary: 不要になったエクスポートポリシールールを削除することができます。 
+---
+= エクスポートポリシールールを削除しています
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+不要になったエクスポートポリシールールを削除することができます。
+
+.手順
+. ボリューム名をクリックし、 * エクスポートポリシー * を選択します。
+. 削除するポリシールールの「 * X 」をクリックします。
++
+image:diagram_export_policy_delete.png["エクスポートポリシーを削除する"]
+
+. [ 変更の保存 *] をクリックします。
+

@@ -1,0 +1,59 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/task_creating_cloud_sync_relationship.html 
+keywords: Cloud Volumes Service for AWS, Cloud Sync relationships, target, source 
+summary: Cloud Sync 関係により、クラウドボリュームとの間でデータを同期できます。 
+---
+= Cloud Sync 関係を作成
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Cloud Sync 関係により、クラウドボリュームとの間でデータを同期できます。
+
+.作業を開始する前に
+* Cloud Sync データブローカーが必要です。
++
+link:task_creating_cloud_sync_data_broker.html["Cloud Sync データブローカーの作成"]
+
+* ソースボリュームとターゲットボリュームの両方について、データブローカーの IP アドレスがエクスポートポリシーに追加されている必要があります。
++
+ターゲットボリュームのエクスポートポリシーで、データブローカーへの書き込みアクセスを許可する必要があります。
+
++
+link:task_creating_additional_export_policy_rules.html["追加のエクスポートポリシールールを作成しています"]
+
+
+
+Cloud Volumes Service に統合された Cloud Sync 機能で現在サポートされているのは、 NFSv3 のみです。SMB ボリューム間で同期する場合は、を使用します https://cloudsync.netapp.com["Cloud Sync サービス"^] 直接（ cloudsync.netapp.com ）。
+
+.手順
+. [ 同期 ] ページまたは [ ボリューム ] ページでボリュームの [ 同期 ] タブに移動します。
+. Cloud Sync 関係を作成するには、 * 新しい関係を作成 * をクリックします。
+. 次のいずれかを実行します。
++
+** ボリュームにデータを同期するには、 * ターゲットとしてボリュームを使用する * を選択します。
+** ボリュームからデータを同期するには、 * ソースとしてボリュームを使用 * を選択します。
++
+image::diagram_creating_cloud_sync_relationship.png[Cloud Sync 関係を作成]
+
+
+
+. ［ * Host * ］ フィールド（何も指定されていない場合）に、同期または同期する NFS サーバの IP アドレスを入力します。
++
+しばらくすると、使用可能なエクスポートのリストが自動的に検出されます。
+
+. [ * エクスポート * （ * Export * ） ] フィールドで、使用可能なエクスポートのいずれかを選択する。
+. （オプション）ターゲット上のファイルをソースから削除するときにファイルを削除する場合は、ターゲット上のファイルを削除する * （ * Delete files on target when deleted from source * ）ボックスをオンにします。
+. [ 関係の作成（ Create Relationship ） ] をクリックする。
++
+関係のステータスが表示され、ファイルの進捗状況のフィールドにコピーされるファイル数が表示されます。
+
+

@@ -1,0 +1,35 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/task_modifying_cloud_sync_schedule.html 
+keywords: Cloud Volumes Service for AWS, Cloud Sync schedule, auto sync 
+summary: Cloud Sync 関係を最初に作成すると、自動同期がデフォルトで有効になり、 1 日に 1 回実行するようにスケジュールされます。Cloud Sync スケジュールは必要に応じて変更できます。 
+---
+= Cloud Sync スケジュールを変更する
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Cloud Sync 関係を最初に作成すると、自動同期がデフォルトで有効になり、 1 日に 1 回実行するようにスケジュールされます。Cloud Sync スケジュールは必要に応じて変更できます。
+
+.手順
+. Cloud Sync 関係を確認するには、 Volumes （ボリューム）ページでボリュームの Sync （同期）ページまたは Sync （同期）タブに移動します。
++
+image::diagram_modifying_cloud_sync_schedule_sync_relationship.png[同期関係]
+
+. Cloud Sync 関係の自動同期をオフにするには、関係の青い * オン * スライダをクリックします。
++
+image::diagram_modifying_cloud_sync_schedule_auto_sync.png[自動同期スライダ]
+
+. 同期スケジュールを変更するには、 [ スケジュール ] の下のドロップダウンリストをクリックし、 [ * 曜日 / 秒 ] または [ * 時間 / 秒 ] を選択し、間隔番号を選択して、チェックマークをクリックします。
++
+image::diagram_modifying_cloud_sync_schedule.png[Cloud Sync スケジュールを変更する]
+
+. Cloud Sync をすぐに開始するには、 [ アクション ] の下の [ * 完了 * ] をクリックし、 [ 今すぐ同期 * ] を選択して、もう一度 [ * 今すぐ同期 * ] をクリックして確定します。
+

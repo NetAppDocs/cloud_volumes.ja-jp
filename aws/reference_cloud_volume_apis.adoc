@@ -1,0 +1,319 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/reference_cloud_volume_apis.html 
+keywords: Cloud Volumes Service for AWS, APIs 
+summary: Web UI から使用できる Cloud Volume 機能は、 RESTful API からも使用できます。この API を使用して、 Cloud Volume の作成と管理、およびプロビジョニングスクリプトとツールの開発を行うことができます。 
+---
+= Cloud Volumes APIs
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Web UI から使用できる Cloud Volume 機能は、 RESTful API からも使用できます。この API を使用して、 Cloud Volume の作成と管理、およびプロビジョニングスクリプトとツールの開発を行うことができます。
+
+
+
+== API の URL 、 API キー、およびシークレットキーの確認
+
+API 呼び出しを実行するには、 Cloud Volume API の URL 、 API キー、およびシークレットキーを取得する必要があります。
+
+.手順
+. ストレージページまたはユーザ名の下のドロップダウンメニューで、 * API access * をクリックします。
+. Cloud Volume API の URL 、 API キー、およびシークレットキーを記録します。
+
+
+link:media/test.conf["アカウントの API URL 、 API キー、およびシークレットキーを記載したサンプルファイル"]
+
+
+
+== 使用可能な API の一覧を表示します
+
+ストレージページには、使用可能な API が表示されます。
+
+.手順
+. ストレージページで * API ドキュメント * をクリックします。
++
+ページには使用可能な API がリストされます。
+
+. ページをスクロールして使用可能な API を確認します。
++
+API は、次のような関数別に一覧表示されます。
+
++
+** 「ボリューム」
+** 「目標」
+** 「ストレージ」
+** 「ナプショット」
+
+
+. API 呼び出しの使用方法の詳細と例を取得するには、関数を選択し、次のいずれかのアクションをクリックします。
++
+** 'get': 読み取り
+** 'POST': 作成します
+** 「 PUT 」：更新または変更
+** 「削除」 : 破棄
+
+
+
+
+
+
+== Cloud Volume API を使用する
+
+このセクションでは、 Cloud Volume API の使用方法について説明します。この例では、 Linux bash シェルから curl を使用しています。'<api_url>'`<api_key>'`<secret_key>` を ' から記録した値に置き換える必要があります <<finding_urL_key_secretKey,API の URL 、 API キー、およびシークレットキーの確認>>。
+
+
+
+=== 構文
+
+*curl -s -H accept: application/json -H "Content-type: application/json" -H api-key: <api_key> -H secret-key: <secret_key> -X [get 、 POST 、 PUT 、 delete] <api_url>/v2/<command>*`
+
+
+
+=== 例
+
+
+
+==== ボリュームをリストします
+
+次の例は、すべてのボリュームに関する情報を表示します。
+
+
+NOTE: 「 jq 」を使用してコマンドをパイピングすると、「 json 出力のフォーマットが改善されます。システムに「 jq 」をインストールする必要があります。
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X GET <api_url>/v2/Volumes | jq
+----
+link:media/list-cv.py["アカウントの Cloud Volume を一覧表示するスクリプト"]
+
+
+
+==== 特定のボリュームの詳細のリスト
+
+各ボリュームには、「 volumeID 」という ID があります。たとえば、「 07c9ab6c-b655-a9fe-f904-b9b97ef9baa'.API 呼び出しで ID を指定すると、特定のボリュームの詳細が表示されます。
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X GET <api_url>/v2/Volumes/<volumeId> | jq
+----
+
+
+==== ボリュームを作成します
+
+次の例では 'POST' コールを使用して 'Test' という名前のボリュームを作成しますこのボリュームは 'us-west-1 領域では '100 GB の割り当て済み容量 'nfsv3 を使用してエクスポートされます
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X POST <api_url>/v2/Volumes -d '
+{
+	"name": "Test",
+	"creationToken": "grahams-test-volume3",
+	"region": "us-west-1",
+	"serviceLevel": "standard",
+	"quotaInBytes": 100000000000,
+	"exportPolicy": {"rules": [{"ruleIndex": 1,"allowedClients": "0.0.0.0/0","unixReadOnly": false,"unixReadWrite": true,"cifs": false,"nfsv3": true,"nfsv4": false}]},
+	"protocolTypes": ["NFSv3"],
+	"labels": ["test"]
+}'
+----
+link:media/create-cv.py["クラウドボリュームを作成するスクリプト"]
+
+
+
+==== ボリュームを更新しています
+
+次の例では 'put' 呼び出しを使用して 'Test' というボリュームを更新し ' サービス・レベルをエクストリームに変更し ' 割り当て容量を 600 GB に変更します
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X PUT <api_url>/v2/Volumes/<volumeId> -d '
+{
+	"serviceLevel": "extreme",
+	"quotaInBytes": 600000000000
+}'
+----
+link:media/update-cv.py["クラウドボリュームを更新するスクリプト"]
+
+
+
+==== ボリュームを削除する
+
+次に、「 volumeID 」で指定されたボリュームを削除するために「削除」コールを使用する例を示します。
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X DELETE <api_url>/v2/Volumes/<volumeId>
+----
+link:media/delete-cv.py["マウントポイントごとにクラウドボリュームを削除するスクリプト"]
+
+
+IMPORTANT: 注意して使用してください。この API 呼び出しは、ボリュームとそのすべてのデータを削除します。
+
+
+
+==== Snapshot を作成しています
+
+次の例では 'POST' 呼び出しを使用して ' 特定のボリューム用の 'nappy' というスナップショットを作成します
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X POST <api_url>/v2/Volumes/<volumeId>/Snapshots -d '
+{
+	"name": "<snapshot-name>"
+}'
+----
+link:media/snap-cv.py["マウントポイント別のクラウドボリュームの Snapshot を作成するスクリプト"]
+
+
+
+==== Snapshot ポリシーを作成しています
+
+次の例では 'put' 呼び出しを使用して ' 特定のボリュームのスナップショット・ポリシーを作成します
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X PUT <api_url>/v2/Volumes/<volumeId> -d '
+{
+	"snapshotPolicy": {
+        "dailySchedule": {},
+        "enabled": true,
+        "hourlySchedule": {
+            "minute": 33,
+            "snapshotsToKeep": 24
+        },
+        "monthlySchedule": {},
+        "weeklySchedule": {}
+    }
+}'
+----
+link:media/snapshot-policy.py["マウントポイント別のクラウドボリュームの Snapshot ポリシーを作成するスクリプト"]
+
+
+
+==== 特定のボリュームの Snapshot をリストします
+
+次の例では 'get' 呼び出しを使用して ' 特定のボリュームのスナップショットを一覧表示します
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X GET <api_url>/v2/Volumes/<volumeId>/Snapshots
+----
+link:media/get-snaps.py["マウントポイントごとにクラウドボリュームの Snapshot を一覧表示するスクリプト"]
+
+
+
+==== Snapshot をリバートします
+
+次の例では 'POST' 呼び出しを使用して 'napshotId' および 'volumeID で指定されたスナップショットからボリュームを復元します
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X POST <api_url>/v2/Volumes/<volumeId>/Revert -d '
+{
+	"snapshotId": "<snapshotId>"
+}'
+----
+link:media/revert-snap.py["マウントポイントと Snapshot ID でクラウドボリュームの Snapshot にリバートするスクリプト"]
+
+
+IMPORTANT: 注意して使用してください。この API 呼び出しは、その Snapshot の日付よりあとに書き込まれたデータをすべて失われます。
+
+
+
+==== Snapshot から新しいボリュームを作成します
+
+次の例では 'POST' 呼び出しを使用して 'SnapshotId' で指定された既存のボリュームのスナップショットに基づいて新しいボリュームを作成します
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X POST <api_url>/v2/Volumes -d '
+{
+	"snapshotId": "<snapshotId>",
+	"name": "Copy",
+	"creationToken": "perfectly-copied-volume",
+	"region": "us-west-1",
+	"serviceLevel": "extreme",
+	"protocolTypes": ["NFSv3"]
+}'
+----
+link:media/copy-cv.py["クラウドボリュームをコピーするスクリプト"]
+
+
+
+==== Snapshot を削除しています
+
+次の例では、「 Delete 」呼び出しを使用して「 napshotId 」で指定されたスナップショットを削除します。
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X DELETE <api_url>/v2/Volumes/<volumeId>/Snapshots/<snapshotId>
+----
+link:media/delete-snap.py["マウントポイントと Snapshot ID でクラウドボリュームの Snapshot を削除するスクリプト"]
+
+
+IMPORTANT: 注意して使用してください。この API 呼び出しは、 Snapshot とそのすべてのデータを削除します。
+
+
+
+==== ディレクトリサービスに参加する
+
+次の例では 'POST' コールを使用してディレクトリ・サービスに参加し 'DNS IP アドレス ' ドメイン 'SMB サーバの NetBIOS 名 ' ディレクトリ・サービス管理者のユーザ名とパスワード ' および組織単位（オプションでデフォルトは CN=Computers ）を提供します
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X POST <api_url>/v2/Storage/ActiveDirectory -d '
+{
+	"DNS": "<ip-address>",
+	"domain": "<domain>",
+	"netBIOS": "<netbios-name>",
+	"organizationalUnit": "OU=Cloud Servers,DC=nas-cloud,DC=local",
+	"password": "secret",
+	"region": "us-west-1",
+	"username": "Administrator"
+}'
+----
+link:media/join-ad.py["ディレクトリサービスに参加するスクリプト"]
+
+
+
+==== ディレクトリサービスの統合を表示しています
+
+次の例では 'get' 呼び出しを使用して ' ディレクトリサービス統合の構成を表示します
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X GET <api_url>/v2/Storage/ActiveDirectory
+----
+link:media/get-ad.py["ディレクトリサービスの統合を表示するスクリプト"]
+
+
+
+==== ディレクトリサービスを削除します
+
+次の例では、「削除」コールを使用して、ディレクトリサービス統合を解除します。これには、上記の「 GET 」コールを使用して検索できる、現在の参加の UUID が必要です。
+
+
+NOTE: 使用中のディレクトリサービスは削除できません。ステータスは「使用中」です。
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X DELETE <api_url>/v2/Storage/ActiveDirectory/<UUID>
+----
+link:media/unjoin-ad.py["ディレクトリサービスを解除するスクリプト"]
+
+
+
+==== パフォーマンス統計を取得します
+
+次の例では 'get' コールを使用して 'volumeID で指定されたボリュームの特定の期間における読み取りと書き込みの IOPS ' スループット ' および遅延の統計情報を一覧表示します
+
+[source, json]
+----
+curl -s -H accept:application/json -H "Content-type: application/json" -H api-key:<api_key> -H secret-key:<secret_key> -X GET '<api_url>/v2/Volumes/<volumeId>/PerformanceMetrics?startDate=2021-02-05T09:00&endDate=2021-02-05T09:05&type=READ_IOPS,WRITE_IOPS,TOTAL_THROUGHPUT,AVERAGE_OTHER_LATENCY'
+----
+link:media/get-perfstats.py["マウントポイント別のクラウドボリュームのパフォーマンス統計情報を取得するスクリプト"]

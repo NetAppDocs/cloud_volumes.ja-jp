@@ -1,0 +1,30 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/task_disabling_snapshot_policy.html 
+keywords: Cloud Volumes Service for AWS, snapshot policies 
+summary: Snapshot ポリシーの設定を保持しながら Snapshot が短時間作成されないようにするには、 Snapshot ポリシーを無効にします。 
+---
+= Snapshot ポリシーを無効にします
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Snapshot ポリシーを無効にして、 Snapshot ポリシーの設定を保持しながら Snapshot が短時間作成されないようにすることができます。
+
+.手順
+. Volumes （ボリューム）ページでボリューム名をクリックし、 * Snapshot policy * を選択します。
+. スナップショットの作成を無効にするには、 * 有効 * ボタンを * オフ * にします。
++
+image:diagram_snapshot_policy_button.png["Snapshot ポリシーの有効化ボタン"]
+
+. [ 変更の保存 *] をクリックします。
+
+
+スナップショット・ポリシーを再度有効にするには '*enabled* ボタンをクリックして *On* にし '*Save Changes] をクリックします

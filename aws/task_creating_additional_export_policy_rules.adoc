@@ -1,0 +1,31 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/task_creating_additional_export_policy_rules.html 
+keywords: Cloud Volumes Service for AWS, export policy rules, clients, IP range, access 
+summary: 追加のエクスポートポリシールールを作成して、柔軟なクライアントアクセスを有効にすることができます。たとえば、特定の IP 範囲でボリュームへの読み取り専用アクセスのみを許可するように指定できます。 
+---
+= 追加のエクスポートポリシールールを作成しています
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+追加のエクスポートポリシールールを作成して、柔軟なクライアントアクセスを有効にすることができます。たとえば、特定の IP 範囲でボリュームへの読み取り専用アクセスのみを許可するように指定できます。
+
+.手順
+. ボリューム名をクリックし、 * エクスポートポリシー * を選択します。
+. + Add export policy rule * をクリックします。
+. 次のフィールドの値を設定します。
++
+** * 許可されたクライアント *
+** * アクセスタイプ *
+
+
+. [ 変更の保存 *] をクリックします。
+

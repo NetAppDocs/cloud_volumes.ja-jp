@@ -1,0 +1,28 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/task_restoring_snapshots_to_new_volumes.html 
+keywords: Cloud Volumes Service for AWS, snapshots, restore 
+summary: 必要に応じて、新しいボリュームに Snapshot をリストアできます。 
+---
+= 新しいボリュームへの Snapshot のリストア
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+必要に応じて、新しいボリュームに Snapshot をリストアできます。
+
+.手順
+. [ スナップショット ] ページまたは [ ボリュームの詳細 ] の [ スナップショット ] セクションで、復元するスナップショットを選択し、 [ * 使用可能 * ] をクリックして、 [ ボリュームに復元 ] を選択します。
+. Create Volume （ボリュームの作成）ダイアログボックスで、新しいボリュームの名前を入力し、必要に応じてその他の設定を編集します。
++
+link:task_creating_cloud_volumes_for_aws.html["クラウドボリュームを作成"]
+
+. 設定を確認し、 * Create volume * （ボリュームの作成）をクリックして、新しいボリュームへのスナップショットのリストアを完了します。
+

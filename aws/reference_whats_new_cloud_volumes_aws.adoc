@@ -1,0 +1,61 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/reference_whats_new_cloud_volumes_aws.html 
+keywords: Cloud Volumes Service for AWS, what's new, features, enhancements 
+summary: ネットアップでは、 Cloud Volumes Service for AWS を定期的に更新して、新機能と拡張機能を提供しています。 
+---
+= Cloud Volumes Service for AWS の新機能
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+ネットアップでは、 Cloud Volumes Service for AWS を定期的に更新して、新機能と拡張機能を提供しています。
+
+
+
+== 2021年2月
+
+* 新しい Cloud Volume API (PerformanceMetrics) を使用して、 IOPS 、帯域幅、およびレイテンシなどのパフォーマンス統計情報を取得できるようになりました。詳細については、を参照してください link:reference_cloud_volume_apis.html["Cloud Volumes APIs"^]。
+
+
+
+
+== 2020 年 7 月
+
+* Cloud Volumes Service では、 /16 ～ /28 の範囲の広い RFC 1918 プライベートネットワークがサポートされるようになりました。以前は、 /28 の範囲のみがサポートされていました。
+* 「同期」機能が Cloud Sync UI に直接統合され、機能が強化されました。
+* ボリュームは、 API 呼び出しを使用して NSv3 、 NFSv4.1 、および NFSv3 と NFSv4.1 の両方との間で変換できます。
+* API の例とサンプルの Python スクリプトが v2 API に更新されました。 link:reference_cloud_volume_apis.html["Cloud Volume API を参照"]。
+* NFSv4.1 ボリュームの ACL が有効になりました。
+* Cloud Volumes Service は SOC 2 Type 1 の認定を受けています。
+* Cloud Volumes Service はシンガポール（ AP-南東 -1 ）で利用可能になりました。
+
+
+
+
+== 2020年3月
+
+* Cloud Volumes Service で、 NFSv3 マウントと NFSv4.1 マウントの最大 I/O サイズとして 1MiB がサポートされるようになりました。これまでの最大 I/O サイズは 64KiB です。I/O サイズを増やすと、一部のワークロードのパフォーマンスが向上する可能性があります。I/O サイズを増やすには、 mount options 「 rsize" and / or "wsize 」を使用します。たとえば、「 m ount -o nfsvers=4.1 、 rsize=1048576 、 wsize=1048576 172.25.0.4 ： /vol1//mnt/cv 」のように指定します
+
+
+
+
+== 2020年2月
+
+* Cloud Volumes Service は、 AWS Marketplace で従量課金制（従量課金制）サブスクリプションとして提供されるようになりました。詳細については、 Marketplace のリストを参照してください。 https://aws.amazon.com/marketplace/pp/B0848MXK74[]元の月単位および年単位のサブスクリプションプランは引き続きご利用いただけます。
+
+
+
+
+== 2020年1月
+
+* Cloud Volumes Service では、複数のネットワーク接続を同時に使用してパフォーマンスを向上させる SMB マルチチャネルがサポートされるようになりました。マルチチャネルは Windows クライアントではデフォルトで有効になっていますが、 EC2 インスタンスでは RSS （受信側スケーリング）をサポートするネットワークアダプタを使用する必要があります。
+* Snapshot からのボリュームのリバートが Cloud Volumes Service ユーザインターフェイスから実行できるようになりました。これにより、クライアントを再マウントしなくても、ボリュームをある時点の Snapshot にリバートできます。を参照してください link:task_reverting_volume_to_snapshot.html["Snapshot からボリュームをリバートします"] を参照してください。
+

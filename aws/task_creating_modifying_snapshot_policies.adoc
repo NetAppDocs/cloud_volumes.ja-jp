@@ -1,0 +1,35 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/task_creating_modifying_snapshot_policies.html 
+keywords: Cloud Volumes Service for AWS, snapshot policies 
+summary: クラウドボリュームに対して、必要に応じて Snapshot ポリシーを作成または変更できます。 
+---
+= Snapshot ポリシーを作成または変更します
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+クラウドボリュームに対して、必要に応じて Snapshot ポリシーを作成または変更できます。
+
+.手順
+. Volumes （ボリューム）ページでボリューム名をクリックし、 * Snapshot policy * を選択します。
+. 「 * Hourly * 」、「 * Daily * 」、「 * Weekly * 」、または「 * Monthly * 」を選択して、 Snapshot を作成する頻度を指定します。
++
+設定済みのポリシーは緑の点で示されます。未定義のポリシーは赤い点でマークされます。
+
+. 保持する Snapshot の数を選択します。
+. Snapshot を作成する曜日、時間、および分を選択します。
+. 頻度の異なる Snapshot （月単位と日単位の Snapshot など）を追加で作成する場合は、手順 2~4 を繰り返します。
++
+image:diagram_snapshot_policy_modify.png["スナップショットポリシー"]
+
+. [*enabled*] ボタンがまだ [*on *] に設定されていない場合は、ボタンをクリックしてポリシーを有効または有効にし直します。
+. [ 変更の保存 *] をクリックします。
+

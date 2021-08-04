@@ -1,0 +1,75 @@
+---
+prefix: aws
+entries:
+- title: Cloud Volumes Service for AWS のドキュメント
+  url: "/index.html"
+- title: リリースノート
+  entries:
+  - title: 新機能
+    url: "/reference_whats_new_cloud_volumes_aws.html"
+  - title: 既知の問題
+    url: "/reference_known_issues.html"
+- title: はじめに
+  entries:
+  - title: 前提条件
+    url: "/concept_overview.html"
+  - title: クイックスタートの手順
+    url: "/task_quick_start.html"
+  - title: サポート利用資格のアクティブ化とサポートへのアクセス
+    url: "/task_activating_support_entitlement.html"
+  - title: リージョンを選択します
+    url: "/task_selecting_region.html"
+- title: Cloud Volume の管理
+  entries:
+  - title: クラウドボリュームを作成
+    url: "/task_creating_cloud_volumes_for_aws.html"
+  - title: クラウドボリュームをマウント
+    url: "/task_mounting_cloud_volumes_for_aws.html"
+  - title: クラウドボリュームの変更
+    url: "/task_modifying_cloud_volumes_for_aws.html"
+  - title: クラウドボリュームを削除する
+    url: "/task_deleting_cloud_volumes_for_aws.html"
+- title: クラウドボリューム Snapshot を管理します
+  entries:
+  - title: クラウドボリューム用のオンデマンド Snapshot を作成する
+    url: "/task_creating_on_demand_snapshots.html"
+  - title: Snapshot ポリシーを作成または変更します
+    url: "/task_creating_modifying_snapshot_policies.html"
+  - title: Snapshot ポリシーを無効にします
+    url: "/task_disabling_snapshot_policy.html"
+  - title: Snapshot からボリュームをリバートします
+    url: "/task_reverting_volume_to_snapshot.html"
+  - title: Snapshot を削除しています
+    url: "/task_deleting_snapshots.html"
+  - title: 新しいボリュームへの Snapshot のリストア
+    url: "/task_restoring_snapshots_to_new_volumes.html"
+- title: エクスポートポリシールールの管理
+  entries:
+  - title: エクスポートポリシールールの変更
+    url: "/task_modifying_export_policy_rules.html"
+  - title: 追加のエクスポートポリシールールを作成しています
+    url: "/task_creating_additional_export_policy_rules.html"
+  - title: エクスポートポリシールールを削除しています
+    url: "/task_deleting_export_policy_rules.html"
+- title: "『 Managing Cloud Sync for Cloud Volume 』"
+  entries:
+  - title: Cloud Sync データブローカーの作成
+    url: "/task_creating_cloud_sync_data_broker.html"
+  - title: Cloud Sync 関係を作成
+    url: "/task_creating_cloud_sync_relationship.html"
+  - title: Cloud Sync スケジュールを変更する
+    url: "/task_modifying_cloud_sync_schedule.html"
+  - title: Cloud Sync 関係を削除しています
+    url: "/task_deleting_cloud_sync_relationship.html"
+  - title: Cloud Sync データブローカーの削除
+    url: "/task_deleting_cloud_sync_data_broker.html"
+- title: Cloud Volumes APIs
+  url: "/reference_cloud_volume_apis.html"
+- title: 参照
+  entries:
+  - title: Windows AD サーバ用の AWS セキュリティグループの設定
+    url: "/reference_security_groups_windows_ad_servers.html"
+  - title: 適切なサービスレベルと割り当て容量を選択します
+    url: "/reference_selecting_service_level_and_quota.html"
+- title: 法的通知
+  url: "/reference_notices.html"

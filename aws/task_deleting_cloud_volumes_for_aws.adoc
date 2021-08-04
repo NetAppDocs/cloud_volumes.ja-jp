@@ -1,0 +1,30 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/task_deleting_cloud_volumes_for_aws.html 
+keywords: Cloud Volumes Service for AWS, delete, unmount 
+summary: 不要になったクラウドボリュームを削除できます。 
+---
+= クラウドボリュームを削除する
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+不要になったクラウドボリュームを削除できます。
+
+.手順
+. ボリュームをすべてのクライアントからアンマウントします。
++
+** Linux クライアントでは 'umount' コマンドを使用します
+** Windows クライアントでは、 [ ネットワークドライブの切断 ] をクリックします。
+
+
+. Volumes （ボリューム）ページで、対応するチェックボックスをオンにして削除するボリュームを指定し、 * Actions （アクション） * をクリックして、ドロップダウンリストから * Delete volume/s * （ボリュームの削除）を選択します。
+. 確認ダイアログボックスで「削除」と入力し、ボリュームを削除することを確認してから「削除」をクリックします。
+

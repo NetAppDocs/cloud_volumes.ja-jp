@@ -1,0 +1,28 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/task_reverting_volume_to_snapshot.html 
+keywords: Cloud Volumes Service for AWS, snapshots, restore, revert 
+summary: 既存の Snapshot から以前の時点の状態にボリュームをリバートできます。 
+---
+= Snapshot からボリュームをリバートします
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+既存の Snapshot から以前の時点の状態にボリュームをリバートできます。
+
+ボリュームをリバートすると、 Snapshot の内容によって既存のボリューム構成が上書きされます。Snapshot の作成後にボリューム内のデータに加えた変更はすべて失われます。
+
+リバート処理後にクライアントでボリュームを再マウントする必要はありません。
+
+.手順
+. [ スナップショット ] ページまたは [ ボリュームの詳細 ] の [ スナップショット ] タブで、元に戻すスナップショットを選択し、 [ 使用可能 *] をクリックして、 [ ボリュームをスナップショットに戻す *] を選択します。
+. スナップショットの復元ダイアログボックスで、復元するボリュームの名前を再入力し、 * 復帰 * をクリックします。
+

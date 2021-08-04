@@ -1,0 +1,22 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/reference_cloud_backup_service_intro.html 
+keywords: Cloud Volumes Service for AWS, Cloud Backup Service 
+summary: NFS Cloud Volume は、 Cloud Backup Service を使用してバックアップできます。 
+---
+= Cloud Backup Service によるバックアップの管理（ US-West-2 のベータ版）
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NFS Cloud Volume は、 Cloud Backup Service を使用してバックアップできます。
+
+Cloud Backup Service では、 Cloud Volumes Service のデータ保護機能を拡張するために、長期間のリカバリ、アーカイブ、コンプライアンスに対応できる専用バックアップを提供しています。サービスで作成されたバックアップは、ニアタームリカバリまたはクローニングに使用できるクラウドボリューム Snapshot とは無関係に、 AWS S3 オブジェクトストレージに格納されます。
+
+Cloud Backup Service は現在ベータ版で、 AWS US-West-2 リージョンでは Cloud Volumes Service のみをサポートしています。
+
+Cloud Backup Service を使用する前に、ベータ版ソフトウェアを使用するための条件、要件、考慮事項を理解し、同意しておく必要があります。を参照してください link:media/cloud_backup_service_beta.pdf["NetApp Cloud Volumes Service for AWS 用に Cloud Backup Service をセットアップする"^] サービスの詳細と使用手順については、を参照してください。

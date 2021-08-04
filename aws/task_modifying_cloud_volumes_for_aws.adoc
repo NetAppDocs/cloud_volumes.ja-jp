@@ -1,0 +1,39 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/task_modifying_cloud_volumes_for_aws.html 
+keywords: Cloud Volumes Service for AWS, volume names, allocated capacity, service levels. 
+summary: ボリューム名、割り当て容量、サービスレベルなど、既存のボリュームを変更できます。 
+---
+= クラウドボリュームの変更
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+ボリューム名、割り当て容量、サービスレベルなど、既存のボリュームを変更できます。
+
+.手順
+. にログインします https://cds-aws-bundles.netapp.com/storage/volumes["NetApp Cloud Orchestrator"^]。
+. 管理するボリュームの名前をクリックします。
+. 必要に応じて、次のボリュームフィールドを変更します。
++
+** 名前
+** タグ
+** 割り当て容量
+** サービスレベル
++
+サービスレベルの変更はシステムの停止を伴わないため、クライアントデータアクセスには影響しません。
+
+
+
+
+
+使用可能な inode の数は、割り当てられている容量によって異なります。
+
+を参照してください link:reference_selecting_service_level_and_quota.html["適切なサービスレベルと割り当て容量を選択します"] を参照してください。

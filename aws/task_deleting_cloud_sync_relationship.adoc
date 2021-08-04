@@ -1,0 +1,25 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/task_deleting_cloud_sync_relationship.html 
+keywords: Cloud Volumes Service for AWS, Cloud Sync relationship 
+summary: 不要になった Cloud Sync 関係を削除できます。 
+---
+= Cloud Sync 関係を削除しています
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+不要になった Cloud Sync 関係を削除できます。
+
+.手順
+. [ 同期 ] ページまたは [ ボリューム ] ページでボリュームの [ 同期 ] タブに移動します。
+. 削除する関係のボックスをクリックし、 * アクション * をクリックして、 * 関係の削除 /s * を選択します。
+. 確認ダイアログボックスで「削除」と入力し、「削除」をクリックします。
+

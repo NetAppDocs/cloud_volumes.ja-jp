@@ -1,0 +1,23 @@
+---
+sidebar: sidebar_aws 
+permalink: aws/concept_overview.html 
+keywords: Cloud Volumes Service for AWS, overview, concepts, features, use cases, prerequisites, workflow 
+summary: Cloud Volume は使いやすく、導入も高速です。Cloud Volumes Service for AWS を使用する際にはいくつかの前提条件が適用されます 
+---
+= Cloud Volumes Service for AWS の前提条件
+:toc: macro
+:hardbreaks:
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Cloud Volume は使いやすく、導入も高速です。Cloud Volumes Service for AWS を使用する際にはいくつかの前提条件が適用されます
+
+このドキュメントに記載されている Cloud Volume タスクを実行するには、 Cloud Volumes Service for AWS に登録しておく必要があります。サブスクリプションプロセスには、サービスの使用に必要な初期セットアップと設定が含まれます。
+
+を参照してください https://www.netapp.com/us/forms/campaign/register-for-netapp-cloud-volumes-for-aws.aspx?hsCtaTracking=4f67614a-8c97-4c15-bd01-afa38bd31696%7C5e536b53-9371-4ce1-8e38-efda436e592e["新しい NetApp Cloud Volumes Service for AWS をぜひご利用ください"^] 詳細については、を参照してください。
