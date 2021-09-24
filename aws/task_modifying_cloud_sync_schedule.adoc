@@ -1,5 +1,5 @@
 ---
-sidebar: sidebar_aws 
+sidebar: sidebar 
 permalink: aws/task_modifying_cloud_sync_schedule.html 
 keywords: Cloud Volumes Service for AWS, Cloud Sync schedule, auto sync 
 summary: Cloud Sync 関係を最初に作成すると、自動同期がデフォルトで有効になり、 1 日に 1 回実行するようにスケジュールされます。Cloud Sync スケジュールは必要に応じて変更できます。 

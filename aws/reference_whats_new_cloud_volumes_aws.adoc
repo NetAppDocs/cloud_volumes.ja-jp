@@ -1,5 +1,5 @@
 ---
-sidebar: sidebar_aws 
+sidebar: sidebar 
 permalink: aws/reference_whats_new_cloud_volumes_aws.html 
 keywords: Cloud Volumes Service for AWS, what's new, features, enhancements 
 summary: ネットアップでは、 Cloud Volumes Service for AWS を定期的に更新して、新機能と拡張機能を提供しています。 

@@ -1,5 +1,5 @@
 ---
-sidebar: sidebar_aws 
+sidebar: sidebar 
 permalink: aws/reference_selecting_service_level_and_quota.html 
 keywords: Cloud Volumes Service for AWS, security levels, bandwidth, capacity 
 summary: Cloud Volumes Service for AWS のコストは、選択したサービスレベルと割り当てられた容量に基づいて決まります。適切なサービスレベルと容量を選択することで、ストレージのニーズを最小限のコストで満たすことができます。 

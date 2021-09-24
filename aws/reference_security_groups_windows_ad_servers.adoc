@@ -1,5 +1,5 @@
 ---
-sidebar: sidebar_aws 
+sidebar: sidebar 
 permalink: aws/reference_security_groups_windows_ad_servers.html 
 keywords: Cloud Volumes Service for AWS, security groups, ports, protocols, Windows, Active Directory, AD 
 summary: クラウドボリュームで Windows Active Directory （ AD ）サーバを使用する場合は、 AWS セキュリティグループの設定に関するガイダンスを確認しておく必要があります。この設定により、クラウドボリュームが AD に正しく統合されます。 

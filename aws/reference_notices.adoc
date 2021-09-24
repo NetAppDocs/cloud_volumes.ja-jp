@@ -1,5 +1,5 @@
 ---
-sidebar: sidebar_aws 
+sidebar: sidebar 
 permalink: aws/reference_notices.html 
 keywords: Cloud Volumes Service for AWS, notices, copyrights, trademarks, patents, privacy, open source 
 summary: 著作権に関する声明、商標、特許などにアクセスできます。 
