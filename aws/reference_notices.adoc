@@ -50,5 +50,5 @@ https://www.netapp.com/us/legal/privacypolicy/index.aspx[]
 通知ファイルには、ネットアップソフトウェアで使用されるサードパーティの著作権およびライセンスに関する情報が記載されています。
 
 * link:media/notice_cloud_volumes_aws.pdf["NetApp Cloud Volumes Service の通知"^]
-* link:media/notice_ONTAP_95.pdf["ONTAP に関する注意"^]
+* link:media/notice_ONTAP_98.pdf["ONTAP に関する注意"^]
 
