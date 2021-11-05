@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cloud_volumes</title>
+    <atom:link href="https://docs.netapp.com/ja-jp/cloud_volumes/feed.xml" rel="self" type="application/rss+xml"/>
+    <link>https://docs.netapp.com/ja-jp/cloud_volumes</link>
+    <description>The latest updates from NetApp Cloud Docs</description>
+    <language>ja-jp</language>
+    <ttl>60</ttl>
+    <pubDate>Fri, 05 Nov 2021 07:52:36 +0000</pubDate>
+    <lastBuildDate>Fri, 05 Nov 2021 07:52:36 +0000</lastBuildDate>
+    
+    
+    
+    <item>
+      <title>Cloud Volumes Service for AWS の新機能 (24 Sep 2021)</title>
+      <pubDate>Fri, 24 Sep 2021 22:41:10 +0000</pubDate>
+      <link>https://docs.netapp.com/ja-jp/cloud_volumes/aws/reference_whats_new_cloud_volumes_aws.html?time=1632523270</link>
+      <guid isPermaLink="false">Fri, 24 Sep 2021 22:41:10 +0000</guid>
+      <description><![CDATA[ ネットアップでは、 Cloud Volumes Service for AWS を定期的に更新して、新機能と拡張機能を提供しています。 ]]></description>
+    </item>
+    
+    
+  </channel>
+</rss>
