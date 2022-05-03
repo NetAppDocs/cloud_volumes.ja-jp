@@ -6,6 +6,7 @@ summary: クラウドボリュームの Snapshot をオンデマンドで作成�
 ---
 = クラウドボリューム用のオンデマンド Snapshot を作成する
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -7,6 +7,7 @@ summary: 既存の Snapshot から以前の時点の状態にボリュームを�
 = Snapshot からボリュームをリバートします
 :toc: macro
 :hardbreaks:
+:allow-uri-read: 
 :toc: 
 :nofooter: 
 :icons: font

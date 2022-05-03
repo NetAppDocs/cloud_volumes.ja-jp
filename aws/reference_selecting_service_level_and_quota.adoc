@@ -6,6 +6,7 @@ summary: Cloud Volumes Service for AWS のコストは、選択したサービ�
 ---
 = 適切なサービスレベルと割り当て容量を選択します
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -41,7 +42,7 @@ IMPORTANT: _ この記事のすべての価格情報は、 2018 年 9 月 12 日
 Cloud Volumes Service for AWS は、 3 つのサービスレベルをサポートします。サービスレベルはボリュームの作成時または変更時に指定します。
 
 link:task_creating_cloud_volumes_for_aws.html["Cloud Volume を作成しています"]
-
+link:task_modifying_cloud_volumes_for_aws.html["Cloud Volume の変更"]
 
 サービスレベルには、さまざまなストレージ容量とストレージ帯域幅のニーズがあります。
 
@@ -81,7 +82,7 @@ link:task_creating_cloud_volumes_for_aws.html["Cloud Volume を作成してい�
 ボリュームを作成または変更するときに、ボリュームに割り当てられている容量を指定します。
 
 link:task_creating_cloud_volumes_for_aws.html["Cloud Volume を作成しています"]
-
+link:task_modifying_cloud_volumes_for_aws.html["Cloud Volume の変更"]
 
 一般的なビジネスニーズに基づいてサービスレベルを選択しますが、アプリケーション固有のニーズに基づいて、割り当てられた容量のサイズを選択する必要があります。次に例を示します。
 

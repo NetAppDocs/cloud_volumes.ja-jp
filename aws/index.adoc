@@ -5,6 +5,7 @@ summary: NetApp Cloud Volumes Service for AWS のドキュメントポータル�
 ---
 = NetApp Cloud Volumes Service for AWS のドキュメント
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

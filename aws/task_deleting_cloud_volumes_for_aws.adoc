@@ -7,6 +7,7 @@ summary: 不要になったクラウドボリュームを削除できます。
 = クラウドボリュームを削除する
 :toc: macro
 :hardbreaks:
+:allow-uri-read: 
 :toc: 
 :nofooter: 
 :icons: font

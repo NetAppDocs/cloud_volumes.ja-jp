@@ -6,6 +6,7 @@ summary: ボリュームまたは Snapshot ページから Snapshot を削除で
 ---
 = Snapshot を削除しています
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

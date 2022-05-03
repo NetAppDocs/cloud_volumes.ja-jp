@@ -6,6 +6,7 @@ summary: AWS Marketplace への登録後すぐに Cloud Volumes Service にア�
 ---
 = サポート利用資格のアクティブ化とサポートへのアクセス
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

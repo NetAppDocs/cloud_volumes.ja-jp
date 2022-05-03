@@ -7,6 +7,7 @@ summary: Cloud Sync 関係により、クラウドボリュームとの間でデ
 = Cloud Sync 関係を作成
 :toc: macro
 :hardbreaks:
+:allow-uri-read: 
 :toc: 
 :nofooter: 
 :icons: font

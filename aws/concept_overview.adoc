@@ -7,6 +7,7 @@ summary: Cloud Volume は使いやすく、導入も高速です。Cloud Volumes
 = Cloud Volumes Service for AWS の前提条件
 :toc: macro
 :hardbreaks:
+:allow-uri-read: 
 :toc: 
 :nofooter: 
 :icons: font

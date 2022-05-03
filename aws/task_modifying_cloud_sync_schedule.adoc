@@ -7,6 +7,7 @@ summary: Cloud Sync 関係を最初に作成すると、自動同期がデフォ
 = Cloud Sync スケジュールを変更する
 :toc: macro
 :hardbreaks:
+:allow-uri-read: 
 :toc: 
 :nofooter: 
 :icons: font

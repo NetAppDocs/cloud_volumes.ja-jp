@@ -6,6 +6,7 @@ summary: NFS Cloud Volume は、 Cloud Backup Service を使用してバック�
 ---
 = Cloud Backup Service によるバックアップの管理（ US-West-2 のベータ版）
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

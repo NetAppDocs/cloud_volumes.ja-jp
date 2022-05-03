@@ -7,6 +7,7 @@ summary: NetApp Cloud Sync は NetApp Cloud Volumes Service for AWS と統合さ
 = Cloud Sync データブローカーの作成
 :toc: macro
 :hardbreaks:
+:allow-uri-read: 
 :toc: 
 :nofooter: 
 :icons: font

@@ -6,6 +6,7 @@ summary: Cloud Volume は、ネットアップクラウドオーケストレー�
 ---
 = クラウドボリュームを作成
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

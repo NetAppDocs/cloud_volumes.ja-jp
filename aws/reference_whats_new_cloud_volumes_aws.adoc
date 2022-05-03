@@ -7,6 +7,7 @@ summary: ネットアップでは、 Cloud Volumes Service for AWS を定期的�
 = Cloud Volumes Service for AWS の新機能
 :toc: macro
 :hardbreaks:
+:allow-uri-read: 
 :toc: 
 :nofooter: 
 :icons: font

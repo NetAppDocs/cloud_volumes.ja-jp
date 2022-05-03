@@ -7,6 +7,7 @@ summary: クラウドボリュームに対して、必要に応じて Snapshot �
 = Snapshot ポリシーを作成または変更します
 :toc: macro
 :hardbreaks:
+:allow-uri-read: 
 :toc: 
 :nofooter: 
 :icons: font

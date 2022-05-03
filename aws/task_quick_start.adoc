@@ -5,6 +5,7 @@ summary: Cloud Volumes Service for AWS を使い始めるには、いくつか�
 ---
 = クイックスタートの手順
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
@@ -15,7 +16,7 @@ summary: Cloud Volumes Service for AWS を使い始めるには、いくつか�
 [role="lead"]
 Cloud Volumes Service for AWS を使い始めるには、いくつかの簡単な手順を実行します。
 
-* 注：クラウドボリュームを作成する前に、必要な AWS ネットワークコンポーネントを設定しておく必要があります。NetApp Cloud Volumes Service for AWS アカウントセットアップガイドを参照してください link:media/cvs_aws_account_setup.pdf["[EN"^]]|] これらの手順をまだ完了していない場合。
+* 注：クラウドボリュームを作成する前に、必要な AWS ネットワークコンポーネントを設定しておく必要があります。NetApp Cloud Volumes Service for AWS アカウントセットアップガイドを参照してください link:media/cvs_aws_account_setup.pdf["[EN"^]]|link:media/cvs_aws_account_setup_jaJP.pdf["[JA"^]] これらの手順をまだ完了していない場合。
 
 [discrete]
 === <span class="image"><img src="../media/number1.png" alt="the number 1"></span><a href="task_selecting_region.html"> リージョンを選択 </a> します

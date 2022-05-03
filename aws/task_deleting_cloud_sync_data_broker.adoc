@@ -7,6 +7,7 @@ summary: 不要になった Cloud Sync データブローカーを削除する�
 = Cloud Sync データブローカーの削除
 :toc: macro
 :hardbreaks:
+:allow-uri-read: 
 :toc: 
 :nofooter: 
 :icons: font
