@@ -50,7 +50,7 @@ Cloud Volumes Service for AWS には次のようなメリットがあります�
 
 == Cloud Volumes Service for AWS の詳細については、こちらをご覧ください
 
-video::hL4rosv-iZQ[youtube, width=848,height=480]
+video::hL4rosv-iZQ[youtube,width=848,height=480]
 
 
 == 詳細については、こちらをご覧ください
