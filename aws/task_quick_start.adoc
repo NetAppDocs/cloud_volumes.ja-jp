@@ -16,22 +16,14 @@ summary: Cloud Volumes Service for AWS を使い始めるには、いくつか�
 [role="lead"]
 Cloud Volumes Service for AWS を使い始めるには、いくつかの簡単な手順を実行します。
 
-* 注：クラウドボリュームを作成する前に、必要な AWS ネットワークコンポーネントを設定しておく必要があります。NetApp Cloud Volumes Service for AWS アカウントセットアップガイドを参照してください link:media/cvs_aws_account_setup.pdf["[EN"^]]|link:media/cvs_aws_account_setup_jaJP.pdf["[JA"^]] これらの手順をまだ完了していない場合。
 
-[discrete]
-=== <span class="image"><img src="../media/number1.png" alt="the number 1"></span><a href="task_selecting_region.html"> リージョンを選択 </a> します
+NOTE: クラウドボリュームを作成する前に、必要なAWSネットワークコンポーネントを設定しておく必要があります。NetApp Cloud Volumes Service for AWS アカウントセットアップガイドを参照してください link:media/cvs_aws_account_setup.pdf["[EN"^]]|link:media/cvs_aws_account_setup_jaJP.pdf["[JA"^]] これらの手順をまだ完了していない場合。
 
 [role="quick-margin-para"]
-Cloud Volume を作成する AWS リージョンを指定します。
-
-[discrete]
-=== <span class="image"><img src="../media/number2.png" alt="the number 2"></span><a href="task_creating_cloud_volumes_FOR_AWS_HTML"> クラウドボリュームを作成 </a> します
+link:task_selecting_region.html["AWSのリージョンを指定します"] Cloud Volume を作成する場所を指定します。
 
 [role="quick-margin-para"]
-サイズとサービスレベルを指定して AWS クラウドにクラウドボリュームを作成し、その他のオプションを定義します。
-
-[discrete]
-=== <span class="image"><img src="../media/number3.png" alt="the number 3"></span><a href="task_mounting_cloud_volumes_FOR_AWS_HTML"> クラウドボリュームをマウント </a> します
+link:task_creating_cloud_volumes_for_aws.html["クラウドボリュームを作成"] AWSクラウドでサイズとサービスレベルを指定し、その他のオプションを定義します。
 
 [role="quick-margin-para"]
-Linux および UNIX クライアントでは NFS 、 Windows クライアントでは SMB を使用して、クラウドボリュームを AWS インスタンスにマウントします。
+link:task_mounting_cloud_volumes_for_aws.html["クラウドボリュームをマウント"] を使用してAWSインスタンスに接続し、LinuxクライアントとUNIXクライアントにはNFSを使用してください。WindowsクライアントにはSMBを使用します。

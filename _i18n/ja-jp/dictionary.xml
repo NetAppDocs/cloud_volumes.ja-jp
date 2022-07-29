@@ -1016,13 +1016,6 @@
   <block id="ded5309ebea6d4cf5ed055e7034efeb8" category="doc">クイックスタートの手順</block>
   <block id="98cd9fd436f3f06a4f633a68293ace22" category="inline-link-macro">[EN</block>
   <block id="c4e8dfa1afd29fe4a9774a9a68d87b5f" category="inline-link-macro">[JA</block>
-  <block id="5ac3e76d06eb5d3e2a8eb1e2a93d6020" category="paragraph">* 注：クラウドボリュームを作成する前に、必要な AWS ネットワークコンポーネントを設定しておく必要があります。NetApp Cloud Volumes Service for AWS アカウントセットアップガイドを参照してください <block ref="ea1749da35be089b2ed08e644f3246da" category="inline-link-macro-rx"></block>]|<block ref="4b61c911928703a63f9e7f084d89a163" category="inline-link-macro-rx"></block>] これらの手順をまだ完了していない場合。</block>
-  <block id="e07d1c8552b02a9af8096c445a1f98f0" category="floating-title">&lt;span class="image"&gt;&lt;img src="../media/number1.png" alt="the number 1"&gt;&lt;/span&gt;&lt;a href="task_selecting_region.html"&gt; リージョンを選択 &lt;/a&gt; します</block>
-  <block id="348eb763eb8d49a86500b8ed6b6f30cb" category="paragraph">Cloud Volume を作成する AWS リージョンを指定します。</block>
-  <block id="89eb2085607ad7d0a08819a56cfd9b5c" category="floating-title">&lt;span class="image"&gt;&lt;img src="../media/number2.png" alt="the number 2"&gt;&lt;/span&gt;&lt;a href="task_creating_cloud_volumes_FOR_AWS_HTML"&gt; クラウドボリュームを作成 &lt;/a&gt; します</block>
-  <block id="c159d360fd7e6de751d0c82932215e11" category="paragraph">サイズとサービスレベルを指定して AWS クラウドにクラウドボリュームを作成し、その他のオプションを定義します。</block>
-  <block id="9052c494a743afff74600701fd6f6b27" category="floating-title">&lt;span class="image"&gt;&lt;img src="../media/number3.png" alt="the number 3"&gt;&lt;/span&gt;&lt;a href="task_mounting_cloud_volumes_FOR_AWS_HTML"&gt; クラウドボリュームをマウント &lt;/a&gt; します</block>
-  <block id="5374594906015b13962ce3076af203a6" category="paragraph">Linux および UNIX クライアントでは NFS 、 Windows クライアントでは SMB を使用して、クラウドボリュームを AWS インスタンスにマウントします。</block>
   <block id="f44080b03577203d6c764d413f5ed1ea" category="summary">不要になった Cloud Sync 関係を削除できます。</block>
   <block id="83b9a291807c68f75e73e458476c8ab3" category="doc">Cloud Sync 関係を削除しています</block>
   <block id="78868aa9d3e48d0f5ae3596c531f2e0a" category="list-text">削除する関係のボックスをクリックし、 * アクション * をクリックして、 * 関係の削除 /s * を選択します。</block>
@@ -1075,4 +1068,11 @@
   <block id="63d5049791d9d79d86e9a108b0a999ca" category="sidebar">参照</block>
   <block id="0df28895f8b16f3a9b7b4a540bc2f0ae" category="list-text"><block ref="0df28895f8b16f3a9b7b4a540bc2f0ae" category="inline-link-macro-rx"></block></block>
   <block id="0674bb07944eeb6425669d4fdbc529c3" category="doc">Cloud Volumes Service for AWS の新機能</block>
+  <block id="0d7e1f20e5c1a1d1b089eb22a501e24d" category="admonition">クラウドボリュームを作成する前に、必要なAWSネットワークコンポーネントを設定しておく必要があります。NetApp Cloud Volumes Service for AWS アカウントセットアップガイドを参照してください <block ref="ea1749da35be089b2ed08e644f3246da" category="inline-link-macro-rx"></block>]|<block ref="4b61c911928703a63f9e7f084d89a163" category="inline-link-macro-rx"></block>] これらの手順をまだ完了していない場合。</block>
+  <block id="01199f4c47580c34b874ddd6aaa68017" category="inline-link-macro">AWSのリージョンを指定します</block>
+  <block id="971ac4441ccd02861a64a26dbad2b341" category="paragraph"><block ref="04212880faf5c32b2ea14bdddee21214" category="inline-link-macro-rx"></block> Cloud Volume を作成する場所を指定します。</block>
+  <block id="124ba7827fa08390f114599668ce5989" category="inline-link-macro">クラウドボリュームを作成</block>
+  <block id="775f4090b28ee5c5fff7d4ef36c48dc0" category="paragraph"><block ref="346d247920cee7e3b2b4a7c0b02ac86d" category="inline-link-macro-rx"></block> AWSクラウドでサイズとサービスレベルを指定し、その他のオプションを定義します。</block>
+  <block id="f8a3e524010ba486ee8e4709993867f3" category="inline-link-macro">クラウドボリュームをマウント</block>
+  <block id="65875f2f3f86bab85d300291adbab854" category="paragraph"><block ref="60fd149f49a02e7cb34ff55ec3ced595" category="inline-link-macro-rx"></block> を使用してAWSインスタンスに接続し、LinuxクライアントとUNIXクライアントにはNFSを使用してください。WindowsクライアントにはSMBを使用します。</block>
 </blocks>
