@@ -200,4 +200,5 @@ image:diagram_create_volume_interfaces_dialog.png["仮想インターフェイ�
 
 
 
+.完了後
 に進みます link:task_mounting_cloud_volumes_for_aws.html["クラウドボリュームをマウント"]。

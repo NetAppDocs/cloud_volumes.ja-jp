@@ -19,11 +19,14 @@ Cloud Volumes Service for AWS を使い始めるには、いくつかの簡単�
 
 NOTE: クラウドボリュームを作成する前に、必要なAWSネットワークコンポーネントを設定しておく必要があります。NetApp Cloud Volumes Service for AWS アカウントセットアップガイドを参照してください link:media/cvs_aws_account_setup.pdf["[EN"^]]|link:media/cvs_aws_account_setup_jaJP.pdf["[JA"^]] これらの手順をまだ完了していない場合。
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["1つ"] リージョンを選択します
 [role="quick-margin-para"]
 link:task_selecting_region.html["AWSのリージョンを指定します"] Cloud Volume を作成する場所を指定します。
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["2 つ"] クラウドボリュームを作成
 [role="quick-margin-para"]
 link:task_creating_cloud_volumes_for_aws.html["クラウドボリュームを作成"] AWSクラウドでサイズとサービスレベルを指定し、その他のオプションを定義します。
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["3つ"] クラウドボリュームをマウント
 [role="quick-margin-para"]
 link:task_mounting_cloud_volumes_for_aws.html["クラウドボリュームをマウント"] を使用してAWSインスタンスに接続し、LinuxクライアントとUNIXクライアントにはNFSを使用してください。WindowsクライアントにはSMBを使用します。

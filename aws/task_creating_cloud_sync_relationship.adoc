@@ -33,6 +33,7 @@ link:task_creating_additional_export_policy_rules.html["追加のエクスポー
 
 
 
+.このタスクについて
 Cloud Volumes Service に統合された Cloud Sync 機能で現在サポートされているのは、 NFSv3 のみです。SMB ボリューム間で同期する場合は、を使用します https://cloudsync.netapp.com["Cloud Sync サービス"^] 直接（ cloudsync.netapp.com ）。
 
 .手順

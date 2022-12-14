@@ -65,7 +65,7 @@ API は、次のような関数別に一覧表示されます。
 
 == Cloud Volume API を使用する
 
-このセクションでは、 Cloud Volume API の使用方法について説明します。この例では、 Linux bash シェルから curl を使用しています。'<api_url>'`<api_key>'`<secret_key>` を ' から記録した値に置き換える必要があります ,API の URL 、 API キー、およびシークレットキーの確認。
+このセクションでは、 Cloud Volume API の使用方法について説明します。この例では、 Linux bash シェルから curl を使用しています。'<api_url>'`<api_key>'`<secret_key>` を ' から記録した値に置き換える必要があります <<finding_urL_key_secretKey,API の URL 、 API キー、およびシークレットキーの確認>>。
 
 
 

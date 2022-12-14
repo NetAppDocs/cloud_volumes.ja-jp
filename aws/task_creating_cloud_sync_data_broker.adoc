@@ -19,6 +19,7 @@ summary: NetApp Cloud Sync は NetApp Cloud Volumes Service for AWS と統合さ
 [role="lead"]
 NetApp Cloud Sync は NetApp Cloud Volumes Service for AWS と統合されており、クラウドボリュームとの間で NFS 経由のデータを高速に同期できます。Cloud Sync データブローカーを使用すると、データを同期するための Cloud Sync 関係を作成できます。
 
+.このタスクについて
 Cloud Volume アカウントに使用するのと同じ AWS Virtual Private Cloud （ VPC ）に Cloud Sync データブローカーがすでに含まれている場合は、このタスクをスキップできます。
 
 https://docs.netapp.com/us-en/cloudsync/["NetApp Cloud Sync のドキュメント"^]
@@ -74,4 +75,5 @@ image::diagram_creating_cloud_sync_data_broker.png[Cloud Sync データブロー
 
 
 
+.完了後
 に進みます link:task_creating_cloud_sync_relationship.html["Cloud Sync 関係を作成しています"]。
